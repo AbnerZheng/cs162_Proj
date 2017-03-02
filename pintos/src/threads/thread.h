@@ -48,7 +48,7 @@ typedef int tid_t;
              |                                 |
              |                                 |
              |                                 |
-             +---------------------------------+
+             +---------------------------------+ sizeof(struct thread)
              |              magic              |
              |                :                |
              |                :                |
@@ -75,7 +75,11 @@ typedef int tid_t;
    an assertion failure in thread_current(), which checks that
    the `magic' member of the running thread's `struct thread' is
    set to THREAD_MAGIC.  Stack overflow will normally change this
-   value, triggering the assertion. */
+   value, triggering the assertion.
+
+   这里在分割符中存放一个magic数，如果发生上面两个问题，这个margic数就会被改变，也就能被检测到
+*/
+
 /* The `elem' member has a dual purpose.  It can be an element in
    the run queue (thread.c), or it can be an element in a
    semaphore wait list (synch.c).  It can be used these two ways
