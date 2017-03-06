@@ -4,6 +4,7 @@
 #include <random.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 #include "threads/flags.h"
 #include "threads/interrupt.h"
 #include "threads/intr-stubs.h"
@@ -20,21 +21,29 @@
    of thread.h for details. */
 #define THREAD_MAGIC 0xcd6abf4b
 
-/* List of processes in THREAD_READY state, that is, processes
-   that are ready to run but not actually running. */
+/**
+ * 处于THREAD_READY状态的进程列表
+ * List of processes in THREAD_READY state, that is, processes
+ * that are ready to run but not actually running.
+ * */
 static struct list ready_list;
 
-/* List of all processes.  Processes are added to this list
-   when they are first scheduled and removed when they exit. */
+/**
+ * 所有进程列表.  当进程第一次被调度时,被加入到该列表,当exit时,从列表删除。
+ * Processes are added to this list
+ * when they are first scheduled and removed when they exit.
+ * */
 static struct list all_list;
+
+static struct list sleep_list;
 
 /* Idle thread. */
 static struct thread *idle_thread;
 
-/* Initial thread, the thread running init.c:main(). */
+/* 初始线程, 执行init.c:main()函数的线程 Initial thread, the thread running init.c:main(). */
 static struct thread *initial_thread;
 
-/* Lock used by allocate_tid(). */
+/* 被allocate_tid()使用的锁 Lock used by allocate_tid(). */
 static struct lock tid_lock;
 
 /* Stack frame for kernel_thread(). */
@@ -83,7 +92,12 @@ static tid_t allocate_tid (void);
    thread_create().
 
    It is not safe to call thread_current() until this function
-   finishes. */
+   finishes.
+
+   由main()调用,初始化线程系统。它的主要目的是创建一个thread结构体给Pintos的初始线程。
+   Pintos载入器将初始线程的栈放在页首, 这个地址与其他Pintos线程的位置相同。在thread_init运行前, thread_current可能会失败,因为正在运行的线程的margic_number可能是不正确的。
+   很多函数都直接或间接调用thread_current, 包括lock_acquire. 所以thread_init在Pintos初始化过程中较早被调用。
+   */
 void
 thread_init (void)
 {
@@ -92,10 +106,11 @@ thread_init (void)
   lock_init (&tid_lock);
   list_init (&ready_list);
   list_init (&all_list);
+  list_init (&sleep_list);
 
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
-  init_thread (initial_thread, "main", PRI_DEFAULT);
+  init_thread (initial_thread, "main", PRI_DEFAULT); // 使用默认优先级初始化初始线程
   initial_thread->status = THREAD_RUNNING;
   initial_thread->tid = allocate_tid ();
 }
@@ -120,7 +135,7 @@ thread_start (void)
 /* Called by the timer interrupt handler at each timer tick.
    Thus, this function runs in an external interrupt context. */
 void
-thread_tick (void)
+thread_tick (int64_t ticks)
 {
   struct thread *t = thread_current ();
 
@@ -133,6 +148,20 @@ thread_tick (void)
 #endif
   else
     kernel_ticks++;
+
+  // 遍历
+  while(!list_empty(&sleep_list)){
+    struct list_elem *front =  list_front(&sleep_list);
+    struct thread *f = list_entry(front, struct thread, sleepelem);
+    if(f->wakeup <= ticks){ //需要唤醒
+      list_remove (front);
+//      唤醒
+      f->wakeup = INT64_MAX;
+      thread_unblock(f);
+    }else{ // 由于从小到大排列，一旦有一个不超出，那么其余的都不会超出
+      return;
+    }
+  }
 
   /* Enforce preemption. */
   if (++thread_ticks >= TIME_SLICE)
@@ -349,14 +378,14 @@ thread_get_priority (void)
 void
 thread_set_nice (int nice UNUSED)
 {
-  /* Not yet implemented. */
+  /* todo Not yet implemented. */
 }
 
 /* Returns the current thread's nice value. */
 int
 thread_get_nice (void)
 {
-  /* Not yet implemented. */
+  /* todo Not yet implemented. */
   return 0;
 }
 
@@ -364,7 +393,7 @@ thread_get_nice (void)
 int
 thread_get_load_avg (void)
 {
-  /* Not yet implemented. */
+  /* todo Not yet implemented. */
   return 0;
 }
 
@@ -372,11 +401,12 @@ thread_get_load_avg (void)
 int
 thread_get_recent_cpu (void)
 {
-  /* Not yet implemented. */
+  /* todo Not yet implemented. */
   return 0;
 }
 
 /* Idle thread.  Executes when no other thread is ready to run.
+ * 空闲线程,当没有其他准备运行的线程时执行
 
    The idle thread is initially put on the ready list by
    thread_start().  It will be scheduled once initially, at which
@@ -459,14 +489,14 @@ init_thread (struct thread *t, const char *name, int priority)
 
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
-  strlcpy (t->name, name, sizeof t->name);
-  t->stack = (uint8_t *) t + PGSIZE;
+  strlcpy (t->name, name, sizeof t->name); //只截取16个char长度
+  t->stack = (uint8_t *) t + PGSIZE; // 栈是从底(4kb)开始向0减少的
   t->priority = priority;
-  t->magic = THREAD_MAGIC;
+  t->magic = THREAD_MAGIC; //一个随机常数,用于检测栈溢出
 
-  old_level = intr_disable ();
+  old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);
-  intr_set_level (old_level);
+  intr_set_level (old_level); // 重置回之前的中断标志位
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and
@@ -492,8 +522,20 @@ next_thread_to_run (void)
 {
   if (list_empty (&ready_list))
     return idle_thread;
-  else
-    return list_entry (list_pop_front (&ready_list), struct thread, elem);
+  else{
+    struct list_elem *pElem = list_max(&ready_list, thread_less, NULL);
+    list_remove(pElem);
+    return list_entry (pElem, struct thread, elem);
+  }
+}
+
+
+void
+thread_sleep_until(struct thread *cur ,int64_t ticks){
+  cur->wakeup = ticks;
+//  list_remove (&(cur->elem)); //!important: 必须从之前的ready_list移除
+  list_insert_ordered(&sleep_list, &(cur->sleepelem), sleep_less, NULL);
+  thread_block();
 }
 
 /* Completes a thread switch by activating the new thread's page
@@ -582,3 +624,24 @@ allocate_tid (void)
 /* Offset of `stack' member within `struct thread'.
    Used by switch.S, which can't figure it out on its own. */
 uint32_t thread_stack_ofs = offsetof (struct thread, stack);
+
+
+bool
+thread_less(const struct list_elem *a,
+            const struct list_elem *b,
+            void *aux)
+{
+  struct thread* pre = list_entry(a, struct thread, elem);
+  struct thread* next = list_entry(b, struct thread, elem);
+  return pre->priority < next->priority;
+}
+
+bool
+sleep_less(const struct list_elem *a,
+           const struct list_elem *b,
+           void *aux)
+{
+  struct thread *pre = list_entry(a, struct thread, sleepelem);
+  struct thread *next= list_entry(b, struct thread, sleepelem);
+  return pre->wakeup < next->wakeup;
+}

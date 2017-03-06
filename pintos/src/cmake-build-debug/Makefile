@@ -124,6 +124,19 @@ threads/fast:
 .PHONY : threads/fast
 
 #=============================================================================
+# Target rules for targets named device
+
+# Build rule for target.
+device: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 device
+.PHONY : device
+
+# fast build rule for target.
+device/fast:
+	$(MAKE) -f devices/CMakeFiles/device.dir/build.make devices/CMakeFiles/device.dir/build
+.PHONY : device/fast
+
+#=============================================================================
 # Target rules for targets named lib
 
 # Build rule for target.
@@ -158,6 +171,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... threads"
+	@echo "... device"
 	@echo "... lib"
 	@echo "... libUser"
 .PHONY : help

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-/* Interrupts on or off? */
+/* 中断是否开启 Interrupts on or off? */
 enum intr_level
   {
     INTR_OFF,             /* Interrupts disabled. */

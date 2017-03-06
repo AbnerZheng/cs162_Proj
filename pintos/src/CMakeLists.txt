@@ -11,6 +11,7 @@ include_directories("${PROJECT_SOURCE_DIR}/lib/kernel")
 
 
 add_subdirectory(threads)
+add_subdirectory(devices)
 add_subdirectory(lib)
 add_subdirectory(lib/user)
 

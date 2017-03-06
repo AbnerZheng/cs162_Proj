@@ -85,7 +85,7 @@ typedef int tid_t;
    semaphore wait list (synch.c).  It can be used these two ways
    only because they are mutually exclusive: only a thread in the
    ready state is on the run queue, whereas only a thread in the
-   blocked state is on a semaphore wait list. */
+   blocked state is on a semaphore wait list. 一个线程只有处于ready状态中才能在运行队列 */
 struct thread
   {
     /* Owned by thread.c. */
@@ -94,10 +94,13 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
+    int64_t wakeup;                         /* 何时唤醒 */
     struct list_elem allelem;           /* List element for all threads list. */
 
     /* Shared between thread.c and synch.c. */
-    struct list_elem elem;              /* List element. */
+    struct list_elem elem;              /* 双向列表 List element. */
+
+    struct list_elem sleepelem; /*用于等待*/
 
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
@@ -116,7 +119,7 @@ extern bool thread_mlfqs;
 void thread_init (void);
 void thread_start (void);
 
-void thread_tick (void);
+void thread_tick (int64_t);
 void thread_print_stats (void);
 
 typedef void thread_func (void *aux);
@@ -143,5 +146,12 @@ int thread_get_nice (void);
 void thread_set_nice (int);
 int thread_get_recent_cpu (void);
 int thread_get_load_avg (void);
+void thread_sleep_until(struct thread *cur ,int64_t ticks);
+bool thread_less(const struct list_elem *a,
+                 const struct list_elem *b,
+                 void *aux);
+bool sleep_less(const struct list_elem *a,
+                 const struct list_elem *b,
+                 void *aux);
 
 #endif /* threads/thread.h */
