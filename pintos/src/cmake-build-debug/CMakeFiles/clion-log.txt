@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Volumes/vagrant/code/group/pintos/src
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Volumes/vagrant/code/group/pintos/src/cmake-build-debug
