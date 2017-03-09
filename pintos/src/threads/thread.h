@@ -94,6 +94,7 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
+    int orig_priority;                  /* 原先的priority */
     int64_t wakeup;                         /* 何时唤醒 */
     struct list_elem allelem;           /* List element for all threads list. */
 
@@ -153,5 +154,7 @@ bool thread_less(const struct list_elem *a,
 bool sleep_less(const struct list_elem *a,
                  const struct list_elem *b,
                  void *aux);
+
+void thread_reset_priority();
 
 #endif /* threads/thread.h */

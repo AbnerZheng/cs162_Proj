@@ -369,6 +369,20 @@ thread_set_priority (int new_priority)
   thread_yield ();
 }
 
+void
+thread_reset_priority()
+{
+  thread_current () -> priority = thread_current ()->orig_priority;
+}
+
+void
+thread_donate_priority(int new_priority){
+  int old_priority = thread_get_priority ();
+  if(old_priority < new_priority){
+    thread_set_priority (new_priority);
+  }
+}
+
 /* Returns the current thread's priority. */
 int
 thread_get_priority (void)
@@ -494,6 +508,7 @@ init_thread (struct thread *t, const char *name, int priority)
   strlcpy (t->name, name, sizeof t->name); //只截取16个char长度
   t->stack = (uint8_t *) t + PGSIZE; // 栈是从底(4kb)开始向0减少的
   t->priority = priority;
+  t->orig_priority = priority;
   t->magic = THREAD_MAGIC; //一个随机常数,用于检测栈溢出
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
