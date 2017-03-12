@@ -274,7 +274,6 @@ list_pop_front (struct list *list)
 struct list_elem *
 list_pop_priority_higest(struct list *list)
 {
-
 }
 
 /* Removes the back element from LIST and returns it.

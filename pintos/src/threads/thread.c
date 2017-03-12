@@ -370,9 +370,20 @@ thread_set_priority (int new_priority)
 }
 
 void
-thread_reset_priority()
+thread_reset_priority(struct lock* l)
 {
-  thread_current () -> priority = thread_current ()->orig_priority;
+  struct thread* t =  thread_current ();
+  if(list_empty (&t->donate_list)){
+    t->priority= t->orig_priority;
+  }else{
+    list_pop_front (&t->donate_list);
+    if(list_empty (&t->donate_list)){
+      t->priority = t->orig_priority;
+      return;
+    }
+    struct thread* t2 = list_entry (list_front (&t->donate_list),struct thread, donate_elem);
+    t->priority =  t2->priority;
+  }
 }
 
 void
@@ -510,6 +521,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->orig_priority = priority;
   t->magic = THREAD_MAGIC; //一个随机常数,用于检测栈溢出
+  list_init (&t->donate_list);
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);

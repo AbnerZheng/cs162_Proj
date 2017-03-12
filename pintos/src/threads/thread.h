@@ -155,6 +155,6 @@ bool sleep_less(const struct list_elem *a,
                  const struct list_elem *b,
                  void *aux);
 
-void thread_reset_priority();
+void thread_reset_priority(struct lock*);
 
 #endif /* threads/thread.h */
