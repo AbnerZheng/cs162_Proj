@@ -1,5 +1,53 @@
 cd build && make check
 make[1]: Entering directory `/home/vagrant/code/group/pintos/src/threads/build'
+gcc -m32 -c ../../lib/stdio.c -o lib/stdio.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/stdio.d
+gcc -m32 -c ../../lib/stdlib.c -o lib/stdlib.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/stdlib.d
+gcc -m32 -c ../../lib/string.c -o lib/string.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/string.d
+gcc -m32 -c ../../lib/arithmetic.c -o lib/arithmetic.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/arithmetic.d
+gcc -m32 -c ../../lib/ustar.c -o lib/ustar.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/ustar.d
+gcc -m32 -c ../../lib/kernel/debug.c -o lib/kernel/debug.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/kernel/debug.d
+gcc -m32 -c ../../lib/kernel/list.c -o lib/kernel/list.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/kernel/list.d
+../../lib/kernel/list.c:275:1: warning: no previous prototype for ‘list_pop_priority_higest’ [-Wmissing-prototypes]
+ list_pop_priority_higest(struct list *list)
+ ^
+../../lib/kernel/list.c: In function ‘list_pop_priority_higest’:
+../../lib/kernel/list.c:275:39: warning: unused parameter ‘list’ [-Wunused-parameter]
+ list_pop_priority_higest(struct list *list)
+                                       ^
+../../lib/kernel/list.c:277:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+gcc -m32 -c ../../lib/kernel/bitmap.c -o lib/kernel/bitmap.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/kernel/bitmap.d
+gcc -m32 -c ../../lib/kernel/hash.c -o lib/kernel/hash.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/kernel/hash.d
+gcc -m32 -c ../../lib/kernel/console.c -o lib/kernel/console.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF lib/kernel/console.d
+gcc -m32 -c ../../tests/threads/tests.c -o tests/threads/tests.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/tests.d
+gcc -m32 -c ../../tests/threads/alarm-wait.c -o tests/threads/alarm-wait.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/alarm-wait.d
+gcc -m32 -c ../../tests/threads/alarm-simultaneous.c -o tests/threads/alarm-simultaneous.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/alarm-simultaneous.d
+gcc -m32 -c ../../tests/threads/alarm-priority.c -o tests/threads/alarm-priority.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/alarm-priority.d
+gcc -m32 -c ../../tests/threads/alarm-zero.c -o tests/threads/alarm-zero.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/alarm-zero.d
+gcc -m32 -c ../../tests/threads/alarm-negative.c -o tests/threads/alarm-negative.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/alarm-negative.d
+gcc -m32 -c ../../tests/threads/priority-change.c -o tests/threads/priority-change.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-change.d
+gcc -m32 -c ../../tests/threads/priority-donate-one.c -o tests/threads/priority-donate-one.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-one.d
+gcc -m32 -c ../../tests/threads/priority-donate-multiple.c -o tests/threads/priority-donate-multiple.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-multiple.d
+gcc -m32 -c ../../tests/threads/priority-donate-multiple2.c -o tests/threads/priority-donate-multiple2.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-multiple2.d
+gcc -m32 -c ../../tests/threads/priority-donate-nest.c -o tests/threads/priority-donate-nest.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-nest.d
+gcc -m32 -c ../../tests/threads/priority-donate-sema.c -o tests/threads/priority-donate-sema.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-sema.d
+gcc -m32 -c ../../tests/threads/priority-donate-lower.c -o tests/threads/priority-donate-lower.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-lower.d
+gcc -m32 -c ../../tests/threads/priority-fifo.c -o tests/threads/priority-fifo.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-fifo.d
+gcc -m32 -c ../../tests/threads/priority-preempt.c -o tests/threads/priority-preempt.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-preempt.d
+gcc -m32 -c ../../tests/threads/priority-sema.c -o tests/threads/priority-sema.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-sema.d
+gcc -m32 -c ../../tests/threads/priority-condvar.c -o tests/threads/priority-condvar.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-condvar.d
+gcc -m32 -c ../../tests/threads/priority-donate-chain.c -o tests/threads/priority-donate-chain.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/priority-donate-chain.d
+gcc -m32 -c ../../tests/threads/mlfqs-load-1.c -o tests/threads/mlfqs-load-1.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-load-1.d
+gcc -m32 -c ../../tests/threads/mlfqs-load-60.c -o tests/threads/mlfqs-load-60.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-load-60.d
+gcc -m32 -c ../../tests/threads/mlfqs-load-avg.c -o tests/threads/mlfqs-load-avg.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-load-avg.d
+gcc -m32 -c ../../tests/threads/mlfqs-recent-1.c -o tests/threads/mlfqs-recent-1.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-recent-1.d
+gcc -m32 -c ../../tests/threads/mlfqs-fair.c -o tests/threads/mlfqs-fair.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-fair.d
+gcc -m32 -c ../../tests/threads/mlfqs-block.c -o tests/threads/mlfqs-block.o -g -msoft-float -O -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-block.d
+ld -melf_i386 -T threads/kernel.lds.s -o kernel.o threads/start.o threads/init.o threads/thread.o threads/switch.o threads/interrupt.o threads/intr-stubs.o threads/synch.o threads/palloc.o threads/malloc.o devices/pit.o devices/timer.o devices/kbd.o devices/vga.o devices/serial.o devices/block.o devices/partition.o devices/ide.o devices/input.o devices/intq.o devices/rtc.o devices/shutdown.o devices/speaker.o lib/debug.o lib/random.o lib/stdio.o lib/stdlib.o lib/string.o lib/arithmetic.o lib/ustar.o lib/kernel/debug.o lib/kernel/list.o lib/kernel/bitmap.o lib/kernel/hash.o lib/kernel/console.o tests/threads/tests.o tests/threads/alarm-wait.o tests/threads/alarm-simultaneous.o tests/threads/alarm-priority.o tests/threads/alarm-zero.o tests/threads/alarm-negative.o tests/threads/priority-change.o tests/threads/priority-donate-one.o tests/threads/priority-donate-multiple.o tests/threads/priority-donate-multiple2.o tests/threads/priority-donate-nest.o tests/threads/priority-donate-sema.o tests/threads/priority-donate-lower.o tests/threads/priority-fifo.o tests/threads/priority-preempt.o tests/threads/priority-sema.o tests/threads/priority-condvar.o tests/threads/priority-donate-chain.o tests/threads/mlfqs-load-1.o tests/threads/mlfqs-load-60.o tests/threads/mlfqs-load-avg.o tests/threads/mlfqs-recent-1.o tests/threads/mlfqs-fair.o tests/threads/mlfqs-block.o
+objcopy -R .note -R .comment -S kernel.o kernel.bin
+gcc -m32 -c ../../threads/loader.S -o threads/loader.o -Wa,--gstabs -nostdinc -I../.. -I../../lib 
+ld -melf_i386 -N -e 0 -Ttext 0x7c00 --oformat binary -o loader.bin threads/loader.o
 pintos -v -k -T 60 --bochs  -- -q  run alarm-single < /dev/null 2> tests/threads/alarm-single.errors > tests/threads/alarm-single.output
 perl -I../.. ../../tests/threads/alarm-single.ck tests/threads/alarm-single tests/threads/alarm-single.result
 pass tests/threads/alarm-single
@@ -23,33 +71,7 @@ perl -I../.. ../../tests/threads/priority-change.ck tests/threads/priority-chang
 pass tests/threads/priority-change
 pintos -v -k -T 60 --bochs  -- -q  run priority-donate-one < /dev/null 2> tests/threads/priority-donate-one.errors > tests/threads/priority-donate-one.output
 perl -I../.. ../../tests/threads/priority-donate-one.ck tests/threads/priority-donate-one tests/threads/priority-donate-one.result
-FAIL tests/threads/priority-donate-one
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (priority-donate-one) begin
-  (priority-donate-one) This thread should have priority 32.  Actual priority: 32.
-  (priority-donate-one) This thread should have priority 33.  Actual priority: 33.
-  (priority-donate-one) acquire2: got the lock
-  (priority-donate-one) acquire2: done
-  (priority-donate-one) acquire1: got the lock
-  (priority-donate-one) acquire1: done
-  (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
-  (priority-donate-one) This should be the last line before finishing this test.
-  (priority-donate-one) end
-Differences in `diff -u' format:
-  (priority-donate-one) begin
-- (priority-donate-one) This thread should have priority 32.  Actual priority: 32.
-- (priority-donate-one) This thread should have priority 33.  Actual priority: 33.
-- (priority-donate-one) acquire2: got the lock
-- (priority-donate-one) acquire2: done
-- (priority-donate-one) acquire1: got the lock
-- (priority-donate-one) acquire1: done
-+ (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
-+ (priority-donate-one) This thread should have priority 33.  Actual priority: 31.
-  (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
-  (priority-donate-one) This should be the last line before finishing this test.
-  (priority-donate-one) end
+pass tests/threads/priority-donate-one
 pintos -v -k -T 60 --bochs  -- -q  run priority-donate-multiple < /dev/null 2> tests/threads/priority-donate-multiple.errors > tests/threads/priority-donate-multiple.output
 perl -I../.. ../../tests/threads/priority-donate-multiple.ck tests/threads/priority-donate-multiple tests/threads/priority-donate-multiple.result
 FAIL tests/threads/priority-donate-multiple
@@ -70,17 +92,18 @@ Acceptable output:
   (priority-donate-multiple) end
 Differences in `diff -u' format:
   (priority-donate-multiple) begin
-- (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 32.
-- (priority-donate-multiple) Main thread should have priority 33.  Actual priority: 33.
+  (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 32.
+  (priority-donate-multiple) Main thread should have priority 33.  Actual priority: 33.
 - (priority-donate-multiple) Thread b acquired lock b.
 - (priority-donate-multiple) Thread b finished.
-+ (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
-+ (priority-donate-multiple) Main thread should have priority 33.  Actual priority: 31.
-  (priority-donate-multiple) Thread b should have just finished.
+- (priority-donate-multiple) Thread b should have just finished.
 - (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 32.
-- (priority-donate-multiple) Thread a acquired lock a.
-- (priority-donate-multiple) Thread a finished.
-+ (priority-donate-multiple) Main thread should have priority 32.  Actual priority: 31.
++ (priority-donate-multiple) (priority-donate-multiple) Thread b acquired lock b.Thread b should have just finished.
++ 
++ (priority-donate-multiple) (priority-donate-multiple) Thread b finished.Main thread should have priority 32.  Actual priority: 33.
++ 
+  (priority-donate-multiple) Thread a acquired lock a.
+  (priority-donate-multiple) Thread a finished.
   (priority-donate-multiple) Thread a should have just finished.
   (priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
   (priority-donate-multiple) end
@@ -104,17 +127,16 @@ Acceptable output:
   (priority-donate-multiple2) end
 Differences in `diff -u' format:
   (priority-donate-multiple2) begin
-- (priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 34.
+  (priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 34.
+  (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 36.
 - (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 36.
-- (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 36.
-- (priority-donate-multiple2) Thread b acquired lock b.
-- (priority-donate-multiple2) Thread b finished.
++ (priority-donate-multiple2) Thread a acquired lock a.
++ (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 34.
+  (priority-donate-multiple2) Thread b acquired lock b.
+  (priority-donate-multiple2) Thread b finished.
 - (priority-donate-multiple2) Thread a acquired lock a.
-- (priority-donate-multiple2) Thread a finished.
-+ (priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 31.
+  (priority-donate-multiple2) Thread a finished.
   (priority-donate-multiple2) Thread c finished.
-+ (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
-+ (priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
   (priority-donate-multiple2) Threads b, a, c should have just finished, in that order.
   (priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
   (priority-donate-multiple2) end
@@ -138,12 +160,10 @@ Acceptable output:
   (priority-donate-nest) end
 Differences in `diff -u' format:
   (priority-donate-nest) begin
-- (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
+  (priority-donate-nest) Low thread should have priority 32.  Actual priority: 32.
 - (priority-donate-nest) Low thread should have priority 33.  Actual priority: 33.
-- (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
-+ (priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
-+ (priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
-+ (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 32.
++ (priority-donate-nest) Low thread should have priority 33.  Actual priority: 32.
+  (priority-donate-nest) Medium thread should have priority 33.  Actual priority: 33.
   (priority-donate-nest) Medium thread got the lock.
   (priority-donate-nest) High thread got the lock.
   (priority-donate-nest) High thread finished.
@@ -171,11 +191,13 @@ Differences in `diff -u' format:
   (priority-donate-sema) begin
   (priority-donate-sema) Thread L acquired lock.
 - (priority-donate-sema) Thread L downed semaphore.
-- (priority-donate-sema) Thread H acquired lock.
-- (priority-donate-sema) Thread H finished.
-- (priority-donate-sema) Thread M finished.
-- (priority-donate-sema) Thread L finished.
-  (priority-donate-sema) Main thread finished.
++ (priority-donate-sema) (priority-donate-sema) Thread L downed semaphore.
+  (priority-donate-sema) Thread H acquired lock.
+  (priority-donate-sema) Thread H finished.
+  (priority-donate-sema) Thread M finished.
+  (priority-donate-sema) Thread L finished.
+- (priority-donate-sema) Main thread finished.
++ Main thread finished.
   (priority-donate-sema) end
 pintos -v -k -T 60 --bochs  -- -q  run priority-donate-lower < /dev/null 2> tests/threads/priority-donate-lower.errors > tests/threads/priority-donate-lower.output
 perl -I../.. ../../tests/threads/priority-donate-lower.ck tests/threads/priority-donate-lower tests/threads/priority-donate-lower.result
@@ -194,19 +216,20 @@ Acceptable output:
   (priority-donate-lower) end
 Differences in `diff -u' format:
   (priority-donate-lower) begin
-- (priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
-+ (priority-donate-lower) Main thread should have priority 41.  Actual priority: 31.
+  (priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
   (priority-donate-lower) Lowering base priority...
 - (priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
-- (priority-donate-lower) acquire: got the lock
-- (priority-donate-lower) acquire: done
 + (priority-donate-lower) Main thread should have priority 41.  Actual priority: 21.
+  (priority-donate-lower) acquire: got the lock
+  (priority-donate-lower) acquire: done
   (priority-donate-lower) acquire must already have finished.
-  (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
+- (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
++ (priority-donate-lower) Main thread should have priority 21.  Actual priority: 31.
   (priority-donate-lower) end
 pintos -v -k -T 60 --bochs  -- -q  run priority-fifo < /dev/null 2> tests/threads/priority-fifo.errors > tests/threads/priority-fifo.output
 perl -I../.. ../../tests/threads/priority-fifo.ck tests/threads/priority-fifo tests/threads/priority-fifo.result
-pass tests/threads/priority-fifo
+FAIL tests/threads/priority-fifo
+First iteration does not list all threads 0...15
 pintos -v -k -T 60 --bochs  -- -q  run priority-preempt < /dev/null 2> tests/threads/priority-preempt.errors > tests/threads/priority-preempt.output
 perl -I../.. ../../tests/threads/priority-preempt.ck tests/threads/priority-preempt tests/threads/priority-preempt.result
 pass tests/threads/priority-preempt
@@ -301,16 +324,16 @@ Acceptable output:
   (priority-condvar) end
 Differences in `diff -u' format:
   (priority-condvar) begin
-  (priority-condvar) Thread priority 23 starting.
-  (priority-condvar) Thread priority 22 starting.
-  (priority-condvar) Thread priority 21 starting.
-  (priority-condvar) Thread priority 30 starting.
-  (priority-condvar) Thread priority 29 starting.
-  (priority-condvar) Thread priority 28 starting.
-  (priority-condvar) Thread priority 27 starting.
-  (priority-condvar) Thread priority 26 starting.
-  (priority-condvar) Thread priority 25 starting.
-  (priority-condvar) Thread priority 24 starting.
+- (priority-condvar) Thread priority 23 starting.
+- (priority-condvar) Thread priority 22 starting.
+- (priority-condvar) Thread priority 21 starting.
+- (priority-condvar) Thread priority 30 starting.
+- (priority-condvar) Thread priority 29 starting.
+- (priority-condvar) Thread priority 28 starting.
+- (priority-condvar) Thread priority 27 starting.
+- (priority-condvar) Thread priority 26 starting.
+- (priority-condvar) Thread priority 25 starting.
+- (priority-condvar) Thread priority 24 starting.
   (priority-condvar) Signaling...
 - (priority-condvar) Thread priority 30 woke up.
   (priority-condvar) Signaling...
@@ -414,29 +437,24 @@ Differences in `diff -u' format:
 - (priority-donate-chain) thread 2 finishing with priority 6.
 - (priority-donate-chain) interloper 2 finished.
 - (priority-donate-chain) thread 1 finishing with priority 3.
-+ (priority-donate-chain) main should have priority 3.  Actual priority: 0.
-  (priority-donate-chain) interloper 1 finished.
-+ (priority-donate-chain) main should have priority 6.  Actual priority: 0.
-+ (priority-donate-chain) interloper 2 finished.
-+ (priority-donate-chain) main should have priority 9.  Actual priority: 0.
-+ (priority-donate-chain) interloper 3 finished.
-+ (priority-donate-chain) main should have priority 12.  Actual priority: 0.
-+ (priority-donate-chain) interloper 4 finished.
-+ (priority-donate-chain) main should have priority 15.  Actual priority: 0.
-+ (priority-donate-chain) interloper 5 finished.
-+ (priority-donate-chain) main should have priority 18.  Actual priority: 0.
-+ (priority-donate-chain) interloper 6 finished.
-+ (priority-donate-chain) main should have priority 21.  Actual priority: 0.
-+ (priority-donate-chain) interloper 7 finished.
-  (priority-donate-chain) main finishing with priority 0.
+- (priority-donate-chain) interloper 1 finished.
+- (priority-donate-chain) main finishing with priority 0.
++ (priority-donate-chain) main should have priority 3.  Actual priority: 31.
++ (priority-donate-chain) main should have priority 6.  Actual priority: 31.
++ (priority-donate-chain) main should have priority 9.  Actual priority: 31.
++ (priority-donate-chain) main should have priority 12.  Actual priority: 31.
++ (priority-donate-chain) main should have priority 15.  Actual priority: 31.
++ (priority-donate-chain) main should have priority 18.  Actual priority: 31.
++ (priority-donate-chain) main should have priority 21.  Actual priority: 31.
++ (priority-donate-chain) main finishing with priority 31.
   (priority-donate-chain) end
 pintos -v -k -T 480 --bochs  -- -q -mlfqs run mlfqs-load-1 < /dev/null 2> tests/threads/mlfqs-load-1.errors > tests/threads/mlfqs-load-1.output
 perl -I../.. ../../tests/threads/mlfqs-load-1.ck tests/threads/mlfqs-load-1 tests/threads/mlfqs-load-1.result
 FAIL tests/threads/mlfqs-load-1
 Kernel panic in run: PANIC at ../../tests/threads/tests.c:93 in fail(): test failed
-Call stack: 0xc002811e
+Call stack: 0xc002822e
 Translation of call stack:
-0xc002811e: debug_panic (.../../lib/kernel/debug.c:38)
+0xc002822e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 480 --bochs  -- -q -mlfqs run mlfqs-load-60 < /dev/null 2> tests/threads/mlfqs-load-60.errors > tests/threads/mlfqs-load-60.output
 perl -I../.. ../../tests/threads/mlfqs-load-60.ck tests/threads/mlfqs-load-60 tests/threads/mlfqs-load-60.result
 FAIL tests/threads/mlfqs-load-60
@@ -806,7 +824,7 @@ Differences in `diff -u' format:
   (mlfqs-block) Main thread releasing lock.
 - (mlfqs-block) ...got it.
 - (mlfqs-block) Block thread should have already acquired lock.
-+ (mlfqs-block) Block thread should have already acquired lock.(mlfqs-block) ...got it.
++ (mlfqs-block) (mlfqs-block) ...got it.Block thread should have already acquired lock.
 + 
   (mlfqs-block) end
 pass tests/threads/alarm-single
@@ -816,13 +834,13 @@ pass tests/threads/alarm-priority
 pass tests/threads/alarm-zero
 pass tests/threads/alarm-negative
 pass tests/threads/priority-change
-FAIL tests/threads/priority-donate-one
+pass tests/threads/priority-donate-one
 FAIL tests/threads/priority-donate-multiple
 FAIL tests/threads/priority-donate-multiple2
 FAIL tests/threads/priority-donate-nest
 FAIL tests/threads/priority-donate-sema
 FAIL tests/threads/priority-donate-lower
-pass tests/threads/priority-fifo
+FAIL tests/threads/priority-fifo
 pass tests/threads/priority-preempt
 FAIL tests/threads/priority-sema
 FAIL tests/threads/priority-condvar

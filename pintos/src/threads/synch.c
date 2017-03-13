@@ -209,19 +209,36 @@ lock_acquire (struct lock *lock)
   ASSERT (!lock_held_by_current_thread (lock));
 
   struct thread * t2 = thread_current ();
-  if(lock->holder != NULL){
-    struct thread * t =  lock->holder;
-    int pri = t2->priority;
-    if(pri > t->priority){
-      t->priority = pri;
-      enum intr_level old_level =  intr_disable ();
-      list_insert_ordered (&t->donate_list, &t2->donate_elem,thread_less,NULL);
-      intr_set_level (old_level);
+//  if(lock->holder != NULL){
+//    struct thread * t =  lock->holder;
+//    int pri = t2->priority;
+//    if(pri > t->priority){
+//      t->priority = pri;
+//      enum intr_level old_level =  intr_disable ();
+//      intr_set_level (old_level);
+//    }
+//  }
+  enum intr_level old_level = intr_disable ();
+  if(t2->priority > lock->max_priority){
+    lock->max_priority = t2->priority;
+    if(lock->holder != NULL){ //此时如果，lock以及被其他线程持有,则需要更新他的优先级
+      struct thread * t =  lock->holder;
+      if(t2->priority > t->priority){
+        t->priority = t2->priority;
+      }
     }
   }
+  intr_set_level (old_level);
 
-  sema_down (&lock->semaphore);
+  sema_down (&lock->semaphore); //阻塞住，直到拥有该lock
   lock->holder = t2;
+  list_push_back (&t2->locks, &lock->elem); // 此时t2拥有该lock
+  //todo t2此时拥有该lock，如果是随机一个线程拥有一个线程的话，就得
+
+//  if( ){
+//
+//  }
+
 }
 
 /* Tries to acquires LOCK and returns true if successful or false
@@ -255,7 +272,10 @@ lock_release (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
 
+  enum intr_level old_level = intr_disable ();
   thread_reset_priority (lock);
+  intr_set_level (old_level);
+  // 释放锁的时候，要注意的是要更新目前线程的优先级
   lock->holder = NULL;
   sema_up (&lock->semaphore);
   thread_yield ();

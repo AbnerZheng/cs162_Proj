@@ -96,6 +96,9 @@ struct thread
     int priority;                       /* Priority. */
     int orig_priority;                  /* 原先的priority */
     int64_t wakeup;                         /* 何时唤醒 */
+
+    struct list locks;                 /* hold的所有锁 */
+
     struct list_elem allelem;           /* List element for all threads list. */
 
     /* Shared between thread.c and synch.c. */
@@ -155,6 +158,6 @@ bool sleep_less(const struct list_elem *a,
                  const struct list_elem *b,
                  void *aux);
 
-void thread_reset_priority(struct lock*);
+void thread_reset_priority(struct lock *);
 
 #endif /* threads/thread.h */

@@ -370,29 +370,42 @@ thread_set_priority (int new_priority)
 }
 
 void
-thread_reset_priority(struct lock* l)
+thread_reset_priority (struct lock *l)
 {
   struct thread* t =  thread_current ();
-  if(list_empty (&t->donate_list)){
-    t->priority= t->orig_priority;
-  }else{
-    list_pop_front (&t->donate_list);
-    if(list_empty (&t->donate_list)){
-      t->priority = t->orig_priority;
-      return;
+  /* 一定会有锁 */
+  //首先释放该锁
+  struct list_elem *now =  list_begin (&t->locks);
+  struct list_elem *end = list_end (&t->locks);
+  struct list_elem *to_remove = NULL;
+  int max = 0;
+  for(;now != end; now = now->next){
+    struct lock *lock1 = list_entry (now, struct lock, elem);
+    if( l == lock1){
+      to_remove = now;
+      continue;
     }
-    struct thread* t2 = list_entry (list_front (&t->donate_list),struct thread, donate_elem);
-    t->priority =  t2->priority;
+    if(lock1->max_priority > max){
+      max = lock1->max_priority; //获取剩余的lock中最大的优先级
+    }
   }
+
+  ASSERT (to_remove != NULL);
+  list_remove (to_remove);
+
+  if(max < t->orig_priority){
+    max = t->orig_priority;
+  }
+  t->priority = max;
 }
 
-void
-thread_donate_priority(int new_priority){
-  int old_priority = thread_get_priority ();
-  if(old_priority < new_priority){
-    thread_set_priority (new_priority);
-  }
-}
+//void
+//thread_donate_priority(int new_priority){
+//  int old_priority = thread_get_priority ();
+//  if(old_priority < new_priority){
+//    thread_set_priority (new_priority);
+//  }
+//}
 
 /* Returns the current thread's priority. */
 int
@@ -521,7 +534,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->orig_priority = priority;
   t->magic = THREAD_MAGIC; //一个随机常数,用于检测栈溢出
-  list_init (&t->donate_list);
+  list_init (&t->locks);
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);
@@ -658,7 +671,7 @@ uint32_t thread_stack_ofs = offsetof (struct thread, stack);
 bool
 thread_less(const struct list_elem *a,
             const struct list_elem *b,
-            void *aux)
+            void *aux UNUSED)
 {
   struct thread* pre = list_entry(a, struct thread, elem);
   struct thread* next = list_entry(b, struct thread, elem);
@@ -668,7 +681,7 @@ thread_less(const struct list_elem *a,
 bool
 sleep_less(const struct list_elem *a,
            const struct list_elem *b,
-           void *aux)
+           void *aux UNUSED)
 {
   struct thread *pre = list_entry(a, struct thread, sleepelem);
   struct thread *next= list_entry(b, struct thread, sleepelem);
