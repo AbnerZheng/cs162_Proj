@@ -95,6 +95,7 @@ struct thread
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
     int orig_priority;                  /* 原先的priority */
+    uint8_t donated;                        // 优先级是否是因为donate获得的
     int64_t wakeup;                         /* 何时唤醒 */
 
     struct list locks;                 /* hold的所有锁 */

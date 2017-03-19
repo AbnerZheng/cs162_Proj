@@ -365,7 +365,17 @@ thread_foreach (thread_action_func *func, void *aux)
 void
 thread_set_priority (int new_priority)
 {
-  thread_current ()->priority = new_priority;
+  struct thread *current =  thread_current ();
+  if(current->orig_priority == new_priority) return;
+
+  enum intr_level old_level =  intr_disable ();
+  if(new_priority > current->priority || current->donated == 0){ //priority 一定大于 ori_priority
+    current->priority = new_priority;
+    current->donated = 0;
+  }
+  current->orig_priority = new_priority;
+  intr_set_level (old_level);
+
   thread_yield ();
 }
 
@@ -392,9 +402,10 @@ thread_reset_priority (struct lock *l)
 
   ASSERT (to_remove != NULL);
   list_remove (to_remove);
-
-  if(max < t->orig_priority){
+  t->donated = 1;
+  if(max < t->orig_priority){ //这里的小于号表明，就算donate和origin的优先级是一致的，也优先采用donate的
     max = t->orig_priority;
+    t->donated = 0;
   }
   t->priority = max;
 }
@@ -536,6 +547,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC; //一个随机常数,用于检测栈溢出
   list_init (&t->locks);
   t->block_lock = NULL;
+  t->donated = 0;
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);

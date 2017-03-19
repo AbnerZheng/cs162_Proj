@@ -210,8 +210,9 @@ lock_acquire (struct lock *lock)
     lock->max_priority = current->priority; // 更新该锁的最大优先级
     if(lock->holder != NULL){ //此时如果，lock已经被其他线程持有,则需要更新他的优先级
       struct thread * t =  lock->holder;
-      if(current->priority > t->priority){
+      if(current->priority >= t->priority){
         t->priority = current->priority;
+        t->donated = 1;
         update_up(t);
       }
 
@@ -232,8 +233,9 @@ void update_up (struct thread *t)
   ASSERT (t->block_lock->holder!=t); // 线程不能又拥有一个锁又阻塞在一个锁上
   if(t->block_lock->max_priority < t->priority){
     t->block_lock->max_priority = t->priority;
-    if(t->block_lock->holder->priority < t->priority){
+    if(t->block_lock->holder->priority <= t->priority){
       t->block_lock->holder->priority = t->priority;
+      t->block_lock->holder->donated = 1;
       update_up (t->block_lock->holder);
     }
   }
