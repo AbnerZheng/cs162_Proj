@@ -68,15 +68,8 @@ sema_down (struct semaphore *sema)
   old_level = intr_disable ();
   while (sema->value == 0)
     {
-//      int pri = thread_get_priority ();
-//      struct list_elem* l;
-//      for( l =  list_begin (&sema->waiters);
-//          l != list_end (&sema->waiters);l = l->next){
-//        struct thread *t =  list_entry (l, struct thread, elem);
-//        if(t->priority < pri){
-//          t->priority = pri;
-//        }
-//      }
+      //todo 改成优先级
+//      list_insert_ordered (&sema->waiters, &thread_current()->elem, thread_less,NULL);
       list_push_back (&sema->waiters, &thread_current ()->elem);
       thread_block ();
     }
@@ -127,9 +120,9 @@ sema_up (struct semaphore *sema)
     list_remove (m);
     thread_unblock (list_entry (m, struct thread, elem));
   }
-
   sema->value++;
   intr_set_level (old_level);
+  thread_yield ();
 }
 
 static void sema_test_helper (void *sema_);
@@ -283,7 +276,7 @@ lock_release (struct lock *lock)
   // 释放锁的时候，要注意的是要更新目前线程的优先级
   lock->holder = NULL;
   sema_up (&lock->semaphore);
-  thread_yield ();
+//  thread_yield ();
 }
 
 /* Returns true if the current thread holds LOCK, false
