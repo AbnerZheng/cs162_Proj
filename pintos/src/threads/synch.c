@@ -134,6 +134,8 @@ sema_up (struct semaphore *sema)
 
 static void sema_test_helper (void *sema_);
 
+void update_up (struct thread *pThread);
+
 /* Self-test for semaphores that makes control "ping-pong"
    between a pair of threads.  Insert calls to printf() to see
    what's going on. */
@@ -208,37 +210,40 @@ lock_acquire (struct lock *lock)
   ASSERT (!intr_context ());
   ASSERT (!lock_held_by_current_thread (lock));
 
-  struct thread * t2 = thread_current ();
-//  if(lock->holder != NULL){
-//    struct thread * t =  lock->holder;
-//    int pri = t2->priority;
-//    if(pri > t->priority){
-//      t->priority = pri;
-//      enum intr_level old_level =  intr_disable ();
-//      intr_set_level (old_level);
-//    }
-//  }
+  struct thread * current = thread_current ();
   enum intr_level old_level = intr_disable ();
-  if(t2->priority > lock->max_priority){
-    lock->max_priority = t2->priority;
-    if(lock->holder != NULL){ //此时如果，lock以及被其他线程持有,则需要更新他的优先级
+  current->block_lock = lock;
+  if(current->priority > lock->max_priority){
+    lock->max_priority = current->priority; // 更新该锁的最大优先级
+    if(lock->holder != NULL){ //此时如果，lock已经被其他线程持有,则需要更新他的优先级
       struct thread * t =  lock->holder;
-      if(t2->priority > t->priority){
-        t->priority = t2->priority;
+      if(current->priority > t->priority){
+        t->priority = current->priority;
+        update_up(t);
       }
+
     }
   }
   intr_set_level (old_level);
 
   sema_down (&lock->semaphore); //阻塞住，直到拥有该lock
-  lock->holder = t2;
-  list_push_back (&t2->locks, &lock->elem); // 此时t2拥有该lock
+  current->block_lock = NULL;
+  lock->holder = current;
+  list_push_back (&current->locks, &lock->elem); // 此时拥有该lock
   //todo t2此时拥有该lock，如果是随机一个线程拥有一个线程的话，就得
+}
 
-//  if( ){
-//
-//  }
-
+void update_up (struct thread *t)
+{
+  if(NULL == t->block_lock || t->block_lock->holder == NULL)return;
+  ASSERT (t->block_lock->holder!=t); // 线程不能又拥有一个锁又阻塞在一个锁上
+  if(t->block_lock->max_priority < t->priority){
+    t->block_lock->max_priority = t->priority;
+    if(t->block_lock->holder->priority < t->priority){
+      t->block_lock->holder->priority = t->priority;
+      update_up (t->block_lock->holder);
+    }
+  }
 }
 
 /* Tries to acquires LOCK and returns true if successful or false

@@ -535,6 +535,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->orig_priority = priority;
   t->magic = THREAD_MAGIC; //一个随机常数,用于检测栈溢出
   list_init (&t->locks);
+  t->block_lock = NULL;
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);

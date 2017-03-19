@@ -98,8 +98,8 @@ struct thread
     int64_t wakeup;                         /* 何时唤醒 */
 
     struct list locks;                 /* hold的所有锁 */
-
     struct list_elem allelem;           /* List element for all threads list. */
+    struct lock *block_lock;             // 该线程被block的锁
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* 双向列表 List element. */
