@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
+#include <devices/timer.h>
 #include "threads/flags.h"
 #include "threads/interrupt.h"
 #include "threads/intr-stubs.h"
@@ -12,6 +13,8 @@
 #include "threads/switch.h"
 #include "threads/synch.h"
 #include "threads/vaddr.h"
+#include "fixed-point.h"
+
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
@@ -67,6 +70,7 @@ static unsigned thread_ticks;   /* # of timer ticks since last yield. */
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
 bool thread_mlfqs;
+static fixed_point_t load_avg;
 
 static void kernel_thread (thread_func *, void *aux);
 
@@ -108,6 +112,10 @@ thread_init (void)
   list_init (&all_list);
   list_init (&sleep_list);
 
+  if(thread_mlfqs){
+    load_avg = __mk_fix (0);
+  }
+
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
   init_thread (initial_thread, "main", PRI_DEFAULT); // 使用默认优先级初始化初始线程
@@ -138,6 +146,15 @@ void
 thread_tick (int64_t ticks)
 {
   struct thread *t = thread_current ();
+
+  if(thread_mlfqs && (ticks % TIMER_FREQ == 0)){
+    // mlfqs
+    fixed_point_t t1 = fix_scale (load_avg, 59);
+    int num_ready_threads = list_size (&all_list)  - list_size (&sleep_list) - 1;
+    fixed_point_t t2 = fix_add (t1,fix_int( num_ready_threads));
+    load_avg = fix_unscale (t2, 60);
+  }
+
 
   /* Update statistics. */
   if (t == idle_thread)
@@ -429,15 +446,14 @@ thread_get_priority (void)
 void
 thread_set_nice (int nice UNUSED)
 {
-  /* todo Not yet implemented. */
+  thread_current ()->nice = nice;
 }
 
 /* Returns the current thread's nice value. */
 int
 thread_get_nice (void)
 {
-  /* todo Not yet implemented. */
-  return 0;
+  return thread_current ()->nice;
 }
 
 /* Returns 100 times the system load average. */
@@ -445,14 +461,14 @@ int
 thread_get_load_avg (void)
 {
   /* todo Not yet implemented. */
-  return 0;
+  return fix_round (fix_scale (load_avg, 100));
 }
 
 /* Returns 100 times the current thread's recent_cpu value. */
 int
 thread_get_recent_cpu (void)
 {
-  /* todo Not yet implemented. */
+
   return 0;
 }
 
@@ -548,6 +564,7 @@ init_thread (struct thread *t, const char *name, int priority)
   list_init (&t->locks);
   t->block_lock = NULL;
   t->donated = 0;
+  t->nice = 0;
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);

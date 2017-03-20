@@ -378,6 +378,9 @@
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/ustar.h">
 			<Option target="lib"/>
 		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/fixed-point.h">
+			<Option target="threads"/>
+		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/init.c">
 			<Option target="threads"/>
 		</Unit>

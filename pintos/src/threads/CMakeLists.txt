@@ -6,6 +6,7 @@ set(threads_SRCS
         synch.c
         thread.c
         thread.h
+        fixed-point.h
         )
 
 add_library(threads ${threads_SRCS})
