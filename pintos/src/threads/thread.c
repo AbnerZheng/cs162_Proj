@@ -140,27 +140,68 @@ thread_start (void)
   sema_down (&idle_started);
 }
 
+void thread_update_recent_cpu (){
+  ASSERT (thread_mlfqs);
+  ASSERT (intr_context ());
+
+  struct thread *current =  thread_current ();
+  if(current == idle_thread)
+    return;
+  current->recent_cpu = fix_add (current->recent_cpu, fix_int (1));
+}
+
+void thread_update_priority(){
+  ASSERT (thread_mlfqs);
+  ASSERT (intr_context ());
+  thread_foreach (updatePriority, NULL);
+}
+
+void thread_update_load_avg_and_recent_cpu(){
+  ASSERT (thread_mlfqs);
+  ASSERT (intr_context ());
+  // mlfqs
+  fixed_point_t t1 = fix_scale (load_avg, 59);
+  int num_ready_threads = list_size (&ready_list);
+  if(thread_current () != idle_thread){
+    num_ready_threads ++;
+  }
+  fixed_point_t t2 = fix_add (t1,fix_int( num_ready_threads));
+  load_avg = fix_unscale (t2, 60);
+
+  fixed_point_t load_avg_mult_2 = fix_scale (load_avg,2);
+  fixed_point_t load_avg_mult_2_add_1 =  fix_add (load_avg_mult_2, fix_int (1));
+  fixed_point_t t4  = fix_div (load_avg_mult_2, load_avg_mult_2_add_1);
+
+  thread_foreach (updateRecentCpuAndPriority, &t4);
+}
+
+void updatePriority(struct thread *t, void *aux UNUSED){
+  if(t == idle_thread)
+    return;
+  t->priority = fix_round (fix_sub (fix_int (PRI_MAX - (t->nice * 2)) , fix_unscale (t->recent_cpu, 4)));
+  if(t->priority < PRI_MIN)
+    t->priority = PRI_MIN;
+  if(t->priority > PRI_MAX)
+    t->priority = PRI_MAX;
+}
+
+void updateRecentCpuAndPriority (struct thread *t, void *aux){
+  fixed_point_t *load = (fixed_point_t* )(aux);
+  t->recent_cpu =  fix_add (fix_mul (*load, t->recent_cpu), fix_int (t->nice));
+  updatePriority (t, aux);
+}
+
 /* Called by the timer interrupt handler at each timer tick.
    Thus, this function runs in an external interrupt context. */
 void
 thread_tick (int64_t ticks)
 {
   struct thread *t = thread_current ();
-
-  if(thread_mlfqs && (ticks % TIMER_FREQ == 0)){
-    // mlfqs
-    fixed_point_t t1 = fix_scale (load_avg, 59);
-    int num_ready_threads = list_size (&all_list)  - list_size (&sleep_list) - 1;
-    fixed_point_t t2 = fix_add (t1,fix_int( num_ready_threads));
-    load_avg = fix_unscale (t2, 60);
-  }
-
-
   /* Update statistics. */
   if (t == idle_thread)
     idle_ticks++;
 #ifdef USERPROG
-  else if (t->pagedir != NULL)
+    else if (t->pagedir != NULL)
     user_ticks++;
 #endif
   else
@@ -372,16 +413,19 @@ thread_foreach (thread_action_func *func, void *aux)
 
   for (e = list_begin (&all_list); e != list_end (&all_list);
        e = list_next (e))
-    {
-      struct thread *t = list_entry (e, struct thread, allelem);
-      func (t, aux);
-    }
+  {
+    struct thread *t = list_entry (e, struct thread, allelem);
+    func (t, aux);
+  }
 }
 
 /* Sets the current thread's priority to NEW_PRIORITY. */
 void
 thread_set_priority (int new_priority)
 {
+  if(thread_mlfqs){ //todo 当mlfqs时，不在能够设置优先级
+    return;
+  }
   struct thread *current =  thread_current ();
   if(current->orig_priority == new_priority) return;
 
@@ -399,6 +443,7 @@ thread_set_priority (int new_priority)
 void
 thread_reset_priority (struct lock *l)
 {
+  if(thread_mlfqs) return;
   struct thread* t =  thread_current ();
   /* 一定会有锁 */
   //首先释放该锁
@@ -446,7 +491,12 @@ thread_get_priority (void)
 void
 thread_set_nice (int nice UNUSED)
 {
-  thread_current ()->nice = nice;
+  enum intr_level old_level =  intr_disable ();
+  struct thread *current = thread_current ();
+  current->nice = nice;
+  updatePriority (current, NULL);
+  intr_set_level (old_level);
+  thread_yield ();
 }
 
 /* Returns the current thread's nice value. */
@@ -468,8 +518,7 @@ thread_get_load_avg (void)
 int
 thread_get_recent_cpu (void)
 {
-
-  return 0;
+  return fix_round (fix_scale (thread_current ()->recent_cpu, 100));
 }
 
 /* Idle thread.  Executes when no other thread is ready to run.
@@ -490,25 +539,25 @@ idle (void *idle_started_ UNUSED)
   sema_up (idle_started);
 
   for (;;)
-    {
-      /* Let someone else run. */
-      intr_disable ();
-      thread_block ();
+  {
+    /* Let someone else run. */
+    intr_disable ();
+    thread_block ();
 
-      /* Re-enable interrupts and wait for the next one.
+    /* Re-enable interrupts and wait for the next one.
 
-         The `sti' instruction disables interrupts until the
-         completion of the next instruction, so these two
-         instructions are executed atomically.  This atomicity is
-         important; otherwise, an interrupt could be handled
-         between re-enabling interrupts and waiting for the next
-         one to occur, wasting as much as one clock tick worth of
-         time.
+       The `sti' instruction disables interrupts until the
+       completion of the next instruction, so these two
+       instructions are executed atomically.  This atomicity is
+       important; otherwise, an interrupt could be handled
+       between re-enabling interrupts and waiting for the next
+       one to occur, wasting as much as one clock tick worth of
+       time.
 
-         See [IA32-v2a] "HLT", [IA32-v2b] "STI", and [IA32-v3a]
-         7.11.1 "HLT Instruction". */
-      asm volatile ("sti; hlt" : : : "memory");
-    }
+       See [IA32-v2a] "HLT", [IA32-v2b] "STI", and [IA32-v3a]
+       7.11.1 "HLT Instruction". */
+    asm volatile ("sti; hlt" : : : "memory");
+  }
 }
 
 /* Function used as the basis for a kernel thread. */
@@ -565,6 +614,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->block_lock = NULL;
   t->donated = 0;
   t->nice = 0;
+  t->recent_cpu = fix_int (0);
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);
@@ -605,7 +655,6 @@ next_thread_to_run (void)
 void
 thread_sleep_until(struct thread *cur ,int64_t ticks){
   cur->wakeup = ticks;
-//  list_remove (&(cur->elem)); //!important: 必须从之前的ready_list移除
   list_insert_ordered(&sleep_list, &(cur->sleepelem), sleep_less, NULL);
   thread_block();
 }
@@ -650,10 +699,10 @@ thread_schedule_tail (struct thread *prev)
      initial_thread because its memory was not obtained via
      palloc().) */
   if (prev != NULL && prev->status == THREAD_DYING && prev != initial_thread)
-    {
-      ASSERT (prev != cur);
-      palloc_free_page (prev);
-    }
+  {
+    ASSERT (prev != cur);
+    palloc_free_page (prev);
+  }
 }
 
 /* Schedules a new process.  At entry, interrupts must be off and

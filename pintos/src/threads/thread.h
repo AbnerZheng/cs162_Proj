@@ -98,6 +98,7 @@ struct thread
     uint8_t donated;                        // 优先级是否是因为donate获得的
     int64_t wakeup;                         /* 何时唤醒 */
     int nice;
+    fixed_point_t recent_cpu;
 
     struct list locks;                 /* hold的所有锁 */
     struct list_elem allelem;           /* List element for all threads list. */
@@ -161,5 +162,9 @@ bool sleep_less(const struct list_elem *a,
                  void *aux);
 
 void thread_reset_priority(struct lock *);
-
+void thread_update_recent_cpu ();
+void thread_update_load_avg_and_recent_cpu();
+void thread_update_priority();
+void updateRecentCpuAndPriority (struct thread *t, void *aux);
+void updatePriority(struct thread *t, void *aux);
 #endif /* threads/thread.h */

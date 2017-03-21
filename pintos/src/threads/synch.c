@@ -204,7 +204,7 @@ lock_acquire (struct lock *lock)
   struct thread * current = thread_current ();
   enum intr_level old_level = intr_disable ();
   current->block_lock = lock;
-  if(current->priority > lock->max_priority){
+  if(current->priority > lock->max_priority && !thread_mlfqs){
     lock->max_priority = current->priority; // 更新该锁的最大优先级
     if(lock->holder != NULL){ //此时如果，lock已经被其他线程持有,则需要更新他的优先级
       struct thread * t =  lock->holder;
