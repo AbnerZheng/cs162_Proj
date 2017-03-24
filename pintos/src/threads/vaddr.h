@@ -8,7 +8,7 @@
 #include "threads/loader.h"
 
 /* Functions and macros for working with virtual addresses.
-
+   虚拟地址的一些函数
    See pte.h for functions and macros specifically for x86
    hardware page tables. */
 

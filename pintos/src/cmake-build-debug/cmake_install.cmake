@@ -30,6 +30,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/cmake_install.cmake")
+  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/cmake_install.cmake")
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/cmake_install.cmake")
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/cmake_install.cmake")
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/cmake_install.cmake")

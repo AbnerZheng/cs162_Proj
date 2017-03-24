@@ -115,6 +115,61 @@ clean: threads/CMakeFiles/threads.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory userprog
+
+# Convenience name for "all" pass in the directory.
+userprog/all: userprog/CMakeFiles/userprog.dir/all
+
+.PHONY : userprog/all
+
+# Convenience name for "clean" pass in the directory.
+userprog/clean: userprog/CMakeFiles/userprog.dir/clean
+
+.PHONY : userprog/clean
+
+# Convenience name for "preinstall" pass in the directory.
+userprog/preinstall:
+
+.PHONY : userprog/preinstall
+
+#=============================================================================
+# Target rules for target userprog/CMakeFiles/userprog.dir
+
+# All Build rule for target.
+userprog/CMakeFiles/userprog.dir/all:
+	$(MAKE) -f userprog/CMakeFiles/userprog.dir/build.make userprog/CMakeFiles/userprog.dir/depend
+	$(MAKE) -f userprog/CMakeFiles/userprog.dir/build.make userprog/CMakeFiles/userprog.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=35,36,37,38,39,40,41 "Built target userprog"
+.PHONY : userprog/CMakeFiles/userprog.dir/all
+
+# Include target in all.
+all: userprog/CMakeFiles/userprog.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+userprog/CMakeFiles/userprog.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 userprog/CMakeFiles/userprog.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles 0
+.PHONY : userprog/CMakeFiles/userprog.dir/rule
+
+# Convenience name for target.
+userprog: userprog/CMakeFiles/userprog.dir/rule
+
+.PHONY : userprog
+
+# clean rule for target.
+userprog/CMakeFiles/userprog.dir/clean:
+	$(MAKE) -f userprog/CMakeFiles/userprog.dir/build.make userprog/CMakeFiles/userprog.dir/clean
+.PHONY : userprog/CMakeFiles/userprog.dir/clean
+
+# clean rule for target.
+clean: userprog/CMakeFiles/userprog.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Directory level rules for directory devices
 
 # Convenience name for "all" pass in the directory.

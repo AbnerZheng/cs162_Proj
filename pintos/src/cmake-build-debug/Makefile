@@ -124,6 +124,19 @@ threads/fast:
 .PHONY : threads/fast
 
 #=============================================================================
+# Target rules for targets named userprog
+
+# Build rule for target.
+userprog: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 userprog
+.PHONY : userprog
+
+# fast build rule for target.
+userprog/fast:
+	$(MAKE) -f userprog/CMakeFiles/userprog.dir/build.make userprog/CMakeFiles/userprog.dir/build
+.PHONY : userprog/fast
+
+#=============================================================================
 # Target rules for targets named device
 
 # Build rule for target.
@@ -171,6 +184,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... threads"
+	@echo "... userprog"
 	@echo "... device"
 	@echo "... lib"
 	@echo "... libUser"

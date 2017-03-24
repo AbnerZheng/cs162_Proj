@@ -3,6 +3,9 @@
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/rebuild_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/edit_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/CMakeFiles/rebuild_cache.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/CMakeFiles/edit_cache.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/CMakeFiles/userprog.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/rebuild_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/edit_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/device.dir
