@@ -3,19 +3,22 @@
 
 #include "threads/vaddr.h"
 
-/* Functions and macros for working with x86 hardware page
-   tables.
+/**
+ * X86硬件页表相关的函数和宏
+ * Functions and macros for working with x86 hardware page
+ * tables.
+ *
+ * vaddr.h 有更详细的内容
+ * See vaddr.h for more generic functions and macros for virtual
+ * addresses.
+ *
+ * Virtual addresses are structured as follows:
 
-   See vaddr.h for more generic functions and macros for virtual
-   addresses.
-
-   Virtual addresses are structured as follows:
-
-    31                  22 21                  12 11                   0
-   +----------------------+----------------------+----------------------+
-   | Page Directory Index |   Page Table Index   |    Page Offset       |
-   +----------------------+----------------------+----------------------+
-*/
+ *  31                  22 21                  12 11                   0
+ * +----------------------+----------------------+----------------------+
+ * | Page Directory Index |   Page Table Index   |    Page Offset       |
+ * +----------------------+----------------------+----------------------+
+ **/
 
 /* Page table index (bits 12:21). */
 #define	PTSHIFT PGBITS		           /* First page table bit. */
