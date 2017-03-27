@@ -659,22 +659,26 @@ thread_sleep_until(struct thread *cur ,int64_t ticks){
   thread_block();
 }
 
-/* Completes a thread switch by activating the new thread's page
-   tables, and, if the previous thread is dying, destroying it.
+/**
+ * 通过激活新线程的页表，完成线程调度并且如果当先前的线程死去的话，销毁它
+ *
+ * Completes a thread switch by activating the new thread's page
+ * tables, and, if the previous thread is dying, destroying it.
 
-   At this function's invocation, we just switched from thread
+ * At this function's invocation, we just switched from thread
    PREV, the new thread is already running, and interrupts are
-   still disabled.  This function is normally invoked by
-   thread_schedule() as its final action before returning, but
-   the first time a thread is scheduled it is called by
-   switch_entry() (see switch.S).
+ * still disabled.  This function is normally invoked by
+ * thread_schedule() as its final action before returning, but
+ * the first time a thread is scheduled it is called by
+ * switch_entry() (see switch.S).
 
-   It's not safe to call printf() until the thread switch is
-   complete.  In practice that means that printf()s should be
-   added at the end of the function.
+ * It's not safe to call printf() until the thread switch is
+ * complete.  In practice that means that printf()s should be
+ * added at the end of the function.
 
-   After this function and its caller returns, the thread switch
-   is complete. */
+ * After this function and its caller returns, the thread switch
+ * is complete.
+ **/
 void
 thread_schedule_tail (struct thread *prev)
 {

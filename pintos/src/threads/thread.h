@@ -109,10 +109,11 @@ struct thread
 
     struct list_elem sleepelem; /*用于等待*/
 
-#ifdef USERPROG
+    //todo 删掉了预编译，保证clion的提示正常
+//#ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
-#endif
+//#endif
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */

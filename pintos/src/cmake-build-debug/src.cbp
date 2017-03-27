@@ -433,6 +433,9 @@
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/fixed-point.h">
 			<Option target="threads"/>
 		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/flags.h">
+			<Option target="threads"/>
+		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/init.c">
 			<Option target="threads"/>
 		</Unit>
@@ -458,6 +461,9 @@
 			<Option target="threads"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/palloc.h">
+			<Option target="threads"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/pte.h">
 			<Option target="threads"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/threads/synch.c">

@@ -135,10 +135,13 @@ static inline uint32_t pte_create_user (void *page, bool writable) {
   return pte_create_kernel (page, writable) | PTE_U;
 }
 
-/* Returns a pointer to the page that page table entry PTE points
-   to. */
+/**
+ * 返回PTE指向的页指针
+ * Returns a pointer to the page that page table entry PTE points
+ * to.
+ **/
 static inline void *pte_get_page (uint32_t pte) {
-  return ptov (pte & PTE_ADDR);
+  return ptov (pte & PTE_ADDR); // 取高20位，从物理地址转化为虚拟地址
 }
 
 #endif /* threads/pte.h */

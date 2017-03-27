@@ -8,6 +8,8 @@ set(threads_SRCS
         thread.h
         fixed-point.h
         loader.h
+        pte.h
+        flags.h
         )
 
 add_library(threads ${threads_SRCS})
