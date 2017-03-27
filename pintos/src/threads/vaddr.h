@@ -20,7 +20,10 @@
 #define PGSIZE  (1 << PGBITS)              /* Bytes in a page. */
 #define PGMASK  BITMASK(PGSHIFT, PGBITS)   /* Page offset bits (0:12). */
 
-/* Offset within a page. */
+/**
+ * 页中的偏移量
+ * Offset within a page.
+ **/
 static inline unsigned pg_ofs (const void *va) {
   return (uintptr_t) va & PGMASK; // unitprt_t == uint32
 }
@@ -46,7 +49,7 @@ static inline void *pg_round_down (const void *va) {
    address address 0x1234 at (uint8_t *) PHYS_BASE + 0x1234, and
    so on.
 
-   物理内存从base address这个虚拟地址开始映射。虚拟地址0x1234被映射到PHYS_BASE+0x1234
+   物理内存从base address这个虚拟地址开始映射。物理地址0x1234被映射到虚拟地址PHYS_BASE+0x1234
 
    这个地址也标注了用户程序地址空间的结尾。 在这个地址之上，属于内核地址空间
    This address also marks the end of user programs' address
@@ -84,8 +87,11 @@ ptov (uintptr_t paddr)
   return (void *) (paddr + PHYS_BASE);
 }
 
-/* Returns physical address at which kernel virtual address VADDR
-   is mapped. */
+/**
+ * 返回内核虚拟地址VADDR映射到的物理地址
+ * Returns physical address at which kernel virtual address VADDR
+ * is mapped.
+ **/
 static inline uintptr_t
 vtop (const void *vaddr)
 {
