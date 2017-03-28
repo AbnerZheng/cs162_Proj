@@ -265,17 +265,6 @@ list_pop_front (struct list *list)
   return front;
 }
 
-/**
- * pop the most high priority element from LIST and  return it
- * Underfined behavior if LIST is empty before removal.
- * @param list
- * @return
- */
-struct list_elem *
-list_pop_priority_higest(struct list *list)
-{
-}
-
 /* Removes the back element from LIST and returns it.
    Undefined behavior if LIST is empty before removal. */
 struct list_elem *

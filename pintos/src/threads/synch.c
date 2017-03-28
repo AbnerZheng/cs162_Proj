@@ -276,7 +276,6 @@ lock_release (struct lock *lock)
   // 释放锁的时候，要注意的是要更新目前线程的优先级
   lock->holder = NULL;
   sema_up (&lock->semaphore);
-//  thread_yield ();
 }
 
 /* Returns true if the current thread holds LOCK, false

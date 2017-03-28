@@ -162,9 +162,9 @@ bool sleep_less(const struct list_elem *a,
                  void *aux);
 
 void thread_reset_priority(struct lock *);
-void thread_update_recent_cpu ();
-void thread_update_load_avg_and_recent_cpu();
-void thread_update_priority();
+void thread_update_recent_cpu (void);
+void thread_update_load_avg_and_recent_cpu (void);
+void thread_update_priority (void);
 void updateRecentCpuAndPriority (struct thread *t, void *aux);
 void updatePriority(struct thread *t, void *aux);
 #endif /* threads/thread.h */

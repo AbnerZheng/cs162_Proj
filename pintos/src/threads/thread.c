@@ -140,7 +140,7 @@ thread_start (void)
   sema_down (&idle_started);
 }
 
-void thread_update_recent_cpu (){
+void thread_update_recent_cpu (void){
   ASSERT (thread_mlfqs);
   ASSERT (intr_context ());
 
@@ -150,13 +150,15 @@ void thread_update_recent_cpu (){
   current->recent_cpu = fix_add (current->recent_cpu, fix_int (1));
 }
 
-void thread_update_priority(){
+void thread_update_priority (void)
+{
   ASSERT (thread_mlfqs);
   ASSERT (intr_context ());
   thread_foreach (updatePriority, NULL);
 }
 
-void thread_update_load_avg_and_recent_cpu(){
+void thread_update_load_avg_and_recent_cpu (void)
+{
   ASSERT (thread_mlfqs);
   ASSERT (intr_context ());
   // mlfqs
@@ -440,8 +442,7 @@ thread_set_priority (int new_priority)
   thread_yield ();
 }
 
-void
-thread_reset_priority (struct lock *l)
+void thread_reset_priority(struct lock *l)
 {
   if(thread_mlfqs) return;
   struct thread* t =  thread_current ();
