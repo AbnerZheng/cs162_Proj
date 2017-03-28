@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <devices/timer.h>
+#include <userprog/pagedir.h>
 #include "threads/flags.h"
 #include "threads/interrupt.h"
 #include "threads/intr-stubs.h"
@@ -615,6 +616,9 @@ init_thread (struct thread *t, const char *name, int priority)
   t->donated = 0;
   t->nice = 0;
   t->recent_cpu = fix_int (0);
+//#ifdef USERPROG
+//  t->pagedir = pagedir_create();
+//#endif
 
   old_level = intr_disable (); // 禁止中断,并返回中断标志位
   list_push_back (&all_list, &t->allelem);
