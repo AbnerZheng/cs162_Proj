@@ -465,6 +465,10 @@ void thread_reset_priority(struct lock *l)
 
   ASSERT (to_remove != NULL);
   list_remove (to_remove);
+  if(!list_empty (&l->semaphore.waiters))
+    l->max_priority = list_entry (list_max (&l->semaphore.waiters,thread_less,NULL), struct thread, elem)->priority;
+  else
+    l->max_priority = 0;
   t->donated = 1;
   if(max < t->orig_priority){ //这里的小于号表明，就算donate和origin的优先级是一致的，也优先采用donate的
     max = t->orig_priority;
