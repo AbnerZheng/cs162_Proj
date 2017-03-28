@@ -2,11 +2,11 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="src" targetName="libUser" />
-      <config projectName="src" targetName="lib" />
       <config projectName="src" targetName="device" />
-      <config projectName="src" targetName="userprog" />
       <config projectName="src" targetName="threads" />
+      <config projectName="src" targetName="lib" />
+      <config projectName="src" targetName="userprog" />
+      <config projectName="src" targetName="libUser" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -16,6 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="758acba6-a786-4035-b37c-825dd45571a0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/userprog/actual.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GPATH" afterPath="$PROJECT_DIR$/GPATH" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GRTAGS" afterPath="$PROJECT_DIR$/GRTAGS" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GTAGS" afterPath="$PROJECT_DIR$/GTAGS" />
@@ -747,7 +748,7 @@
       <file leaf-file-name="thread.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/threads/thread.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
+            <state relative-caret-position="7056">
               <caret line="392" column="0" lean-forward="false" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
@@ -759,31 +760,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="args-none.result" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-none.result">
+      <file leaf-file-name="actual.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/userprog/actual.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="45" lean-forward="false" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="args-none.output" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-none.output">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="priority-donate-chain.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/threads/priority-donate-chain.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1098">
-              <caret line="61" column="36" lean-forward="false" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+            <state relative-caret-position="-48327">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="1403" selection-start-column="16" selection-end-line="1406" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -802,7 +783,7 @@
       <file leaf-file-name="alarm-priority.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/threads/alarm-priority.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="540">
               <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
               <folding />
             </state>
@@ -812,8 +793,48 @@
       <file leaf-file-name="test.log" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userprog/test.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="23" column="25" lean-forward="false" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+            <state relative-caret-position="390">
+              <caret line="28" column="126" lean-forward="false" selection-start-line="28" selection-start-column="126" selection-end-line="28" selection-end-column="126" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="process.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/userprog/process.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="69" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="intr-stubs.S" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/intr-stubs.S">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interrupt.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/interrupt.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="19" column="7" lean-forward="false" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="palloc.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/palloc.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -827,26 +848,6 @@
               <folding>
                 <element signature="e#1237#1263#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="priority-condvar.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/threads/priority-condvar.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="synch.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/threads/synch.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -901,7 +902,6 @@
         <option value="$PROJECT_DIR$/userprog/exception.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/userprog/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/userprog/process.c" />
         <option value="$PROJECT_DIR$/threads/vaddr.h" />
         <option value="$PROJECT_DIR$/threads/thread.h" />
         <option value="$PROJECT_DIR$/threads/synch.h" />
@@ -910,6 +910,7 @@
         <option value="$PROJECT_DIR$/threads/synch.c" />
         <option value="$PROJECT_DIR$/threads/thread.c" />
         <option value="$PROJECT_DIR$/userprog/test.log" />
+        <option value="$PROJECT_DIR$/userprog/process.c" />
       </list>
     </option>
   </component>
@@ -965,20 +966,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="threads" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -986,7 +973,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="args-none.out&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.output&#10;args-none.result&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;tests/userprog/args-none.result&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;thread.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/thread.c&#10;priority-donate-chain.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/priority-donate-chain.result&#10;priority-donate-chain.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-donate-chain.c&#10;lock_rel&#9;null&#9;null&#10;lock_relea&#9;null&#9;null&#10;condvar_less&#9;null&#9;null&#10;priority-condvar&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-condvar.c&#10;cond_sign&#9;null&#9;null&#10;sema_up&#9;null&#9;null&#10;tests/threads/priority-condvar.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/priority-condvar.result&#10;tests/threads/priority-condvar&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-condvar.c&#10;cond_wait&#9;null&#9;null&#10;lock_release&#9;null&#9;null&#10;sema_down&#9;null&#9;null&#10;thread_bloc&#9;null&#9;null&#10;priority-donate-one.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-donate-one.c&#10;priority-donate-one/c&#9;null&#9;null&#10;cond_signal&#9;null&#9;null&#10;synch.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/synch.c&#10;sema_dow&#9;null&#9;null&#10;alarm-priority&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/alarm-priority.c&#10;alarm-prio&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/alarm-priority.ck&#10;tests/threads/alarm-priority.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/alarm-priority.c&#10;alarm-priority.out&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/alarm-priority.output&#10;alarm-priority.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/alarm-priority.result&#10;thread_unblock&#9;null&#9;null&#10;release_console&#9;null&#9;null&#10;cond_sig&#9;null&#9;null&#10;w&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/switch.h&#10;cond_wai&#9;null&#9;null&#10;signal&#9;null&#9;null&#10;priority-condvar.&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-condvar.c&#10;priority-condvar.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/priority-condvar.result&#10;lock_rele&#9;null&#9;null&#10;synch.h&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/synch.h&#10;thread_reset_priority&#9;null&#9;null&#10;vaddr.h&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/vaddr.h&#10;args-none.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;process_execute&#9;null&#9;null&#10;fix_roun&#9;null&#9;null&#10;test&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/test.log&#10;tests/threads/mlfqs-fair.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/mlfqs-fair.c&#10;tests/threads/mlfqs-fair-2.res&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/mlfqs-fair-2.result&#10;tests/threads/mlfqs-fair-2.out&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/mlfqs-fair-2.output&#10;get_load&#9;null&#9;null&#10;mlfqs-load&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/mlfqs-load-avg.c&#10;timer&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/devices/timer.c" />
+    <property name="SearchEverywhereHistoryKey" value="intr-stubs.S&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/intr-stubs.S&#10;intr_frame&#9;null&#9;null&#10;setup_stack&#9;null&#9;null&#10;args-none.out&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.output&#10;args-none.result&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;tests/userprog/args-none.result&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;thread.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/thread.c&#10;priority-donate-chain.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/priority-donate-chain.result&#10;priority-donate-chain.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-donate-chain.c&#10;lock_rel&#9;null&#9;null&#10;lock_relea&#9;null&#9;null&#10;condvar_less&#9;null&#9;null&#10;priority-condvar&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-condvar.c&#10;cond_sign&#9;null&#9;null&#10;sema_up&#9;null&#9;null&#10;tests/threads/priority-condvar.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/priority-condvar.result&#10;tests/threads/priority-condvar&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-condvar.c&#10;cond_wait&#9;null&#9;null&#10;lock_release&#9;null&#9;null&#10;sema_down&#9;null&#9;null&#10;thread_bloc&#9;null&#9;null&#10;priority-donate-one.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-donate-one.c&#10;priority-donate-one/c&#9;null&#9;null&#10;cond_signal&#9;null&#9;null&#10;synch.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/synch.c&#10;sema_dow&#9;null&#9;null&#10;alarm-priority&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/alarm-priority.c&#10;alarm-prio&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/alarm-priority.ck&#10;tests/threads/alarm-priority.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/alarm-priority.c&#10;alarm-priority.out&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/alarm-priority.output&#10;alarm-priority.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/alarm-priority.result&#10;thread_unblock&#9;null&#9;null&#10;release_console&#9;null&#9;null&#10;cond_sig&#9;null&#9;null&#10;w&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/switch.h&#10;cond_wai&#9;null&#9;null&#10;signal&#9;null&#9;null&#10;priority-condvar.&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/priority-condvar.c&#10;priority-condvar.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/priority-condvar.result&#10;lock_rele&#9;null&#9;null&#10;synch.h&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/synch.h&#10;thread_reset_priority&#9;null&#9;null&#10;vaddr.h&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/vaddr.h&#10;args-none.resu&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;process_execute&#9;null&#9;null&#10;fix_roun&#9;null&#9;null&#10;test&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/test.log&#10;tests/threads/mlfqs-fair.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/threads/mlfqs-fair.c&#10;tests/threads/mlfqs-fair-2.res&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/mlfqs-fair-2.result&#10;tests/threads/mlfqs-fair-2.out&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/build/tests/threads/mlfqs-fair-2.output" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../../pintos2/src/userprog/test.log" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1234,25 +1222,26 @@
       <workItem from="1490348083925" duration="594000" />
       <workItem from="1490669113136" duration="14346000" />
       <workItem from="1490697175179" duration="657000" />
+      <workItem from="1490698361185" duration="2157000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26050000" />
+    <option name="totallyTimeSpent" value="28207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26465797" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26954398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1275,27 +1264,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/devices/timer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/threads/mlfqs-fair-2.ck">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/build/tests/threads/mlfqs-load-60.result">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/threads/build/tests/threads/mlfqs-load-60.output">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -1456,17 +1424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/process.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#29#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1496,15 +1453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="89" column="7" lean-forward="false" selection-start-line="89" selection-start-column="7" selection-end-line="89" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/interrupt.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1519,7 +1467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1613,13 +1560,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1512">
           <caret line="50" column="47" lean-forward="false" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/threads/alarm-priority.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="540">
           <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
           <folding />
         </state>
@@ -1627,7 +1573,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/threads/thread.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
+        <state relative-caret-position="7056">
           <caret line="392" column="0" lean-forward="false" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
@@ -1635,14 +1581,6 @@
             <element signature="e#10688#10704#0" expanded="true" />
             <element signature="e#19616#19676#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/test.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="23" column="25" lean-forward="false" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1657,7 +1595,55 @@
     <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-none.output">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/actual.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-48327">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="1403" selection-start-column="16" selection-end-line="1406" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/test.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="126" lean-forward="false" selection-start-line="28" selection-start-column="126" selection-end-line="28" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/palloc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/interrupt.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="19" column="7" lean-forward="false" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/intr-stubs.S">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/process.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="69" selection-end-column="19" />
           <folding />
         </state>
       </provider>

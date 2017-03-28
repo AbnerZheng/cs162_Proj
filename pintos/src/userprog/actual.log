@@ -547,10 +547,12 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (open-bad-ptr) begin
-  open-bad-ptr: exit(-1)
+  (open-bad-ptr) end
+  open-bad-ptr: exit(0)
 Differences in `diff -u' format:
 - (open-bad-ptr) begin
-- open-bad-ptr: exit(-1)
+- (open-bad-ptr) end
+- open-bad-ptr: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + open-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
@@ -560,12 +562,10 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (open-bad-ptr) begin
-  (open-bad-ptr) end
-  open-bad-ptr: exit(0)
+  open-bad-ptr: exit(-1)
 Differences in `diff -u' format:
 - (open-bad-ptr) begin
-- (open-bad-ptr) end
-- open-bad-ptr: exit(0)
+- open-bad-ptr: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + open-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
@@ -631,13 +631,15 @@ Acceptable output:
   (close-twice) open "sample.txt"
   (close-twice) close "sample.txt"
   (close-twice) close "sample.txt" again
-  close-twice: exit(-1)
+  (close-twice) end
+  close-twice: exit(0)
 Differences in `diff -u' format:
 - (close-twice) begin
 - (close-twice) open "sample.txt"
 - (close-twice) close "sample.txt"
 - (close-twice) close "sample.txt" again
-- close-twice: exit(-1)
+- (close-twice) end
+- close-twice: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + close-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
@@ -650,15 +652,13 @@ Acceptable output:
   (close-twice) open "sample.txt"
   (close-twice) close "sample.txt"
   (close-twice) close "sample.txt" again
-  (close-twice) end
-  close-twice: exit(0)
+  close-twice: exit(-1)
 Differences in `diff -u' format:
 - (close-twice) begin
 - (close-twice) open "sample.txt"
 - (close-twice) close "sample.txt"
 - (close-twice) close "sample.txt" again
-- (close-twice) end
-- close-twice: exit(0)
+- close-twice: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + close-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
@@ -702,10 +702,36 @@ Differences in `diff -u' format:
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/close-stdout -a close-stdout -- -q  -f run close-stdout < /dev/null 2> tests/userprog/close-stdout.errors > tests/userprog/close-stdout.output
 perl -I../.. ../../tests/userprog/close-stdout.ck tests/userprog/close-stdout tests/userprog/close-stdout.result
 FAIL tests/userprog/close-stdout
-Kernel panic in run: PANIC at ../../threads/thread.c:397 in thread_yield(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028a0e
-Translation of call stack:
-0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (close-stdout) begin
+  close-stdout: exit(-1)
+Differences in `diff -u' format:
+- (close-stdout) begin
+- close-stdout: exit(-1)
++ Page fault at 0xc0000008: rights violation error reading page in user context.
++ close-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
++  cr2=c0000008 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (close-stdout) begin
+  (close-stdout) end
+  close-stdout: exit(0)
+Differences in `diff -u' format:
+- (close-stdout) begin
+- (close-stdout) end
+- close-stdout: exit(0)
++ Page fault at 0xc0000008: rights violation error reading page in user context.
++ close-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
++  cr2=c0000008 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/close-bad-fd -a close-bad-fd -- -q  -f run close-bad-fd < /dev/null 2> tests/userprog/close-bad-fd.errors > tests/userprog/close-bad-fd.output
 perl -I../.. ../../tests/userprog/close-bad-fd.ck tests/userprog/close-bad-fd tests/userprog/close-bad-fd.result
 FAIL tests/userprog/close-bad-fd
@@ -713,12 +739,10 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (close-bad-fd) begin
-  (close-bad-fd) end
-  close-bad-fd: exit(0)
+  close-bad-fd: exit(-1)
 Differences in `diff -u' format:
 - (close-bad-fd) begin
-- (close-bad-fd) end
-- close-bad-fd: exit(0)
+- close-bad-fd: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + close-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
@@ -728,10 +752,12 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (close-bad-fd) begin
-  close-bad-fd: exit(-1)
+  (close-bad-fd) end
+  close-bad-fd: exit(0)
 Differences in `diff -u' format:
 - (close-bad-fd) begin
-- close-bad-fd: exit(-1)
+- (close-bad-fd) end
+- close-bad-fd: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + close-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
@@ -773,11 +799,13 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (read-bad-ptr) begin
   (read-bad-ptr) open "sample.txt"
-  read-bad-ptr: exit(-1)
+  (read-bad-ptr) end
+  read-bad-ptr: exit(0)
 Differences in `diff -u' format:
 - (read-bad-ptr) begin
 - (read-bad-ptr) open "sample.txt"
-- read-bad-ptr: exit(-1)
+- (read-bad-ptr) end
+- read-bad-ptr: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + read-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
@@ -788,13 +816,11 @@ Differences in `diff -u' format:
 Acceptable output:
   (read-bad-ptr) begin
   (read-bad-ptr) open "sample.txt"
-  (read-bad-ptr) end
-  read-bad-ptr: exit(0)
+  read-bad-ptr: exit(-1)
 Differences in `diff -u' format:
 - (read-bad-ptr) begin
 - (read-bad-ptr) open "sample.txt"
-- (read-bad-ptr) end
-- read-bad-ptr: exit(0)
+- read-bad-ptr: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + read-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
@@ -853,10 +879,12 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (read-stdout) begin
-  read-stdout: exit(-1)
+  (read-stdout) end
+  read-stdout: exit(0)
 Differences in `diff -u' format:
 - (read-stdout) begin
-- read-stdout: exit(-1)
+- (read-stdout) end
+- read-stdout: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + read-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
@@ -866,12 +894,10 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (read-stdout) begin
-  (read-stdout) end
-  read-stdout: exit(0)
+  read-stdout: exit(-1)
 Differences in `diff -u' format:
 - (read-stdout) begin
-- (read-stdout) end
-- read-stdout: exit(0)
+- read-stdout: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + read-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
@@ -886,10 +912,12 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (read-bad-fd) begin
-  read-bad-fd: exit(-1)
+  (read-bad-fd) end
+  read-bad-fd: exit(0)
 Differences in `diff -u' format:
 - (read-bad-fd) begin
-- read-bad-fd: exit(-1)
+- (read-bad-fd) end
+- read-bad-fd: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + read-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
@@ -899,12 +927,10 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (read-bad-fd) begin
-  (read-bad-fd) end
-  read-bad-fd: exit(0)
+  read-bad-fd: exit(-1)
 Differences in `diff -u' format:
 - (read-bad-fd) begin
-- (read-bad-fd) end
-- read-bad-fd: exit(0)
+- read-bad-fd: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + read-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
@@ -998,10 +1024,25 @@ Differences in `diff -u' format:
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-zero -a write-zero -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-zero < /dev/null 2> tests/userprog/write-zero.errors > tests/userprog/write-zero.output
 perl -I../.. ../../tests/userprog/write-zero.ck tests/userprog/write-zero tests/userprog/write-zero.result
 FAIL tests/userprog/write-zero
-Kernel panic in run: PANIC at ../../threads/thread.c:397 in thread_yield(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028a0e
-Translation of call stack:
-0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (write-zero) begin
+  (write-zero) open "sample.txt"
+  (write-zero) end
+  write-zero: exit(0)
+Differences in `diff -u' format:
+- (write-zero) begin
+- (write-zero) open "sample.txt"
+- (write-zero) end
+- write-zero: exit(0)
++ Page fault at 0xc0000008: rights violation error reading page in user context.
++ write-zero: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804872c
++  cr2=c0000008 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-stdin -a write-stdin -- -q  -f run write-stdin < /dev/null 2> tests/userprog/write-stdin.errors > tests/userprog/write-stdin.output
 perl -I../.. ../../tests/userprog/write-stdin.ck tests/userprog/write-stdin tests/userprog/write-stdin.result
 FAIL tests/userprog/write-stdin
@@ -1042,12 +1083,10 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (write-bad-fd) begin
-  (write-bad-fd) end
-  write-bad-fd: exit(0)
+  write-bad-fd: exit(-1)
 Differences in `diff -u' format:
 - (write-bad-fd) begin
-- (write-bad-fd) end
-- write-bad-fd: exit(0)
+- write-bad-fd: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + write-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
@@ -1057,10 +1096,12 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (write-bad-fd) begin
-  write-bad-fd: exit(-1)
+  (write-bad-fd) end
+  write-bad-fd: exit(0)
 Differences in `diff -u' format:
 - (write-bad-fd) begin
-- write-bad-fd: exit(-1)
+- (write-bad-fd) end
+- write-bad-fd: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + write-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
@@ -1170,27 +1211,6 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (exec-missing) begin
   load: no-such-file: open failed
-  no-such-file: exit(-1)
-  (exec-missing) exec("no-such-file"): -1
-  (exec-missing) end
-  exec-missing: exit(0)
-Differences in `diff -u' format:
-- (exec-missing) begin
-- load: no-such-file: open failed
-- no-such-file: exit(-1)
-- (exec-missing) exec("no-such-file"): -1
-- (exec-missing) end
-- exec-missing: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (exec-missing) begin
-  load: no-such-file: open failed
   (exec-missing) exec("no-such-file"): -1
   no-such-file: exit(-1)
   (exec-missing) end
@@ -1235,6 +1255,27 @@ Acceptable output:
 Differences in `diff -u' format:
 - (exec-missing) begin
 - load: no-such-file: open failed
+- (exec-missing) exec("no-such-file"): -1
+- (exec-missing) end
+- exec-missing: exit(0)
++ Page fault at 0xc0000008: rights violation error reading page in user context.
++ exec-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
++  cr2=c0000008 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (exec-missing) begin
+  load: no-such-file: open failed
+  no-such-file: exit(-1)
+  (exec-missing) exec("no-such-file"): -1
+  (exec-missing) end
+  exec-missing: exit(0)
+Differences in `diff -u' format:
+- (exec-missing) begin
+- load: no-such-file: open failed
+- no-such-file: exit(-1)
 - (exec-missing) exec("no-such-file"): -1
 - (exec-missing) end
 - exec-missing: exit(0)
@@ -1252,10 +1293,12 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (exec-bad-ptr) begin
-  exec-bad-ptr: exit(-1)
+  (exec-bad-ptr) end
+  exec-bad-ptr: exit(0)
 Differences in `diff -u' format:
 - (exec-bad-ptr) begin
-- exec-bad-ptr: exit(-1)
+- (exec-bad-ptr) end
+- exec-bad-ptr: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + exec-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
@@ -1265,12 +1308,10 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (exec-bad-ptr) begin
-  (exec-bad-ptr) end
-  exec-bad-ptr: exit(0)
+  exec-bad-ptr: exit(-1)
 Differences in `diff -u' format:
 - (exec-bad-ptr) begin
-- (exec-bad-ptr) end
-- exec-bad-ptr: exit(0)
+- exec-bad-ptr: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + exec-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
@@ -1365,10 +1406,12 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (wait-bad-pid) begin
-  wait-bad-pid: exit(-1)
+  (wait-bad-pid) end
+  wait-bad-pid: exit(0)
 Differences in `diff -u' format:
 - (wait-bad-pid) begin
-- wait-bad-pid: exit(-1)
+- (wait-bad-pid) end
+- wait-bad-pid: exit(0)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + wait-bad-pid: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
@@ -1378,12 +1421,10 @@ Differences in `diff -u' format:
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (wait-bad-pid) begin
-  (wait-bad-pid) end
-  wait-bad-pid: exit(0)
+  wait-bad-pid: exit(-1)
 Differences in `diff -u' format:
 - (wait-bad-pid) begin
-- (wait-bad-pid) end
-- wait-bad-pid: exit(0)
+- wait-bad-pid: exit(-1)
 + Page fault at 0xc0000008: rights violation error reading page in user context.
 + wait-bad-pid: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
@@ -1534,8 +1575,9 @@ Acceptable output:
   (multi-child-fd) begin
   (multi-child-fd) open "sample.txt"
   (child-close) begin
-  child-close: exit(-1)
-  (multi-child-fd) wait(exec()) = -1
+  (child-close) end
+  child-close: exit(0)
+  (multi-child-fd) wait(exec()) = 0
   (multi-child-fd) verified contents of "sample.txt"
   (multi-child-fd) end
   multi-child-fd: exit(0)
@@ -1543,8 +1585,9 @@ Differences in `diff -u' format:
 - (multi-child-fd) begin
 - (multi-child-fd) open "sample.txt"
 - (child-close) begin
-- child-close: exit(-1)
-- (multi-child-fd) wait(exec()) = -1
+- (child-close) end
+- child-close: exit(0)
+- (multi-child-fd) wait(exec()) = 0
 - (multi-child-fd) verified contents of "sample.txt"
 - (multi-child-fd) end
 - multi-child-fd: exit(0)
@@ -1559,9 +1602,8 @@ Acceptable output:
   (multi-child-fd) begin
   (multi-child-fd) open "sample.txt"
   (child-close) begin
-  (child-close) end
-  child-close: exit(0)
-  (multi-child-fd) wait(exec()) = 0
+  child-close: exit(-1)
+  (multi-child-fd) wait(exec()) = -1
   (multi-child-fd) verified contents of "sample.txt"
   (multi-child-fd) end
   multi-child-fd: exit(0)
@@ -1569,9 +1611,8 @@ Differences in `diff -u' format:
 - (multi-child-fd) begin
 - (multi-child-fd) open "sample.txt"
 - (child-close) begin
-- (child-close) end
-- child-close: exit(0)
-- (multi-child-fd) wait(exec()) = 0
+- child-close: exit(-1)
+- (multi-child-fd) wait(exec()) = -1
 - (multi-child-fd) verified contents of "sample.txt"
 - (multi-child-fd) end
 - multi-child-fd: exit(0)
@@ -1778,10 +1819,16 @@ Differences in `diff -u' format:
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-write2 -a bad-write2 -- -q  -f run bad-write2 < /dev/null 2> tests/userprog/bad-write2.errors > tests/userprog/bad-write2.output
 perl -I../.. ../../tests/userprog/bad-write2.ck tests/userprog/bad-write2 tests/userprog/bad-write2.result
 FAIL tests/userprog/bad-write2
-Kernel panic in run: PANIC at ../../threads/thread.c:397 in thread_yield(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028a0e
-Translation of call stack:
-0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (bad-write2) begin
+  bad-write2: exit(-1)
+Differences in `diff -u' format:
+- (bad-write2) begin
+- bad-write2: exit(-1)
+
+(User fault messages are excluded for matching purposes.)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-jump -a bad-jump -- -q  -f run bad-jump < /dev/null 2> tests/userprog/bad-jump.errors > tests/userprog/bad-jump.output
 perl -I../.. ../../tests/userprog/bad-jump.ck tests/userprog/bad-jump tests/userprog/bad-jump.result
 FAIL tests/userprog/bad-jump
