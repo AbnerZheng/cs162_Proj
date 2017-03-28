@@ -23,33 +23,46 @@ static struct semaphore temporary;
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);
 
-/* Starts a new thread running a user program loaded from
-   FILENAME.  The new thread may be scheduled (and may even exit)
-   before process_execute() returns.  Returns the new process's
-   thread id, or TID_ERROR if the thread cannot be created. */
+/**
+ * 启动一个新线程，运行由FILENAME载入的用户程序
+ * 新线程可能会在process_execute函数执行之前被调度或者退出
+ * 返回新进场的线程id，或者当新线程不能被创建时，返回TID_ERROR
+ *
+ * Starts a new thread running a user program loaded from
+ * FILENAME.  The new thread may be scheduled (and may even exit)
+ * before process_execute() returns.  Returns the new process's
+ * thread id, or TID_ERROR if the thread cannot be created.
+ *
+ * @param file_name - 写有程序的文件名,实际上在现代的操作系统中，都规定不能大260个字符
+ **/
 tid_t
 process_execute (const char *file_name)
 {
   char *fn_copy;
   tid_t tid;
 
-  sema_init (&temporary, 0);
+  sema_init (&temporary, 0); //信号量设为0
   /* Make a copy of FILE_NAME.
-     Otherwise there's a race between the caller and load(). */
-  fn_copy = palloc_get_page (0);
+     Otherwise there's a race between the caller and load().
+     创建一个副本，否则调用者和loader两个函数可能会有竞争
+     */
+  fn_copy = palloc_get_page (0); // 分配一页, 因为flag设为0，因此该页是内核池中分配，并且不初始化为0的内存页
   if (fn_copy == NULL)
     return TID_ERROR;
-  strlcpy (fn_copy, file_name, PGSIZE);
+  strlcpy (fn_copy, file_name, PGSIZE); // 直接把这个文件名拷贝到刚刚创建的页
 
   /* Create a new thread to execute FILE_NAME. */
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
-    palloc_free_page (fn_copy);
+    palloc_free_page (fn_copy); //如果创建线程失败，记得要释放该页
   return tid;
 }
 
-/* A thread function that loads a user process and starts it
-   running. */
+/**
+ * 线程函数， 载入一个用户程序并运行它
+ * A thread function that loads a user process and starts it
+ * running.
+ **/
 static void
 start_process (void *file_name_)
 {
@@ -58,10 +71,10 @@ start_process (void *file_name_)
   bool success;
 
   /* Initialize interrupt frame and load executable. */
-  memset (&if_, 0, sizeof if_);
-  if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG;
+  memset (&if_, 0, sizeof if_); // 初始化中断栈帧
+  if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG; // user data segment selector
   if_.cs = SEL_UCSEG;
-  if_.eflags = FLAG_IF | FLAG_MBS;
+  if_.eflags = FLAG_IF | FLAG_MBS; //
   success = load (file_name, &if_.eip, &if_.esp);
 
   /* If load failed, quit. */
@@ -121,19 +134,25 @@ process_exit (void)
   sema_up (&temporary);
 }
 
-/* Sets up the CPU for running user code in the current
-   thread.
-   This function is called on every context switch. */
+/**
+ * 设置CPU，使之在当前线程运行用户代码
+ * 这个函数在每次上下文切换中都会被调用? //todo
+ * Sets up the CPU for running user code in the current
+ * thread.
+ * This function is called on every context switch.
+ **/
 void
 process_activate (void)
 {
   struct thread *t = thread_current ();
 
   /* Activate thread's page tables. */
+  // 激活线程的页表
   pagedir_activate (t->pagedir);
 
   /* Set thread's kernel stack for use in processing
      interrupts. */
+  /* 设置线程的内核栈，来用于处理中断 */
   tss_update ();
 }
 
@@ -206,10 +225,16 @@ static bool load_segment (struct file *file, off_t ofs, uint8_t *upage,
                           uint32_t read_bytes, uint32_t zero_bytes,
                           bool writable);
 
-/* Loads an ELF executable from FILE_NAME into the current thread.
-   Stores the executable's entry point into *EIP
-   and its initial stack pointer into *ESP.
-   Returns true if successful, false otherwise. */
+/**
+ * 载入一个名为FILE_NAME的ELF可执行文件到线程中。
+ * 将可执行文件的入口存入*EIP
+ * 将它的初始栈指针存入到*ESP中，如果成功返回true
+ *
+ * Loads an ELF executable from FILE_NAME into the current thread.
+ * Stores the executable's entry point into *EIP
+ * and its initial stack pointer into *ESP.
+ * Returns true if successful, false otherwise.
+ **/
 bool
 load (const char *file_name, void (**eip) (void), void **esp)
 {
@@ -220,7 +245,7 @@ load (const char *file_name, void (**eip) (void), void **esp)
   bool success = false;
   int i;
 
-  /* Allocate and activate page directory. */
+  /*  分配并激活页目录 Allocate and activate page directory. */
   t->pagedir = pagedir_create ();
   if (t->pagedir == NULL)
     goto done;

@@ -11,6 +11,8 @@ static void invalidate_pagedir (uint32_t *);
 
 /* Creates a new page directory that has mappings for kernel
    virtual addresses, but none for user virtual addresses.
+   创建一个新的页目录，该目录有内核地址映射，但没有用户虚拟地址
+
    Returns the new page directory, or a null pointer if memory
    allocation fails. */
 uint32_t *
@@ -47,12 +49,19 @@ pagedir_destroy (uint32_t *pd)
   palloc_free_page (pd);
 }
 
-/* Returns the address of the page table entry for virtual
-   address VADDR in page directory PD.
-   If PD does not have a page table for VADDR, behavior depends
-   on CREATE.  If CREATE is true, then a new page table is
-   created and a pointer into it is returned.  Otherwise, a null
-   pointer is returned. */
+/**
+ * 根据虚拟地址VADDR在页目录PD中查找相应的PTE(page table entry)
+ * Returns the address of the page table entry for virtual
+ * address VADDR in page directory PD.
+ *
+ * 如果PD没有对应于VADDR的页表。对应的行为取决于CREATE。 如果CREATE设为
+ * TRUE， 那么一个新的页表将会被创建，并返回该指针。否则，返回null
+ *
+ * If PD does not have a page table for VADDR, behavior depends
+ * on CREATE.  If CREATE is true, then a new page table is
+ * created and a pointer into it is returned.  Otherwise, a null
+ * pointer is returned.
+ **/
 static uint32_t *
 lookup_page (uint32_t *pd, const void *vaddr, bool create)
 {
@@ -61,10 +70,13 @@ lookup_page (uint32_t *pd, const void *vaddr, bool create)
   ASSERT (pd != NULL);
 
   /* Shouldn't create new kernel virtual mappings. */
+  // create和is_kernel_vaddr(vaddr)不能同时为真
   ASSERT (!create || is_user_vaddr (vaddr));
 
-  /* Check for a page table for VADDR.
-     If one is missing, create one if requested. */
+  /**
+   * Check for a page table for VADDR.
+   * If one is missing, create one if requested.
+   **/
   pde = pd + pd_no (vaddr);
   if (*pde == 0)
     {
@@ -121,13 +133,16 @@ pagedir_set_page (uint32_t *pd, void *upage, void *kpage, bool writable)
 /* Looks up the physical address that corresponds to user virtual
    address UADDR in PD.  Returns the kernel virtual address
    corresponding to that physical address, or a null pointer if
-   UADDR is unmapped. */
+   UADDR is unmapped.
+
+   根据uaddr和pd来查找物理地址
+   */
 void *
 pagedir_get_page (uint32_t *pd, const void *uaddr)
 {
   uint32_t *pte;
 
-  ASSERT (is_user_vaddr (uaddr));
+  ASSERT (is_user_vaddr (uaddr)); //保证是用户地址空间
 
   pte = lookup_page (pd, uaddr, false);
   if (pte != NULL && (*pte & PTE_P) != 0)
@@ -214,8 +229,14 @@ pagedir_set_accessed (uint32_t *pd, const void *vpage, bool accessed)
     }
 }
 
-/* Loads page directory PD into the CPU's page directory base
-   register. */
+/**
+ * 将pd载入到CR3寄存器
+ * 也就是一条汇编指令
+ * movl pd, $cr3
+ *
+ * Loads page directory PD into the CPU's page directory base
+ * register.
+ */
 void
 pagedir_activate (uint32_t *pd)
 {
@@ -230,7 +251,11 @@ pagedir_activate (uint32_t *pd)
   asm volatile ("movl %0, %%cr3" : : "r" (vtop (pd)) : "memory");
 }
 
-/* Returns the currently active page directory. */
+/**
+ * Returns the currently active page directory.
+ * 返回目前活跃的页目录, 这个目录页存放在CR3寄存器中, 所以也只是一条汇编指令：
+ * movl $CR3, pd
+ **/
 static uint32_t *
 active_pd (void)
 {
@@ -243,7 +268,7 @@ active_pd (void)
   return ptov (pd);
 }
 
-/* Seom page table changes can cause the CPU's translation
+/* Some page table changes can cause the CPU's translation
    lookaside buffer (TLB) to become out-of-sync with the page
    table.  When this happens, we have to "invalidate" the TLB by
    re-activating it.
