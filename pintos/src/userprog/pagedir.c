@@ -70,7 +70,7 @@ lookup_page (uint32_t *pd, const void *vaddr, bool create)
   ASSERT (pd != NULL);
 
   /* Shouldn't create new kernel virtual mappings. */
-  // create和is_kernel_vaddr(vaddr)不能同时为真
+  // create和is_kernel_vaddr(vaddr)不能同时为真, 不能创建新的内核虚拟映射
   ASSERT (!create || is_user_vaddr (vaddr));
 
   /**
@@ -97,25 +97,32 @@ lookup_page (uint32_t *pd, const void *vaddr, bool create)
   return &pt[pt_no (vaddr)];
 }
 
-/* Adds a mapping in page directory PD from user virtual page
-   UPAGE to the physical frame identified by kernel virtual
-   address KPAGE.
-   UPAGE must not already be mapped.
-   KPAGE should probably be a page obtained from the user pool
-   with palloc_get_page().
-   If WRITABLE is true, the new page is read/write;
-   otherwise it is read-only.
-   Returns true if successful, false if memory allocation
-   failed. */
+/**
+ * 在页目录PD中添加一条映射， 从用户虚拟页UPAGE到由内核虚拟地址KPAGE标识
+ * 的物理帧.UPAGE必须没有被映射过。
+ * KPAGE应该可能是一个通过palloc_get_page从用户池中获取的页，如果WRITABLE
+ * 设true，那么该页是可读可写的，否则是只读的。
+ *
+ * Adds a mapping in page directory PD from user virtual page
+ * UPAGE to the physical frame identified by kernel virtual
+ * address KPAGE.
+ * UPAGE must not already be mapped.
+ * KPAGE should probably be a page obtained from the user pool
+ * with palloc_get_page().
+ * If WRITABLE is true, the new page is read/write;
+ * otherwise it is read-only.
+ * Returns true if successful, false if memory allocation
+ * failed.
+ **/
 bool
 pagedir_set_page (uint32_t *pd, void *upage, void *kpage, bool writable)
 {
   uint32_t *pte;
 
-  ASSERT (pg_ofs (upage) == 0);
+  ASSERT (pg_ofs (upage) == 0); //页内的偏移量必须为0
   ASSERT (pg_ofs (kpage) == 0);
-  ASSERT (is_user_vaddr (upage));
-  ASSERT (vtop (kpage) >> PTSHIFT < init_ram_pages);
+  ASSERT (is_user_vaddr (upage)); // upage必须是用户地址
+  ASSERT (vtop (kpage) >> PTSHIFT < init_ram_pages); // 物理地址所处的页必须比ram_pages小
   ASSERT (pd != init_page_dir);
 
   pte = lookup_page (pd, upage, true);

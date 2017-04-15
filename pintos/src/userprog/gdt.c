@@ -4,24 +4,35 @@
 #include "threads/palloc.h"
 #include "threads/vaddr.h"
 
-/* The Global Descriptor Table (GDT).
+/**
+ * 全局描述表(GDT)
+ *
+ * GDT是一个X86专门的系统，定义可被在系统中所有进程使用的段。 同时，在每个
+ * 进程中，还存有本地描述表(LDT)，但是现代操作系统都没使用
+ *
+ * 在GDT的每个条目，通过它在表的字节偏移， 定义了一个段. 我们只考虑三种类型的段:
+ * 代码段、数据段和任务状态端描述符(TSS)。前两个类型就如他们的名称一般。 TSS主要
+ * 用于中断任务切换。
+ *
+ * The Global Descriptor Table (GDT).
 
-   The GDT, an x86-specific structure, defines segments that can
-   potentially be used by all processes in a system, subject to
-   their permissions.  There is also a per-process Local
-   Descriptor Table (LDT) but that is not used by modern
-   operating systems.
+ * The GDT, an x86-specific structure, defines segments that can
+ * potentially be used by all processes in a system, subject to
+ * their permissions.  There is also a per-process Local
+ * Descriptor Table (LDT) but that is not used by modern
+ * operating systems.
 
-   Each entry in the GDT, which is known by its byte offset in
-   the table, identifies a segment.  For our purposes only three
-   types of segments are of interest: code, data, and TSS or
-   Task-State Segment descriptors.  The former two types are
-   exactly what they sound like.  The TSS is used primarily for
-   stack switching on interrupts.
+ * Each entry in the GDT, which is known by its byte offset in
+ * the table, identifies a segment.  For our purposes only three
+ * types of segments are of interest: code, data, and TSS or
+ * Task-State Segment descriptors.  The former two types are
+ * exactly what they sound like.  The TSS is used primarily for
+ * stack switching on interrupts.
 
-   For more information on the GDT as used here, refer to
-   [IA32-v3a] 3.2 "Using Segments" through 3.5 "System Descriptor
-   Types". */
+ * For more information on the GDT as used here, refer to
+ * [IA32-v3a] 3.2 "Using Segments" through 3.5 "System Descriptor
+ * Types".
+ **/
 static uint64_t gdt[SEL_CNT];
 
 /* GDT helpers. */
@@ -53,7 +64,10 @@ gdt_init (void)
   asm volatile ("ltr %w0" : : "q" (SEL_TSS));
 }
 
-/* System segment or code/data segment? */
+/**
+ * System segment or code/data segment?
+ * 系统段或是 代码/数据 段
+ **/
 enum seg_class
   {
     CLS_SYSTEM = 0,             /* System segment. */
@@ -61,6 +75,7 @@ enum seg_class
   };
 
 /* Limit has byte or 4 kB page granularity? */
+// 段间隔
 enum seg_granularity
   {
     GRAN_BYTE = 0,              /* Limit has 1-byte granularity. */
@@ -88,7 +103,7 @@ make_seg_desc (uint32_t base,
 {
   uint32_t e0, e1;
 
-  ASSERT (limit <= 0xfffff);
+  ASSERT (limit <= 0xfffff); // 0xfffff, 4*5位，2^20 == 1000 * 1000 = 1,000,000
   ASSERT (class == CLS_SYSTEM || class == CLS_CODE_DATA);
   ASSERT (type >= 0 && type <= 15);
   ASSERT (dpl >= 0 && dpl <= 3);

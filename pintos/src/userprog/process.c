@@ -26,7 +26,7 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp);
 /**
  * 启动一个新线程，运行由FILENAME载入的用户程序
  * 新线程可能会在process_execute函数执行之前被调度或者退出
- * 返回新进场的线程id，或者当新线程不能被创建时，返回TID_ERROR
+ * 返回新建线程id，或者当新线程不能被创建时，返回TID_ERROR
  *
  * Starts a new thread running a user program loaded from
  * FILENAME.  The new thread may be scheduled (and may even exit)
@@ -46,7 +46,7 @@ process_execute (const char *file_name)
      Otherwise there's a race between the caller and load().
      创建一个副本，否则调用者和loader两个函数可能会有竞争
      */
-  fn_copy = palloc_get_page (0); // 分配一页, 因为flag设为0，因此该页是内核池中分配，并且不初始化为0的内存页
+  fn_copy = palloc_get_page (0); // 分配一页, 因为flag设为0，因此该页是内核池中分配，并且内存不初始化为0的内存页
   if (fn_copy == NULL)
     return TID_ERROR;
   strlcpy (fn_copy, file_name, PGSIZE); // 直接把这个文件名拷贝到刚刚创建的页
@@ -82,12 +82,17 @@ start_process (void *file_name_)
   if (!success)
     thread_exit ();
 
-  /* Start the user process by simulating a return from an
-     interrupt, implemented by intr_exit (in
-     threads/intr-stubs.S).  Because intr_exit takes all of its
-     arguments on the stack in the form of a `struct intr_frame',
-     we just point the stack pointer (%esp) to our stack frame
-     and jump to it. */
+  /**
+   * 通过模拟一个从中断的返回来开始用户进程，由intr_exit实现。因为intr_exit将所有
+   * 栈上的入参取出放入struct intr_frame。 所以我们只需将%esp指向我们的栈帧，并跳到此地址.
+   *
+   * Start the user process by simulating a return from an
+   * interrupt, implemented by intr_exit (in
+   * threads/intr-stubs.S).  Because intr_exit takes all of its
+   * arguments on the stack in the form of a `struct intr_frame',
+   * we just point the stack pointer (%esp) to our stack frame
+   * and jump to it.
+   **/
   asm volatile ("movl %0, %%esp; jmp intr_exit" : : "g" (&if_) : "memory");
   NOT_REACHED ();
 }
@@ -219,7 +224,7 @@ struct Elf32_Phdr
 #define PF_W 2          /* Writable. */
 #define PF_R 4          /* Readable. */
 
-static bool setup_stack (void **esp);
+static bool setup_stack (void **esp, char *filename);
 static bool validate_segment (const struct Elf32_Phdr *, struct file *);
 static bool load_segment (struct file *file, off_t ofs, uint8_t *upage,
                           uint32_t read_bytes, uint32_t zero_bytes,
@@ -252,6 +257,12 @@ load (const char *file_name, void (**eip) (void), void **esp)
   process_activate ();
 
   /* Open executable file. */
+
+  // filename 可能是"ls -ahl", 这样就要按空格符号分开
+
+//  char *actual_file_name = strtok_r (file_name, " ", &save_ptr);
+
+
   file = filesys_open (file_name);
   if (file == NULL)
     {
@@ -332,8 +343,9 @@ load (const char *file_name, void (**eip) (void), void **esp)
     }
 
   /* Set up stack. */
-  if (!setup_stack (esp))
+  if (!setup_stack (esp, file_name))
     goto done;
+//  *esp
 
   /* Start address. */
   *eip = (void (*) (void)) ehdr.e_entry;
@@ -457,7 +469,7 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
 /* Create a minimal stack by mapping a zeroed page at the top of
    user virtual memory. */
 static bool
-setup_stack (void **esp)
+setup_stack (void **esp, char* filename)
 {
   uint8_t *kpage;
   bool success = false;
@@ -466,9 +478,16 @@ setup_stack (void **esp)
   if (kpage != NULL)
     {
       success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
-      if (success)
-//        *esp = PHYS_BASE;
-        *esp = PHYS_BASE - 12;
+      char *token, *save_ptr;
+      if (success) {
+        *esp = PHYS_BASE;// *esp是一个地址, (*esp - 4)也是一个地址, *(*esp - 4)存有第一个参数的指针
+        for (token = strtok_r (filename, " ", &save_ptr); token != NULL;
+             token = strtok_r (NULL, " ", &save_ptr)){
+          *esp -= sizeof (char *);
+          char *s =  (char *)(*esp);
+          *s = token;
+        }
+      }
       else
         palloc_free_page (kpage);
     }

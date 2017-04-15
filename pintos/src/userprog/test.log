@@ -19,127 +19,34 @@ Differences in `diff -u' format:
 - (args) argv[1] = null
 - (args) end
 - args-none: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + args-none: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804870c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/args-single -a args-single -- -q  -f run 'args-single onearg' < /dev/null 2> tests/userprog/args-single.errors > tests/userprog/args-single.output
 perl -I../.. ../../tests/userprog/args-single.ck tests/userprog/args-single tests/userprog/args-single.result
 FAIL tests/userprog/args-single
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (args) begin
-  (args) argc = 2
-  (args) argv[0] = 'args-single'
-  (args) argv[1] = 'onearg'
-  (args) argv[2] = null
-  (args) end
-  args-single: exit(0)
-Differences in `diff -u' format:
-- (args) begin
-- (args) argc = 2
-- (args) argv[0] = 'args-single'
-- (args) argv[1] = 'onearg'
-- (args) argv[2] = null
-- (args) end
-- args-single: exit(0)
-+ load: args-single onearg: open failed
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/args-multiple -a args-multiple -- -q  -f run 'args-multiple some arguments for you!' < /dev/null 2> tests/userprog/args-multiple.errors > tests/userprog/args-multiple.output
 perl -I../.. ../../tests/userprog/args-multiple.ck tests/userprog/args-multiple tests/userprog/args-multiple.result
 FAIL tests/userprog/args-multiple
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (args) begin
-  (args) argc = 5
-  (args) argv[0] = 'args-multiple'
-  (args) argv[1] = 'some'
-  (args) argv[2] = 'arguments'
-  (args) argv[3] = 'for'
-  (args) argv[4] = 'you!'
-  (args) argv[5] = null
-  (args) end
-  args-multiple: exit(0)
-Differences in `diff -u' format:
-- (args) begin
-- (args) argc = 5
-- (args) argv[0] = 'args-multiple'
-- (args) argv[1] = 'some'
-- (args) argv[2] = 'arguments'
-- (args) argv[3] = 'for'
-- (args) argv[4] = 'you!'
-- (args) argv[5] = null
-- (args) end
-- args-multiple: exit(0)
-+ load: args-multiple some arguments for you!: open failed
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/args-many -a args-many -- -q  -f run 'args-many a b c d e f g h i j k l m n o p q r s t u v' < /dev/null 2> tests/userprog/args-many.errors > tests/userprog/args-many.output
 perl -I../.. ../../tests/userprog/args-many.ck tests/userprog/args-many tests/userprog/args-many.result
 FAIL tests/userprog/args-many
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (args) begin
-  (args) argc = 23
-  (args) argv[0] = 'args-many'
-  (args) argv[1] = 'a'
-  (args) argv[2] = 'b'
-  (args) argv[3] = 'c'
-  (args) argv[4] = 'd'
-  (args) argv[5] = 'e'
-  (args) argv[6] = 'f'
-  (args) argv[7] = 'g'
-  (args) argv[8] = 'h'
-  (args) argv[9] = 'i'
-  (args) argv[10] = 'j'
-  (args) argv[11] = 'k'
-  (args) argv[12] = 'l'
-  (args) argv[13] = 'm'
-  (args) argv[14] = 'n'
-  (args) argv[15] = 'o'
-  (args) argv[16] = 'p'
-  (args) argv[17] = 'q'
-  (args) argv[18] = 'r'
-  (args) argv[19] = 's'
-  (args) argv[20] = 't'
-  (args) argv[21] = 'u'
-  (args) argv[22] = 'v'
-  (args) argv[23] = null
-  (args) end
-  args-many: exit(0)
-Differences in `diff -u' format:
-- (args) begin
-- (args) argc = 23
-- (args) argv[0] = 'args-many'
-- (args) argv[1] = 'a'
-- (args) argv[2] = 'b'
-- (args) argv[3] = 'c'
-- (args) argv[4] = 'd'
-- (args) argv[5] = 'e'
-- (args) argv[6] = 'f'
-- (args) argv[7] = 'g'
-- (args) argv[8] = 'h'
-- (args) argv[9] = 'i'
-- (args) argv[10] = 'j'
-- (args) argv[11] = 'k'
-- (args) argv[12] = 'l'
-- (args) argv[13] = 'm'
-- (args) argv[14] = 'n'
-- (args) argv[15] = 'o'
-- (args) argv[16] = 'p'
-- (args) argv[17] = 'q'
-- (args) argv[18] = 'r'
-- (args) argv[19] = 's'
-- (args) argv[20] = 't'
-- (args) argv[21] = 'u'
-- (args) argv[22] = 'v'
-- (args) argv[23] = null
-- (args) end
-- args-many: exit(0)
-+ load: args-many a b c d e f g h i j k l m n o p q r s t u v: open failed
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/args-dbl-space -a args-dbl-space -- -q  -f run 'args-dbl-space two  spaces!' < /dev/null 2> tests/userprog/args-dbl-space.errors > tests/userprog/args-dbl-space.output
 perl -I../.. ../../tests/userprog/args-dbl-space.ck tests/userprog/args-dbl-space tests/userprog/args-dbl-space.result
 FAIL tests/userprog/args-dbl-space
@@ -175,49 +82,27 @@ Acceptable output:
 Differences in `diff -u' format:
 - (sc-bad-sp) begin
 - sc-bad-sp: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + sc-bad-sp: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/sc-bad-arg -a sc-bad-arg -- -q  -f run sc-bad-arg < /dev/null 2> tests/userprog/sc-bad-arg.errors > tests/userprog/sc-bad-arg.output
 perl -I../.. ../../tests/userprog/sc-bad-arg.ck tests/userprog/sc-bad-arg tests/userprog/sc-bad-arg.result
 FAIL tests/userprog/sc-bad-arg
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (sc-bad-arg) begin
-  sc-bad-arg: exit(-1)
-Differences in `diff -u' format:
-- (sc-bad-arg) begin
-- sc-bad-arg: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ sc-bad-arg: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/sc-boundary -a sc-boundary -- -q  -f run sc-boundary < /dev/null 2> tests/userprog/sc-boundary.errors > tests/userprog/sc-boundary.output
 perl -I../.. ../../tests/userprog/sc-boundary.ck tests/userprog/sc-boundary tests/userprog/sc-boundary.result
 FAIL tests/userprog/sc-boundary
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (sc-boundary) begin
-  sc-boundary: exit(42)
-Differences in `diff -u' format:
-- (sc-boundary) begin
-- sc-boundary: exit(42)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ sc-boundary: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804878c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/sc-boundary-2 -a sc-boundary-2 -- -q  -f run sc-boundary-2 < /dev/null 2> tests/userprog/sc-boundary-2.errors > tests/userprog/sc-boundary-2.output
 perl -I../.. ../../tests/userprog/sc-boundary-2.ck tests/userprog/sc-boundary-2 tests/userprog/sc-boundary-2.result
 FAIL tests/userprog/sc-boundary-2
@@ -229,17 +114,20 @@ Acceptable output:
 Differences in `diff -u' format:
 - (sc-boundary-2) begin
 - sc-boundary-2: exit(67)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + sc-boundary-2: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804878c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/halt -a halt -- -q  -f run halt < /dev/null 2> tests/userprog/halt.errors > tests/userprog/halt.output
 perl -I../.. ../../tests/userprog/halt.ck tests/userprog/halt tests/userprog/halt.result
 FAIL tests/userprog/halt
-missing 'begin' message
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exit -a exit -- -q  -f run exit < /dev/null 2> tests/userprog/exit.errors > tests/userprog/exit.output
 perl -I../.. ../../tests/userprog/exit.ck tests/userprog/exit tests/userprog/exit.result
 FAIL tests/userprog/exit
@@ -251,12 +139,12 @@ Acceptable output:
 Differences in `diff -u' format:
 - (exit) begin
 - exit: exit(57)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + exit: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-normal -a create-normal -- -q  -f run create-normal < /dev/null 2> tests/userprog/create-normal.errors > tests/userprog/create-normal.output
 perl -I../.. ../../tests/userprog/create-normal.ck tests/userprog/create-normal tests/userprog/create-normal.result
@@ -273,18 +161,31 @@ Differences in `diff -u' format:
 - (create-normal) create quux.dat
 - (create-normal) end
 - create-normal: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486fc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-empty -a create-empty -- -q  -f run create-empty < /dev/null 2> tests/userprog/create-empty.errors > tests/userprog/create-empty.output
 perl -I../.. ../../tests/userprog/create-empty.ck tests/userprog/create-empty tests/userprog/create-empty.result
 FAIL tests/userprog/create-empty
 Test output failed to match any acceptable form.
 
+Acceptable output:
+  (create-empty) begin
+  create-empty: exit(-1)
+Differences in `diff -u' format:
+- (create-empty) begin
+- create-empty: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ create-empty: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486fc
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (create-empty) begin
   (create-empty) create(""): 0
@@ -295,25 +196,12 @@ Differences in `diff -u' format:
 - (create-empty) create(""): 0
 - (create-empty) end
 - create-empty: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-empty: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486fc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (create-empty) begin
-  create-empty: exit(-1)
-Differences in `diff -u' format:
-- (create-empty) begin
-- create-empty: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ create-empty: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486fc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-null -a create-null -- -q  -f run create-null < /dev/null 2> tests/userprog/create-null.errors > tests/userprog/create-null.output
 perl -I../.. ../../tests/userprog/create-null.ck tests/userprog/create-null tests/userprog/create-null.result
@@ -326,12 +214,12 @@ Acceptable output:
 Differences in `diff -u' format:
 - (create-null) begin
 - create-null: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-null: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486fc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-bad-ptr -a create-bad-ptr -- -q  -f run create-bad-ptr < /dev/null 2> tests/userprog/create-bad-ptr.errors > tests/userprog/create-bad-ptr.output
 perl -I../.. ../../tests/userprog/create-bad-ptr.ck tests/userprog/create-bad-ptr tests/userprog/create-bad-ptr.result
@@ -344,12 +232,12 @@ Acceptable output:
 Differences in `diff -u' format:
 - (create-bad-ptr) begin
 - create-bad-ptr: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486fc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-long -a create-long -- -q  -f run create-long < /dev/null 2> tests/userprog/create-long.errors > tests/userprog/create-long.output
 perl -I../.. ../../tests/userprog/create-long.ck tests/userprog/create-long tests/userprog/create-long.result
@@ -366,12 +254,12 @@ Differences in `diff -u' format:
 - (create-long) create("x..."): 0
 - (create-long) end
 - create-long: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-long: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804870c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-exists -a create-exists -- -q  -f run create-exists < /dev/null 2> tests/userprog/create-exists.errors > tests/userprog/create-exists.output
 perl -I../.. ../../tests/userprog/create-exists.ck tests/userprog/create-exists tests/userprog/create-exists.result
@@ -396,12 +284,12 @@ Differences in `diff -u' format:
 - (create-exists) try to re-create quux.dat
 - (create-exists) end
 - create-exists: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-exists: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80487bc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-bound -a create-bound -- -q  -f run create-bound < /dev/null 2> tests/userprog/create-bound.errors > tests/userprog/create-bound.output
 perl -I../.. ../../tests/userprog/create-bound.ck tests/userprog/create-bound tests/userprog/create-bound.result
@@ -418,33 +306,20 @@ Differences in `diff -u' format:
 - (create-bound) create("quux.dat"): 1
 - (create-bound) end
 - create-bound: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + create-bound: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804878c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-normal -a open-normal -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run open-normal < /dev/null 2> tests/userprog/open-normal.errors > tests/userprog/open-normal.output
 perl -I../.. ../../tests/userprog/open-normal.ck tests/userprog/open-normal tests/userprog/open-normal.result
 FAIL tests/userprog/open-normal
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (open-normal) begin
-  (open-normal) end
-  open-normal: exit(0)
-Differences in `diff -u' format:
-- (open-normal) begin
-- (open-normal) end
-- open-normal: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ open-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-missing -a open-missing -- -q  -f run open-missing < /dev/null 2> tests/userprog/open-missing.errors > tests/userprog/open-missing.output
 perl -I../.. ../../tests/userprog/open-missing.ck tests/userprog/open-missing tests/userprog/open-missing.result
 FAIL tests/userprog/open-missing
@@ -458,106 +333,39 @@ Differences in `diff -u' format:
 - (open-missing) begin
 - (open-missing) end
 - open-missing: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + open-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-boundary -a open-boundary -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run open-boundary < /dev/null 2> tests/userprog/open-boundary.errors > tests/userprog/open-boundary.output
 perl -I../.. ../../tests/userprog/open-boundary.ck tests/userprog/open-boundary tests/userprog/open-boundary.result
 FAIL tests/userprog/open-boundary
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (open-boundary) begin
-  (open-boundary) open "sample.txt"
-  (open-boundary) end
-  open-boundary: exit(0)
-Differences in `diff -u' format:
-- (open-boundary) begin
-- (open-boundary) open "sample.txt"
-- (open-boundary) end
-- open-boundary: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ open-boundary: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804879c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-empty -a open-empty -- -q  -f run open-empty < /dev/null 2> tests/userprog/open-empty.errors > tests/userprog/open-empty.output
 perl -I../.. ../../tests/userprog/open-empty.ck tests/userprog/open-empty tests/userprog/open-empty.result
 FAIL tests/userprog/open-empty
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (open-empty) begin
-  (open-empty) end
-  open-empty: exit(0)
-Differences in `diff -u' format:
-- (open-empty) begin
-- (open-empty) end
-- open-empty: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ open-empty: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-null -a open-null -- -q  -f run open-null < /dev/null 2> tests/userprog/open-null.errors > tests/userprog/open-null.output
 perl -I../.. ../../tests/userprog/open-null.ck tests/userprog/open-null tests/userprog/open-null.result
 FAIL tests/userprog/open-null
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (open-null) begin
-  (open-null) end
-  open-null: exit(0)
-Differences in `diff -u' format:
-- (open-null) begin
-- (open-null) end
-- open-null: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ open-null: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (open-null) begin
-  open-null: exit(-1)
-Differences in `diff -u' format:
-- (open-null) begin
-- open-null: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ open-null: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-bad-ptr -a open-bad-ptr -- -q  -f run open-bad-ptr < /dev/null 2> tests/userprog/open-bad-ptr.errors > tests/userprog/open-bad-ptr.output
 perl -I../.. ../../tests/userprog/open-bad-ptr.ck tests/userprog/open-bad-ptr tests/userprog/open-bad-ptr.result
 FAIL tests/userprog/open-bad-ptr
 Test output failed to match any acceptable form.
 
-Acceptable output:
-  (open-bad-ptr) begin
-  open-bad-ptr: exit(-1)
-Differences in `diff -u' format:
-- (open-bad-ptr) begin
-- open-bad-ptr: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ open-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (open-bad-ptr) begin
   (open-bad-ptr) end
@@ -566,12 +374,25 @@ Differences in `diff -u' format:
 - (open-bad-ptr) begin
 - (open-bad-ptr) end
 - open-bad-ptr: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + open-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (open-bad-ptr) begin
+  open-bad-ptr: exit(-1)
+Differences in `diff -u' format:
+- (open-bad-ptr) begin
+- open-bad-ptr: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ open-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/open-twice -a open-twice -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run open-twice < /dev/null 2> tests/userprog/open-twice.errors > tests/userprog/open-twice.output
 perl -I../.. ../../tests/userprog/open-twice.ck tests/userprog/open-twice tests/userprog/open-twice.result
@@ -590,12 +411,12 @@ Differences in `diff -u' format:
 - (open-twice) open "sample.txt" again
 - (open-twice) end
 - open-twice: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + open-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804874c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/close-normal -a close-normal -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run close-normal < /dev/null 2> tests/userprog/close-normal.errors > tests/userprog/close-normal.output
 perl -I../.. ../../tests/userprog/close-normal.ck tests/userprog/close-normal tests/userprog/close-normal.result
@@ -614,37 +435,18 @@ Differences in `diff -u' format:
 - (close-normal) close "sample.txt"
 - (close-normal) end
 - close-normal: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + close-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804870c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/close-twice -a close-twice -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run close-twice < /dev/null 2> tests/userprog/close-twice.errors > tests/userprog/close-twice.output
 perl -I../.. ../../tests/userprog/close-twice.ck tests/userprog/close-twice tests/userprog/close-twice.result
 FAIL tests/userprog/close-twice
 Test output failed to match any acceptable form.
 
-Acceptable output:
-  (close-twice) begin
-  (close-twice) open "sample.txt"
-  (close-twice) close "sample.txt"
-  (close-twice) close "sample.txt" again
-  close-twice: exit(-1)
-Differences in `diff -u' format:
-- (close-twice) begin
-- (close-twice) open "sample.txt"
-- (close-twice) close "sample.txt"
-- (close-twice) close "sample.txt" again
-- close-twice: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ close-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (close-twice) begin
   (close-twice) open "sample.txt"
@@ -659,12 +461,31 @@ Differences in `diff -u' format:
 - (close-twice) close "sample.txt" again
 - (close-twice) end
 - close-twice: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + close-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (close-twice) begin
+  (close-twice) open "sample.txt"
+  (close-twice) close "sample.txt"
+  (close-twice) close "sample.txt" again
+  close-twice: exit(-1)
+Differences in `diff -u' format:
+- (close-twice) begin
+- (close-twice) open "sample.txt"
+- (close-twice) close "sample.txt"
+- (close-twice) close "sample.txt" again
+- close-twice: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ close-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/close-stdin -a close-stdin -- -q  -f run close-stdin < /dev/null 2> tests/userprog/close-stdin.errors > tests/userprog/close-stdin.output
 perl -I../.. ../../tests/userprog/close-stdin.ck tests/userprog/close-stdin tests/userprog/close-stdin.result
@@ -673,36 +494,36 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (close-stdin) begin
-  close-stdin: exit(-1)
-Differences in `diff -u' format:
-- (close-stdin) begin
-- close-stdin: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ close-stdin: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (close-stdin) begin
   (close-stdin) end
   close-stdin: exit(0)
 Differences in `diff -u' format:
 - (close-stdin) begin
 - (close-stdin) end
 - close-stdin: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + close-stdin: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (close-stdin) begin
+  close-stdin: exit(-1)
+Differences in `diff -u' format:
+- (close-stdin) begin
+- close-stdin: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ close-stdin: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/close-stdout -a close-stdout -- -q  -f run close-stdout < /dev/null 2> tests/userprog/close-stdout.errors > tests/userprog/close-stdout.output
 perl -I../.. ../../tests/userprog/close-stdout.ck tests/userprog/close-stdout tests/userprog/close-stdout.result
 FAIL tests/userprog/close-stdout
-Kernel panic in run: PANIC at ../../threads/thread.c:397 in thread_yield(): assertion `!intr_context ()' failed.
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
 Call stack: 0xc0028a0e
 Translation of call stack:
 0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
@@ -713,31 +534,31 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (close-bad-fd) begin
+  close-bad-fd: exit(-1)
+Differences in `diff -u' format:
+- (close-bad-fd) begin
+- close-bad-fd: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ close-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (close-bad-fd) begin
   (close-bad-fd) end
   close-bad-fd: exit(0)
 Differences in `diff -u' format:
 - (close-bad-fd) begin
 - (close-bad-fd) end
 - close-bad-fd: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + close-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (close-bad-fd) begin
-  close-bad-fd: exit(-1)
-Differences in `diff -u' format:
-- (close-bad-fd) begin
-- close-bad-fd: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ close-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/read-normal -a read-normal -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run read-normal < /dev/null 2> tests/userprog/read-normal.errors > tests/userprog/read-normal.output
 perl -I../.. ../../tests/userprog/read-normal.ck tests/userprog/read-normal tests/userprog/read-normal.result
@@ -758,33 +579,18 @@ Differences in `diff -u' format:
 - (read-normal) close "sample.txt"
 - (read-normal) end
 - read-normal: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + read-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/read-bad-ptr -a read-bad-ptr -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run read-bad-ptr < /dev/null 2> tests/userprog/read-bad-ptr.errors > tests/userprog/read-bad-ptr.output
 perl -I../.. ../../tests/userprog/read-bad-ptr.ck tests/userprog/read-bad-ptr tests/userprog/read-bad-ptr.result
 FAIL tests/userprog/read-bad-ptr
 Test output failed to match any acceptable form.
 
-Acceptable output:
-  (read-bad-ptr) begin
-  (read-bad-ptr) open "sample.txt"
-  read-bad-ptr: exit(-1)
-Differences in `diff -u' format:
-- (read-bad-ptr) begin
-- (read-bad-ptr) open "sample.txt"
-- read-bad-ptr: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ read-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (read-bad-ptr) begin
   (read-bad-ptr) open "sample.txt"
@@ -795,12 +601,27 @@ Differences in `diff -u' format:
 - (read-bad-ptr) open "sample.txt"
 - (read-bad-ptr) end
 - read-bad-ptr: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + read-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (read-bad-ptr) begin
+  (read-bad-ptr) open "sample.txt"
+  read-bad-ptr: exit(-1)
+Differences in `diff -u' format:
+- (read-bad-ptr) begin
+- (read-bad-ptr) open "sample.txt"
+- read-bad-ptr: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ read-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/read-boundary -a read-boundary -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run read-boundary < /dev/null 2> tests/userprog/read-boundary.errors > tests/userprog/read-boundary.output
 perl -I../.. ../../tests/userprog/read-boundary.ck tests/userprog/read-boundary tests/userprog/read-boundary.result
@@ -817,12 +638,12 @@ Differences in `diff -u' format:
 - (read-boundary) open "sample.txt"
 - (read-boundary) end
 - read-boundary: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + read-boundary: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804880c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/read-zero -a read-zero -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run read-zero < /dev/null 2> tests/userprog/read-zero.errors > tests/userprog/read-zero.output
 perl -I../.. ../../tests/userprog/read-zero.ck tests/userprog/read-zero tests/userprog/read-zero.result
@@ -839,12 +660,12 @@ Differences in `diff -u' format:
 - (read-zero) open "sample.txt"
 - (read-zero) end
 - read-zero: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + read-zero: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804873c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/read-stdout -a read-stdout -- -q  -f run read-stdout < /dev/null 2> tests/userprog/read-stdout.errors > tests/userprog/read-stdout.output
 perl -I../.. ../../tests/userprog/read-stdout.ck tests/userprog/read-stdout tests/userprog/read-stdout.result
@@ -853,31 +674,31 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (read-stdout) begin
-  read-stdout: exit(-1)
-Differences in `diff -u' format:
-- (read-stdout) begin
-- read-stdout: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ read-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (read-stdout) begin
   (read-stdout) end
   read-stdout: exit(0)
 Differences in `diff -u' format:
 - (read-stdout) begin
 - (read-stdout) end
 - read-stdout: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + read-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (read-stdout) begin
+  read-stdout: exit(-1)
+Differences in `diff -u' format:
+- (read-stdout) begin
+- read-stdout: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ read-stdout: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/read-bad-fd -a read-bad-fd -- -q  -f run read-bad-fd < /dev/null 2> tests/userprog/read-bad-fd.errors > tests/userprog/read-bad-fd.output
 perl -I../.. ../../tests/userprog/read-bad-fd.ck tests/userprog/read-bad-fd tests/userprog/read-bad-fd.result
@@ -886,93 +707,46 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (read-bad-fd) begin
-  read-bad-fd: exit(-1)
-Differences in `diff -u' format:
-- (read-bad-fd) begin
-- read-bad-fd: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ read-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (read-bad-fd) begin
   (read-bad-fd) end
   read-bad-fd: exit(0)
 Differences in `diff -u' format:
 - (read-bad-fd) begin
 - (read-bad-fd) end
 - read-bad-fd: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + read-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (read-bad-fd) begin
+  read-bad-fd: exit(-1)
+Differences in `diff -u' format:
+- (read-bad-fd) begin
+- read-bad-fd: exit(-1)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ read-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-normal -a write-normal -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-normal < /dev/null 2> tests/userprog/write-normal.errors > tests/userprog/write-normal.output
 perl -I../.. ../../tests/userprog/write-normal.ck tests/userprog/write-normal tests/userprog/write-normal.result
 FAIL tests/userprog/write-normal
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (write-normal) begin
-  (write-normal) create "test.txt"
-  (write-normal) open "test.txt"
-  (write-normal) end
-  write-normal: exit(0)
-Differences in `diff -u' format:
-- (write-normal) begin
-- (write-normal) create "test.txt"
-- (write-normal) open "test.txt"
-- (write-normal) end
-- write-normal: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ write-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804875c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-bad-ptr -a write-bad-ptr -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-bad-ptr < /dev/null 2> tests/userprog/write-bad-ptr.errors > tests/userprog/write-bad-ptr.output
 perl -I../.. ../../tests/userprog/write-bad-ptr.ck tests/userprog/write-bad-ptr tests/userprog/write-bad-ptr.result
 FAIL tests/userprog/write-bad-ptr
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (write-bad-ptr) begin
-  (write-bad-ptr) open "sample.txt"
-  write-bad-ptr: exit(-1)
-Differences in `diff -u' format:
-- (write-bad-ptr) begin
-- (write-bad-ptr) open "sample.txt"
-- write-bad-ptr: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ write-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (write-bad-ptr) begin
-  (write-bad-ptr) open "sample.txt"
-  (write-bad-ptr) end
-  write-bad-ptr: exit(0)
-Differences in `diff -u' format:
-- (write-bad-ptr) begin
-- (write-bad-ptr) open "sample.txt"
-- (write-bad-ptr) end
-- write-bad-ptr: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ write-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-boundary -a write-boundary -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-boundary < /dev/null 2> tests/userprog/write-boundary.errors > tests/userprog/write-boundary.output
 perl -I../.. ../../tests/userprog/write-boundary.ck tests/userprog/write-boundary tests/userprog/write-boundary.result
 FAIL tests/userprog/write-boundary
@@ -988,53 +762,27 @@ Differences in `diff -u' format:
 - (write-boundary) open "sample.txt"
 - (write-boundary) end
 - write-boundary: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + write-boundary: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80487cc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-zero -a write-zero -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-zero < /dev/null 2> tests/userprog/write-zero.errors > tests/userprog/write-zero.output
 perl -I../.. ../../tests/userprog/write-zero.ck tests/userprog/write-zero tests/userprog/write-zero.result
 FAIL tests/userprog/write-zero
-Kernel panic in run: PANIC at ../../threads/thread.c:397 in thread_yield(): assertion `!intr_context ()' failed.
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
 Call stack: 0xc0028a0e
 Translation of call stack:
 0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-stdin -a write-stdin -- -q  -f run write-stdin < /dev/null 2> tests/userprog/write-stdin.errors > tests/userprog/write-stdin.output
 perl -I../.. ../../tests/userprog/write-stdin.ck tests/userprog/write-stdin tests/userprog/write-stdin.result
 FAIL tests/userprog/write-stdin
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (write-stdin) begin
-  write-stdin: exit(-1)
-Differences in `diff -u' format:
-- (write-stdin) begin
-- write-stdin: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ write-stdin: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (write-stdin) begin
-  (write-stdin) end
-  write-stdin: exit(0)
-Differences in `diff -u' format:
-- (write-stdin) begin
-- (write-stdin) end
-- write-stdin: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ write-stdin: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-bad-fd -a write-bad-fd -- -q  -f run write-bad-fd < /dev/null 2> tests/userprog/write-bad-fd.errors > tests/userprog/write-bad-fd.output
 perl -I../.. ../../tests/userprog/write-bad-fd.ck tests/userprog/write-bad-fd tests/userprog/write-bad-fd.result
 FAIL tests/userprog/write-bad-fd
@@ -1048,12 +796,12 @@ Differences in `diff -u' format:
 - (write-bad-fd) begin
 - (write-bad-fd) end
 - write-bad-fd: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + write-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (write-bad-fd) begin
@@ -1061,12 +809,12 @@ Acceptable output:
 Differences in `diff -u' format:
 - (write-bad-fd) begin
 - write-bad-fd: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + write-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804877c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exec-once -a exec-once -p tests/userprog/child-simple -a child-simple -- -q  -f run exec-once < /dev/null 2> tests/userprog/exec-once.errors > tests/userprog/exec-once.output
 perl -I../.. ../../tests/userprog/exec-once.ck tests/userprog/exec-once tests/userprog/exec-once.result
@@ -1085,12 +833,12 @@ Differences in `diff -u' format:
 - child-simple: exit(81)
 - (exec-once) end
 - exec-once: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + exec-once: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exec-arg -a exec-arg -p tests/userprog/child-args -a child-args -- -q  -f run exec-arg < /dev/null 2> tests/userprog/exec-arg.errors > tests/userprog/exec-arg.output
 perl -I../.. ../../tests/userprog/exec-arg.ck tests/userprog/exec-arg tests/userprog/exec-arg.result
@@ -1119,12 +867,12 @@ Differences in `diff -u' format:
 - child-args: exit(0)
 - (exec-arg) end
 - exec-arg: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + exec-arg: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exec-multiple -a exec-multiple -p tests/userprog/child-simple -a child-simple -- -q  -f run exec-multiple < /dev/null 2> tests/userprog/exec-multiple.errors > tests/userprog/exec-multiple.output
 perl -I../.. ../../tests/userprog/exec-multiple.ck tests/userprog/exec-multiple tests/userprog/exec-multiple.result
@@ -1155,129 +903,27 @@ Differences in `diff -u' format:
 - child-simple: exit(81)
 - (exec-multiple) end
 - exec-multiple: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + exec-multiple: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exec-missing -a exec-missing -- -q  -f run exec-missing < /dev/null 2> tests/userprog/exec-missing.errors > tests/userprog/exec-missing.output
 perl -I../.. ../../tests/userprog/exec-missing.ck tests/userprog/exec-missing tests/userprog/exec-missing.result
 FAIL tests/userprog/exec-missing
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (exec-missing) begin
-  load: no-such-file: open failed
-  no-such-file: exit(-1)
-  (exec-missing) exec("no-such-file"): -1
-  (exec-missing) end
-  exec-missing: exit(0)
-Differences in `diff -u' format:
-- (exec-missing) begin
-- load: no-such-file: open failed
-- no-such-file: exit(-1)
-- (exec-missing) exec("no-such-file"): -1
-- (exec-missing) end
-- exec-missing: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (exec-missing) begin
-  load: no-such-file: open failed
-  (exec-missing) exec("no-such-file"): -1
-  no-such-file: exit(-1)
-  (exec-missing) end
-  exec-missing: exit(0)
-Differences in `diff -u' format:
-- (exec-missing) begin
-- load: no-such-file: open failed
-- (exec-missing) exec("no-such-file"): -1
-- no-such-file: exit(-1)
-- (exec-missing) end
-- exec-missing: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (exec-missing) begin
-  (exec-missing) exec("no-such-file"): -1
-  (exec-missing) end
-  exec-missing: exit(0)
-Differences in `diff -u' format:
-- (exec-missing) begin
-- (exec-missing) exec("no-such-file"): -1
-- (exec-missing) end
-- exec-missing: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (exec-missing) begin
-  load: no-such-file: open failed
-  (exec-missing) exec("no-such-file"): -1
-  (exec-missing) end
-  exec-missing: exit(0)
-Differences in `diff -u' format:
-- (exec-missing) begin
-- load: no-such-file: open failed
-- (exec-missing) exec("no-such-file"): -1
-- (exec-missing) end
-- exec-missing: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exec-bad-ptr -a exec-bad-ptr -- -q  -f run exec-bad-ptr < /dev/null 2> tests/userprog/exec-bad-ptr.errors > tests/userprog/exec-bad-ptr.output
 perl -I../.. ../../tests/userprog/exec-bad-ptr.ck tests/userprog/exec-bad-ptr tests/userprog/exec-bad-ptr.result
 FAIL tests/userprog/exec-bad-ptr
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (exec-bad-ptr) begin
-  exec-bad-ptr: exit(-1)
-Differences in `diff -u' format:
-- (exec-bad-ptr) begin
-- exec-bad-ptr: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (exec-bad-ptr) begin
-  (exec-bad-ptr) end
-  exec-bad-ptr: exit(0)
-Differences in `diff -u' format:
-- (exec-bad-ptr) begin
-- (exec-bad-ptr) end
-- exec-bad-ptr: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ exec-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/wait-simple -a wait-simple -p tests/userprog/child-simple -a child-simple -- -q  -f run wait-simple < /dev/null 2> tests/userprog/wait-simple.errors > tests/userprog/wait-simple.output
 perl -I../.. ../../tests/userprog/wait-simple.ck tests/userprog/wait-simple tests/userprog/wait-simple.result
 FAIL tests/userprog/wait-simple
@@ -1297,12 +943,12 @@ Differences in `diff -u' format:
 - (wait-simple) wait(exec()) = 81
 - (wait-simple) end
 - wait-simple: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + wait-simple: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/wait-twice -a wait-twice -p tests/userprog/child-simple -a child-simple -- -q  -f run wait-twice < /dev/null 2> tests/userprog/wait-twice.errors > tests/userprog/wait-twice.output
 perl -I../.. ../../tests/userprog/wait-twice.ck tests/userprog/wait-twice tests/userprog/wait-twice.result
@@ -1325,39 +971,20 @@ Differences in `diff -u' format:
 - (wait-twice) wait(exec()) = -1
 - (wait-twice) end
 - wait-twice: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + wait-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804870c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/wait-killed -a wait-killed -p tests/userprog/child-bad -a child-bad -- -q  -f run wait-killed < /dev/null 2> tests/userprog/wait-killed.errors > tests/userprog/wait-killed.output
 perl -I../.. ../../tests/userprog/wait-killed.ck tests/userprog/wait-killed tests/userprog/wait-killed.result
 FAIL tests/userprog/wait-killed
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (wait-killed) begin
-  (child-bad) begin
-  child-bad: exit(-1)
-  (wait-killed) wait(exec()) = -1
-  (wait-killed) end
-  wait-killed: exit(0)
-Differences in `diff -u' format:
-- (wait-killed) begin
-- (child-bad) begin
-- child-bad: exit(-1)
-- (wait-killed) wait(exec()) = -1
-- (wait-killed) end
-- wait-killed: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ wait-killed: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486ec
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/wait-bad-pid -a wait-bad-pid -- -q  -f run wait-bad-pid < /dev/null 2> tests/userprog/wait-bad-pid.errors > tests/userprog/wait-bad-pid.output
 perl -I../.. ../../tests/userprog/wait-bad-pid.ck tests/userprog/wait-bad-pid tests/userprog/wait-bad-pid.result
 FAIL tests/userprog/wait-bad-pid
@@ -1369,12 +996,12 @@ Acceptable output:
 Differences in `diff -u' format:
 - (wait-bad-pid) begin
 - wait-bad-pid: exit(-1)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + wait-bad-pid: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 Acceptable output:
   (wait-bad-pid) begin
@@ -1384,12 +1011,12 @@ Differences in `diff -u' format:
 - (wait-bad-pid) begin
 - (wait-bad-pid) end
 - wait-bad-pid: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + wait-bad-pid: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486dc
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/multi-recurse -a multi-recurse -- -q  -f run 'multi-recurse 15' < /dev/null 2> tests/userprog/multi-recurse.errors > tests/userprog/multi-recurse.output
 perl -I../.. ../../tests/userprog/multi-recurse.ck tests/userprog/multi-recurse tests/userprog/multi-recurse.result
@@ -1534,31 +1161,6 @@ Acceptable output:
   (multi-child-fd) begin
   (multi-child-fd) open "sample.txt"
   (child-close) begin
-  child-close: exit(-1)
-  (multi-child-fd) wait(exec()) = -1
-  (multi-child-fd) verified contents of "sample.txt"
-  (multi-child-fd) end
-  multi-child-fd: exit(0)
-Differences in `diff -u' format:
-- (multi-child-fd) begin
-- (multi-child-fd) open "sample.txt"
-- (child-close) begin
-- child-close: exit(-1)
-- (multi-child-fd) wait(exec()) = -1
-- (multi-child-fd) verified contents of "sample.txt"
-- (multi-child-fd) end
-- multi-child-fd: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ multi-child-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804875c
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-Acceptable output:
-  (multi-child-fd) begin
-  (multi-child-fd) open "sample.txt"
-  (child-close) begin
   (child-close) end
   child-close: exit(0)
   (multi-child-fd) wait(exec()) = 0
@@ -1575,12 +1177,37 @@ Differences in `diff -u' format:
 - (multi-child-fd) verified contents of "sample.txt"
 - (multi-child-fd) end
 - multi-child-fd: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + multi-child-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804875c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+Acceptable output:
+  (multi-child-fd) begin
+  (multi-child-fd) open "sample.txt"
+  (child-close) begin
+  child-close: exit(-1)
+  (multi-child-fd) wait(exec()) = -1
+  (multi-child-fd) verified contents of "sample.txt"
+  (multi-child-fd) end
+  multi-child-fd: exit(0)
+Differences in `diff -u' format:
+- (multi-child-fd) begin
+- (multi-child-fd) open "sample.txt"
+- (child-close) begin
+- child-close: exit(-1)
+- (multi-child-fd) wait(exec()) = -1
+- (multi-child-fd) verified contents of "sample.txt"
+- (multi-child-fd) end
+- multi-child-fd: exit(0)
++ Page fault at 0xc0000004: rights violation error reading page in user context.
++ multi-child-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804875c
++  cr2=c0000004 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/rox-simple -a rox-simple -- -q  -f run rox-simple < /dev/null 2> tests/userprog/rox-simple.errors > tests/userprog/rox-simple.output
 perl -I../.. ../../tests/userprog/rox-simple.ck tests/userprog/rox-simple tests/userprog/rox-simple.result
@@ -1601,12 +1228,12 @@ Differences in `diff -u' format:
 - (rox-simple) try to write "rox-simple"
 - (rox-simple) end
 - rox-simple: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + rox-simple: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804875c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/rox-child -a rox-child -p tests/userprog/child-rox -a child-rox -- -q  -f run rox-child < /dev/null 2> tests/userprog/rox-child.errors > tests/userprog/rox-child.output
 perl -I../.. ../../tests/userprog/rox-child.ck tests/userprog/rox-child tests/userprog/rox-child.result
@@ -1641,12 +1268,12 @@ Differences in `diff -u' format:
 - (rox-child) write "child-rox"
 - (rox-child) end
 - rox-child: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + rox-child: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804882c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/rox-multichild -a rox-multichild -p tests/userprog/child-rox -a child-rox -- -q  -f run rox-multichild < /dev/null 2> tests/userprog/rox-multichild.errors > tests/userprog/rox-multichild.output
 perl -I../.. ../../tests/userprog/rox-multichild.ck tests/userprog/rox-multichild tests/userprog/rox-multichild.result
@@ -1729,26 +1356,20 @@ Differences in `diff -u' format:
 - (rox-multichild) write "child-rox"
 - (rox-multichild) end
 - rox-multichild: exit(0)
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + rox-multichild: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804882c
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-read -a bad-read -- -q  -f run bad-read < /dev/null 2> tests/userprog/bad-read.errors > tests/userprog/bad-read.output
 perl -I../.. ../../tests/userprog/bad-read.ck tests/userprog/bad-read tests/userprog/bad-read.result
 FAIL tests/userprog/bad-read
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-read) begin
-  bad-read: exit(-1)
-Differences in `diff -u' format:
-- (bad-read) begin
-- bad-read: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-write -a bad-write -- -q  -f run bad-write < /dev/null 2> tests/userprog/bad-write.errors > tests/userprog/bad-write.output
 perl -I../.. ../../tests/userprog/bad-write.ck tests/userprog/bad-write tests/userprog/bad-write.result
 FAIL tests/userprog/bad-write
@@ -1778,10 +1399,16 @@ Differences in `diff -u' format:
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-write2 -a bad-write2 -- -q  -f run bad-write2 < /dev/null 2> tests/userprog/bad-write2.errors > tests/userprog/bad-write2.output
 perl -I../.. ../../tests/userprog/bad-write2.ck tests/userprog/bad-write2 tests/userprog/bad-write2.result
 FAIL tests/userprog/bad-write2
-Kernel panic in run: PANIC at ../../threads/thread.c:397 in thread_yield(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028a0e
-Translation of call stack:
-0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (bad-write2) begin
+  bad-write2: exit(-1)
+Differences in `diff -u' format:
+- (bad-write2) begin
+- bad-write2: exit(-1)
+
+(User fault messages are excluded for matching purposes.)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-jump -a bad-jump -- -q  -f run bad-jump < /dev/null 2> tests/userprog/bad-jump.errors > tests/userprog/bad-jump.output
 perl -I../.. ../../tests/userprog/bad-jump.ck tests/userprog/bad-jump tests/userprog/bad-jump.result
 FAIL tests/userprog/bad-jump
@@ -1878,12 +1505,12 @@ Differences in `diff -u' format:
 - (lg-create) verified contents of "blargle"
 - (lg-create) close "blargle"
 - (lg-create) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + lg-create: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048883
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -1912,12 +1539,12 @@ Differences in `diff -u' format:
 - (lg-full) verified contents of "quux"
 - (lg-full) close "quux"
 - (lg-full) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + lg-full: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048863
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -1942,12 +1569,12 @@ Differences in `diff -u' format:
 - (lg-random) read "bazzle" in random order
 - (lg-random) close "bazzle"
 - (lg-random) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + lg-random: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048a43
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -1976,12 +1603,12 @@ Differences in `diff -u' format:
 - (lg-seq-block) verified contents of "noodle"
 - (lg-seq-block) close "noodle"
 - (lg-seq-block) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + lg-seq-block: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048863
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -2010,43 +1637,22 @@ Differences in `diff -u' format:
 - (lg-seq-random) verified contents of "nibble"
 - (lg-seq-random) close "nibble"
 - (lg-seq-random) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + lg-seq-random: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048883
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-create -a sm-create -- -q  -f run sm-create < /dev/null 2> tests/filesys/base/sm-create.errors > tests/filesys/base/sm-create.output
 perl -I../.. ../../tests/filesys/base/sm-create.ck tests/filesys/base/sm-create tests/filesys/base/sm-create.result
 FAIL tests/filesys/base/sm-create
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (sm-create) begin
-  (sm-create) create "blargle"
-  (sm-create) open "blargle" for verification
-  (sm-create) verified contents of "blargle"
-  (sm-create) close "blargle"
-  (sm-create) end
-Differences in `diff -u' format:
-- (sm-create) begin
-- (sm-create) create "blargle"
-- (sm-create) open "blargle" for verification
-- (sm-create) verified contents of "blargle"
-- (sm-create) close "blargle"
-- (sm-create) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ sm-create: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048883
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-
-(Process exit codes are excluded for matching purposes.)
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-full -a sm-full -- -q  -f run sm-full < /dev/null 2> tests/filesys/base/sm-full.errors > tests/filesys/base/sm-full.output
 perl -I../.. ../../tests/filesys/base/sm-full.ck tests/filesys/base/sm-full tests/filesys/base/sm-full.result
 FAIL tests/filesys/base/sm-full
@@ -2072,12 +1678,12 @@ Differences in `diff -u' format:
 - (sm-full) verified contents of "quux"
 - (sm-full) close "quux"
 - (sm-full) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + sm-full: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048863
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -2102,12 +1708,12 @@ Differences in `diff -u' format:
 - (sm-random) read "bazzle" in random order
 - (sm-random) close "bazzle"
 - (sm-random) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + sm-random: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048a43
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -2136,12 +1742,12 @@ Differences in `diff -u' format:
 - (sm-seq-block) verified contents of "noodle"
 - (sm-seq-block) close "noodle"
 - (sm-seq-block) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + sm-seq-block: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048863
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -2170,83 +1776,22 @@ Differences in `diff -u' format:
 - (sm-seq-random) verified contents of "nibble"
 - (sm-seq-random) close "nibble"
 - (sm-seq-random) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + sm-seq-random: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048883
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
 pintos -v -k -T 300 --qemu  --filesys-size=2 -p tests/filesys/base/syn-read -a syn-read -p tests/filesys/base/child-syn-read -a child-syn-read -- -q  -f run syn-read < /dev/null 2> tests/filesys/base/syn-read.errors > tests/filesys/base/syn-read.output
 perl -I../.. ../../tests/filesys/base/syn-read.ck tests/filesys/base/syn-read tests/filesys/base/syn-read.result
 FAIL tests/filesys/base/syn-read
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (syn-read) begin
-  (syn-read) create "data"
-  (syn-read) open "data"
-  (syn-read) write "data"
-  (syn-read) close "data"
-  (syn-read) exec child 1 of 10: "child-syn-read 0"
-  (syn-read) exec child 2 of 10: "child-syn-read 1"
-  (syn-read) exec child 3 of 10: "child-syn-read 2"
-  (syn-read) exec child 4 of 10: "child-syn-read 3"
-  (syn-read) exec child 5 of 10: "child-syn-read 4"
-  (syn-read) exec child 6 of 10: "child-syn-read 5"
-  (syn-read) exec child 7 of 10: "child-syn-read 6"
-  (syn-read) exec child 8 of 10: "child-syn-read 7"
-  (syn-read) exec child 9 of 10: "child-syn-read 8"
-  (syn-read) exec child 10 of 10: "child-syn-read 9"
-  (syn-read) wait for child 1 of 10 returned 0 (expected 0)
-  (syn-read) wait for child 2 of 10 returned 1 (expected 1)
-  (syn-read) wait for child 3 of 10 returned 2 (expected 2)
-  (syn-read) wait for child 4 of 10 returned 3 (expected 3)
-  (syn-read) wait for child 5 of 10 returned 4 (expected 4)
-  (syn-read) wait for child 6 of 10 returned 5 (expected 5)
-  (syn-read) wait for child 7 of 10 returned 6 (expected 6)
-  (syn-read) wait for child 8 of 10 returned 7 (expected 7)
-  (syn-read) wait for child 9 of 10 returned 8 (expected 8)
-  (syn-read) wait for child 10 of 10 returned 9 (expected 9)
-  (syn-read) end
-Differences in `diff -u' format:
-- (syn-read) begin
-- (syn-read) create "data"
-- (syn-read) open "data"
-- (syn-read) write "data"
-- (syn-read) close "data"
-- (syn-read) exec child 1 of 10: "child-syn-read 0"
-- (syn-read) exec child 2 of 10: "child-syn-read 1"
-- (syn-read) exec child 3 of 10: "child-syn-read 2"
-- (syn-read) exec child 4 of 10: "child-syn-read 3"
-- (syn-read) exec child 5 of 10: "child-syn-read 4"
-- (syn-read) exec child 6 of 10: "child-syn-read 5"
-- (syn-read) exec child 7 of 10: "child-syn-read 6"
-- (syn-read) exec child 8 of 10: "child-syn-read 7"
-- (syn-read) exec child 9 of 10: "child-syn-read 8"
-- (syn-read) exec child 10 of 10: "child-syn-read 9"
-- (syn-read) wait for child 1 of 10 returned 0 (expected 0)
-- (syn-read) wait for child 2 of 10 returned 1 (expected 1)
-- (syn-read) wait for child 3 of 10 returned 2 (expected 2)
-- (syn-read) wait for child 4 of 10 returned 3 (expected 3)
-- (syn-read) wait for child 5 of 10 returned 4 (expected 4)
-- (syn-read) wait for child 6 of 10 returned 5 (expected 5)
-- (syn-read) wait for child 7 of 10 returned 6 (expected 6)
-- (syn-read) wait for child 8 of 10 returned 7 (expected 7)
-- (syn-read) wait for child 9 of 10 returned 8 (expected 8)
-- (syn-read) wait for child 10 of 10 returned 9 (expected 9)
-- (syn-read) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
-+ syn-read: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048943
-+  cr2=c0000008 error=00000005
-+  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
-+  cs=001b ds=0023 es=0023 ss=0023
-
-(Process exit codes are excluded for matching purposes.)
+Kernel panic in run: PANIC at ../../threads/thread.c:398 in thread_yield(): assertion `!intr_context ()' failed.
+Call stack: 0xc0028a0e
+Translation of call stack:
+0xc0028a0e: debug_panic (.../../lib/kernel/debug.c:38)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/syn-remove -a syn-remove -- -q  -f run syn-remove < /dev/null 2> tests/filesys/base/syn-remove.errors > tests/filesys/base/syn-remove.output
 perl -I../.. ../../tests/filesys/base/syn-remove.ck tests/filesys/base/syn-remove tests/filesys/base/syn-remove.result
 FAIL tests/filesys/base/syn-remove
@@ -2272,12 +1817,12 @@ Differences in `diff -u' format:
 - (syn-remove) read "deleteme"
 - (syn-remove) close "deleteme"
 - (syn-remove) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + syn-remove: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80489e3
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)
@@ -2338,12 +1883,12 @@ Differences in `diff -u' format:
 - (syn-write) open "stuff"
 - (syn-write) read "stuff"
 - (syn-write) end
-+ Page fault at 0xc0000008: rights violation error reading page in user context.
++ Page fault at 0xc0000004: rights violation error reading page in user context.
 + syn-write: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 + Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048953
-+  cr2=c0000008 error=00000005
++  cr2=c0000004 error=00000005
 +  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffe4 ebp=00000000
++  esi=00000000 edi=00000000 esp=bfffffe0 ebp=00000000
 +  cs=001b ds=0023 es=0023 ss=0023
 
 (Process exit codes are excluded for matching purposes.)

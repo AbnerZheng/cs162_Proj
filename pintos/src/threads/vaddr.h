@@ -52,6 +52,8 @@ static inline void *pg_round_down (const void *va) {
    物理内存从base address这个虚拟地址开始映射。物理地址0x1234被映射到虚拟地址PHYS_BASE+0x1234
 
    这个地址也标注了用户程序地址空间的结尾。 在这个地址之上，属于内核地址空间
+   也就是说，用户地址空间是0-3GB， 3GB之上就是内核地址空间. 内核地址空间中，虚拟地址和物理地址一对一的映射。
+
    This address also marks the end of user programs' address
    space.  Up to this point in memory, user programs are allowed
    to map whatever they like.  At this point and above, the

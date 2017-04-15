@@ -7,6 +7,7 @@
 #include <stdint.h>
 
 /* Page directory with kernel mappings only. */
+// 只有内核页目录映射的页目录
 extern uint32_t *init_page_dir;
 
 #endif /* threads/init.h */
