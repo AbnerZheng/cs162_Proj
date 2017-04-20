@@ -19,6 +19,10 @@
 #include "threads/thread.h"
 #include "threads/vaddr.h"
 
+
+#define align4(x)  (((((x)-1)>>2) <<2 ) + 4)
+
+
 static struct semaphore temporary;
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);
@@ -42,7 +46,10 @@ process_execute (const char *file_name)
   strlcpy (fn_copy, file_name, PGSIZE);
 
   /* Create a new thread to execute FILE_NAME. */
-  tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
+  // 有可能传过来的是带有参数的文件名，所以要做提取
+  char *save_ptr;
+  char * actual_file_name = strtok_r (file_name, " ", &save_ptr);
+  tid = thread_create (actual_file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
   return tid;
@@ -225,12 +232,19 @@ load (const char *file_name, void (**eip) (void), void **esp)
   if (t->pagedir == NULL)
     goto done;
   process_activate ();
+  int stack_len = strlen (file_name);
 
   /* Open executable file. */
-  file = filesys_open (file_name);
+  char *save_ptr, *actual_file_name;
+  char *token;
+  actual_file_name =  strtok_r (file_name, " ", &save_ptr);
+//  for (token = strtok_r (file_name, " ", &save_ptr); token != NULL;
+//       token = strtok_r (NULL, " ", &save_ptr))
+//    printf ("'%s'\n", token);
+  file = filesys_open (actual_file_name);
   if (file == NULL)
     {
-      printf ("load: %s: open failed\n", file_name);
+      printf ("load: %s: open failed\n", actual_file_name);
       goto done;
     }
 
@@ -243,7 +257,7 @@ load (const char *file_name, void (**eip) (void), void **esp)
       || ehdr.e_phentsize != sizeof (struct Elf32_Phdr)
       || ehdr.e_phnum > 1024)
     {
-      printf ("load: %s: error loading executable\n", file_name);
+      printf ("load: %s: error loading executable\n", actual_file_name);
       goto done;
     }
 
@@ -309,13 +323,63 @@ load (const char *file_name, void (**eip) (void), void **esp)
   /* Set up stack. */
   if (!setup_stack (esp))
     goto done;
+  *esp -= stack_len + 1;
+  int len_1 =  align4 (stack_len + 1); // word align加上参数
 
-  /* Start address. */
+  while ((token = strtok_r (NULL, " ", &save_ptr)) != NULL){
+
+  }
+  memcpy(*esp, file_name, stack_len + 1);
+  int c = 0;
+  int i_esp = (int) *esp;
+  void* down_bound =  *esp;
+  while( i_esp % 4 != 0){
+    i_esp -= 1;
+    c += 1;
+  }
+  *esp = (void*) i_esp;
+  memset (*esp,0, c); // memory align
+
+  // 此时，*esp下面开始为argv
+
+
+  char** argv =  (char **) (*esp - sizeof (char *));
+  *argv = 0;
+  char* index = PHYS_BASE - 2;
+  int argc = 0;
+  while(index >= down_bound){
+    if(index[0] == '\0'){
+      argv -=1;
+      *argv = index + 1;
+//      printf ("%p\n", index + 1);
+      argc += 1;
+    }
+    index--;
+  }
+  argv -=1;
+  *argv = down_bound;
+//  printf ("%p\n", down_bound);
+  argc += 1;
+  *(argv-1) = argv;
+  argv -= 1;
+
+  argv -= 1;
+  *argv = argc;
+
+  argv -= 1;
+  *argv = 0;
+
+  *esp = argv;
+
+//  printf("%p\n", *esp);
+
+
+//  hex_dump (*esp - 60, *esp - 60, 100, true);
   *eip = (void (*) (void)) ehdr.e_entry;
 
   success = true;
 
- done:
+  done:
   /* We arrive here whether the load is successful or not. */
   file_close (file);
   return success;
@@ -394,38 +458,38 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
 
   file_seek (file, ofs);
   while (read_bytes > 0 || zero_bytes > 0)
+  {
+    /* Calculate how to fill this page.
+       We will read PAGE_READ_BYTES bytes from FILE
+       and zero the final PAGE_ZERO_BYTES bytes. */
+    size_t page_read_bytes = read_bytes < PGSIZE ? read_bytes : PGSIZE;
+    size_t page_zero_bytes = PGSIZE - page_read_bytes;
+
+    /* Get a page of memory. */
+    uint8_t *kpage = palloc_get_page (PAL_USER);
+    if (kpage == NULL)
+      return false;
+
+    /* Load this page. */
+    if (file_read (file, kpage, page_read_bytes) != (int) page_read_bytes)
     {
-      /* Calculate how to fill this page.
-         We will read PAGE_READ_BYTES bytes from FILE
-         and zero the final PAGE_ZERO_BYTES bytes. */
-      size_t page_read_bytes = read_bytes < PGSIZE ? read_bytes : PGSIZE;
-      size_t page_zero_bytes = PGSIZE - page_read_bytes;
-
-      /* Get a page of memory. */
-      uint8_t *kpage = palloc_get_page (PAL_USER);
-      if (kpage == NULL)
-        return false;
-
-      /* Load this page. */
-      if (file_read (file, kpage, page_read_bytes) != (int) page_read_bytes)
-        {
-          palloc_free_page (kpage);
-          return false;
-        }
-      memset (kpage + page_read_bytes, 0, page_zero_bytes);
-
-      /* Add the page to the process's address space. */
-      if (!install_page (upage, kpage, writable))
-        {
-          palloc_free_page (kpage);
-          return false;
-        }
-
-      /* Advance. */
-      read_bytes -= page_read_bytes;
-      zero_bytes -= page_zero_bytes;
-      upage += PGSIZE;
+      palloc_free_page (kpage);
+      return false;
     }
+    memset (kpage + page_read_bytes, 0, page_zero_bytes);
+
+    /* Add the page to the process's address space. */
+    if (!install_page (upage, kpage, writable))
+    {
+      palloc_free_page (kpage);
+      return false;
+    }
+
+    /* Advance. */
+    read_bytes -= page_read_bytes;
+    zero_bytes -= page_zero_bytes;
+    upage += PGSIZE;
+  }
   return true;
 }
 
@@ -439,13 +503,14 @@ setup_stack (void **esp)
 
   kpage = palloc_get_page (PAL_USER | PAL_ZERO);
   if (kpage != NULL)
-    {
-      success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
-      if (success)
-        *esp = PHYS_BASE;
-      else
-        palloc_free_page (kpage);
+  {
+    success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
+    if (success){
+      *esp = PHYS_BASE;
     }
+    else
+      palloc_free_page (kpage);
+  }
   return success;
 }
 
