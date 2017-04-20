@@ -33,6 +33,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.7.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.7.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.7.1/CMakeSystem.cmake"
+  "../devices/CMakeLists.txt"
   "../filesys/CMakeLists.txt"
   "../lib/CMakeLists.txt"
   "../lib/user/CMakeLists.txt"
@@ -54,6 +55,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "lib/user/CMakeFiles/CMakeDirectoryInformation.cmake"
   "userprog/CMakeFiles/CMakeDirectoryInformation.cmake"
   "filesys/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "devices/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -63,4 +65,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "lib/user/CMakeFiles/libUser.dir/DependInfo.cmake"
   "userprog/CMakeFiles/userprog.dir/DependInfo.cmake"
   "filesys/CMakeFiles/filesys.dir/DependInfo.cmake"
+  "devices/CMakeFiles/devices.dir/DependInfo.cmake"
   )

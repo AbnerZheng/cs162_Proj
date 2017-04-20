@@ -175,6 +175,19 @@ filesys/fast:
 	$(MAKE) -f filesys/CMakeFiles/filesys.dir/build.make filesys/CMakeFiles/filesys.dir/build
 .PHONY : filesys/fast
 
+#=============================================================================
+# Target rules for targets named devices
+
+# Build rule for target.
+devices: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 devices
+.PHONY : devices
+
+# fast build rule for target.
+devices/fast:
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/build
+.PHONY : devices/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -188,6 +201,7 @@ help:
 	@echo "... libUser"
 	@echo "... userprog"
 	@echo "... filesys"
+	@echo "... devices"
 .PHONY : help
 
 

@@ -15,3 +15,6 @@
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/filesys/CMakeFiles/rebuild_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/filesys/CMakeFiles/edit_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/filesys/CMakeFiles/filesys.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/rebuild_cache.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/edit_cache.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir

@@ -15,6 +15,7 @@ add_subdirectory(lib)
 add_subdirectory(lib/user)
 add_subdirectory(userprog)
 add_subdirectory(filesys)
+add_subdirectory(devices)
 
 #add_executable(src ${libs_SRCS})
 #target_link_libraries (src lib)

@@ -5,7 +5,7 @@
 		<Option title="src"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\threads\;CMake Files\lib\;CMake Files\lib\user\;CMake Files\userprog\;CMake Files\filesys\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\threads\;CMake Files\lib\;CMake Files\lib\user\;CMake Files\userprog\;CMake Files\filesys\;CMake Files\devices\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug"/>
@@ -297,7 +297,101 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/filesys/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="devices">
+				<Option output="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/libdevices.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/user"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/kernel"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 devices"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="devices/fast">
+				<Option output="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/libdevices.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/user"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/kernel"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 devices/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/block.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/block.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/ide.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/ide.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/input.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/input.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/intq.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/intq.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/kbd.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/kbd.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/partition.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/partition.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/pit.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/pit.h">
+			<Option target="devices"/>
+		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/filesys/directory.c">
 			<Option target="filesys"/>
 		</Unit>
@@ -480,6 +574,9 @@
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/filesys/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\filesys\"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\devices\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

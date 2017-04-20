@@ -84,7 +84,7 @@ threads/preinstall:
 threads/CMakeFiles/threads.dir/all:
 	$(MAKE) -f threads/CMakeFiles/threads.dir/build.make threads/CMakeFiles/threads.dir/depend
 	$(MAKE) -f threads/CMakeFiles/threads.dir/build.make threads/CMakeFiles/threads.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24,25,26,27 "Built target threads"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=29,30,31,32,33,34,35 "Built target threads"
 .PHONY : threads/CMakeFiles/threads.dir/all
 
 # Include target in all.
@@ -139,7 +139,7 @@ lib/preinstall:
 lib/CMakeFiles/lib.dir/all:
 	$(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/depend
 	$(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=8,9,10,11,12,13,14,15 "Built target lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=16,17,18,19,20,21,22,23 "Built target lib"
 .PHONY : lib/CMakeFiles/lib.dir/all
 
 # Include target in all.
@@ -194,7 +194,7 @@ lib/user/preinstall:
 lib/user/CMakeFiles/libUser.dir/all:
 	$(MAKE) -f lib/user/CMakeFiles/libUser.dir/build.make lib/user/CMakeFiles/libUser.dir/depend
 	$(MAKE) -f lib/user/CMakeFiles/libUser.dir/build.make lib/user/CMakeFiles/libUser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=16,17,18,19,20 "Built target libUser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=24,25,26,27,28 "Built target libUser"
 .PHONY : lib/user/CMakeFiles/libUser.dir/all
 
 # Include target in all.
@@ -249,7 +249,7 @@ userprog/preinstall:
 userprog/CMakeFiles/userprog.dir/all:
 	$(MAKE) -f userprog/CMakeFiles/userprog.dir/build.make userprog/CMakeFiles/userprog.dir/depend
 	$(MAKE) -f userprog/CMakeFiles/userprog.dir/build.make userprog/CMakeFiles/userprog.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=28,29,30,31,32,33,34 "Built target userprog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=36,37,38,39,40,41,42 "Built target userprog"
 .PHONY : userprog/CMakeFiles/userprog.dir/all
 
 # Include target in all.
@@ -304,7 +304,7 @@ filesys/preinstall:
 filesys/CMakeFiles/filesys.dir/all:
 	$(MAKE) -f filesys/CMakeFiles/filesys.dir/build.make filesys/CMakeFiles/filesys.dir/depend
 	$(MAKE) -f filesys/CMakeFiles/filesys.dir/build.make filesys/CMakeFiles/filesys.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target filesys"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=9,10,11,12,13,14,15 "Built target filesys"
 .PHONY : filesys/CMakeFiles/filesys.dir/all
 
 # Include target in all.
@@ -331,6 +331,61 @@ filesys/CMakeFiles/filesys.dir/clean:
 
 # clean rule for target.
 clean: filesys/CMakeFiles/filesys.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory devices
+
+# Convenience name for "all" pass in the directory.
+devices/all: devices/CMakeFiles/devices.dir/all
+
+.PHONY : devices/all
+
+# Convenience name for "clean" pass in the directory.
+devices/clean: devices/CMakeFiles/devices.dir/clean
+
+.PHONY : devices/clean
+
+# Convenience name for "preinstall" pass in the directory.
+devices/preinstall:
+
+.PHONY : devices/preinstall
+
+#=============================================================================
+# Target rules for target devices/CMakeFiles/devices.dir
+
+# All Build rule for target.
+devices/CMakeFiles/devices.dir/all:
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/depend
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target devices"
+.PHONY : devices/CMakeFiles/devices.dir/all
+
+# Include target in all.
+all: devices/CMakeFiles/devices.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+devices/CMakeFiles/devices.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles 8
+	$(MAKE) -f CMakeFiles/Makefile2 devices/CMakeFiles/devices.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles 0
+.PHONY : devices/CMakeFiles/devices.dir/rule
+
+# Convenience name for target.
+devices: devices/CMakeFiles/devices.dir/rule
+
+.PHONY : devices
+
+# clean rule for target.
+devices/CMakeFiles/devices.dir/clean:
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/clean
+.PHONY : devices/CMakeFiles/devices.dir/clean
+
+# clean rule for target.
+clean: devices/CMakeFiles/devices.dir/clean
 
 .PHONY : clean
 

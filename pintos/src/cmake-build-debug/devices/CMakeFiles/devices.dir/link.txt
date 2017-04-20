@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libdevices.a  CMakeFiles/devices.dir/block.c.o CMakeFiles/devices.dir/ide.c.o CMakeFiles/devices.dir/input.c.o CMakeFiles/devices.dir/intq.c.o CMakeFiles/devices.dir/kbd.c.o CMakeFiles/devices.dir/partition.c.o CMakeFiles/devices.dir/pit.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libdevices.a

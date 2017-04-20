@@ -34,6 +34,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/cmake_install.cmake")
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/cmake_install.cmake")
   include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/filesys/cmake_install.cmake")
+  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/cmake_install.cmake")
 
 endif()
 
