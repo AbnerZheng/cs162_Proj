@@ -150,6 +150,19 @@ libUser/fast:
 .PHONY : libUser/fast
 
 #=============================================================================
+# Target rules for targets named libKernel
+
+# Build rule for target.
+libKernel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libKernel
+.PHONY : libKernel
+
+# fast build rule for target.
+libKernel/fast:
+	$(MAKE) -f lib/kernel/CMakeFiles/libKernel.dir/build.make lib/kernel/CMakeFiles/libKernel.dir/build
+.PHONY : libKernel/fast
+
+#=============================================================================
 # Target rules for targets named userprog
 
 # Build rule for target.
@@ -199,6 +212,7 @@ help:
 	@echo "... threads"
 	@echo "... lib"
 	@echo "... libUser"
+	@echo "... libKernel"
 	@echo "... userprog"
 	@echo "... filesys"
 	@echo "... devices"

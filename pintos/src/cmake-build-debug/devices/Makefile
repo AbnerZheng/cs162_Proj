@@ -314,6 +314,168 @@ pit.c.s:
 	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/pit.c.s
 .PHONY : pit.c.s
 
+rtc.o: rtc.c.o
+
+.PHONY : rtc.o
+
+# target to build an object file
+rtc.c.o:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/rtc.c.o
+.PHONY : rtc.c.o
+
+rtc.i: rtc.c.i
+
+.PHONY : rtc.i
+
+# target to preprocess a source file
+rtc.c.i:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/rtc.c.i
+.PHONY : rtc.c.i
+
+rtc.s: rtc.c.s
+
+.PHONY : rtc.s
+
+# target to generate assembly for a file
+rtc.c.s:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/rtc.c.s
+.PHONY : rtc.c.s
+
+serial.o: serial.c.o
+
+.PHONY : serial.o
+
+# target to build an object file
+serial.c.o:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/serial.c.o
+.PHONY : serial.c.o
+
+serial.i: serial.c.i
+
+.PHONY : serial.i
+
+# target to preprocess a source file
+serial.c.i:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/serial.c.i
+.PHONY : serial.c.i
+
+serial.s: serial.c.s
+
+.PHONY : serial.s
+
+# target to generate assembly for a file
+serial.c.s:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/serial.c.s
+.PHONY : serial.c.s
+
+shutdown.o: shutdown.c.o
+
+.PHONY : shutdown.o
+
+# target to build an object file
+shutdown.c.o:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/shutdown.c.o
+.PHONY : shutdown.c.o
+
+shutdown.i: shutdown.c.i
+
+.PHONY : shutdown.i
+
+# target to preprocess a source file
+shutdown.c.i:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/shutdown.c.i
+.PHONY : shutdown.c.i
+
+shutdown.s: shutdown.c.s
+
+.PHONY : shutdown.s
+
+# target to generate assembly for a file
+shutdown.c.s:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/shutdown.c.s
+.PHONY : shutdown.c.s
+
+speaker.o: speaker.c.o
+
+.PHONY : speaker.o
+
+# target to build an object file
+speaker.c.o:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/speaker.c.o
+.PHONY : speaker.c.o
+
+speaker.i: speaker.c.i
+
+.PHONY : speaker.i
+
+# target to preprocess a source file
+speaker.c.i:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/speaker.c.i
+.PHONY : speaker.c.i
+
+speaker.s: speaker.c.s
+
+.PHONY : speaker.s
+
+# target to generate assembly for a file
+speaker.c.s:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/speaker.c.s
+.PHONY : speaker.c.s
+
+timer.o: timer.c.o
+
+.PHONY : timer.o
+
+# target to build an object file
+timer.c.o:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/timer.c.o
+.PHONY : timer.c.o
+
+timer.i: timer.c.i
+
+.PHONY : timer.i
+
+# target to preprocess a source file
+timer.c.i:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/timer.c.i
+.PHONY : timer.c.i
+
+timer.s: timer.c.s
+
+.PHONY : timer.s
+
+# target to generate assembly for a file
+timer.c.s:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/timer.c.s
+.PHONY : timer.c.s
+
+vga.o: vga.c.o
+
+.PHONY : vga.o
+
+# target to build an object file
+vga.c.o:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/vga.c.o
+.PHONY : vga.c.o
+
+vga.i: vga.c.i
+
+.PHONY : vga.i
+
+# target to preprocess a source file
+vga.c.i:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/vga.c.i
+.PHONY : vga.c.i
+
+vga.s: vga.c.s
+
+.PHONY : vga.s
+
+# target to generate assembly for a file
+vga.c.s:
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/vga.c.s
+.PHONY : vga.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -344,6 +506,24 @@ help:
 	@echo "... pit.o"
 	@echo "... pit.i"
 	@echo "... pit.s"
+	@echo "... rtc.o"
+	@echo "... rtc.i"
+	@echo "... rtc.s"
+	@echo "... serial.o"
+	@echo "... serial.i"
+	@echo "... serial.s"
+	@echo "... shutdown.o"
+	@echo "... shutdown.i"
+	@echo "... shutdown.s"
+	@echo "... speaker.o"
+	@echo "... speaker.i"
+	@echo "... speaker.s"
+	@echo "... timer.o"
+	@echo "... timer.i"
+	@echo "... timer.s"
+	@echo "... vga.o"
+	@echo "... vga.i"
+	@echo "... vga.s"
 .PHONY : help
 
 

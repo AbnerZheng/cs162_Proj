@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Volumes/vagrant/code/group/pintos/src/lib/arithmetic.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/CMakeFiles/lib.dir/arithmetic.c.o"
   "/Volumes/vagrant/code/group/pintos/src/lib/debug.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/CMakeFiles/lib.dir/debug.c.o"
   "/Volumes/vagrant/code/group/pintos/src/lib/random.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/CMakeFiles/lib.dir/random.c.o"
   "/Volumes/vagrant/code/group/pintos/src/lib/stdio.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/CMakeFiles/lib.dir/stdio.c.o"

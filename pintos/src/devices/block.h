@@ -4,14 +4,19 @@
 #include <stddef.h>
 #include <inttypes.h>
 
-/* Size of a block device sector in bytes.
-   All IDE disks use this sector size, as do most USB and SCSI
-   disks.  It's not worth it to try to cater to other sector
-   sizes in Pintos (yet). */
+/**
+ * Size of a block device sector in bytes.
+ * All IDE disks use this sector size, as do most USB and SCSI
+ * disks.  It's not worth it to try to cater to other sector
+ * sizes in Pintos (yet).
+ **/
 #define BLOCK_SECTOR_SIZE 512
 
-/* Index of a block device sector.
-   Good enough for devices up to 2 TB. */
+/**
+ * Index of a block device sector.
+ * Good enough for devices up to 2 TB.
+ * 2^32 * 512 = 2^41 = (2*10)^4 * 2 = 2TB
+ **/
 typedef uint32_t block_sector_t;
 
 /* Format specifier for printf(), e.g.:

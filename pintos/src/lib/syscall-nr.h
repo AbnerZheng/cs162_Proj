@@ -13,8 +13,8 @@ enum
     SYS_REMOVE,                 /* Delete a file. */
     SYS_OPEN,                   /* Open a file. */
     SYS_FILESIZE,               /* Obtain a file's size. */
-    SYS_READ,                   /* 8 Read from a file. */
-    SYS_WRITE,                  /* 9 Write to a file. */
+    SYS_READ,                   /* 8: Read from a file. */
+    SYS_WRITE,                  /* 9: Write to a file. */
     SYS_SEEK,                   /* Change position in a file. */
     SYS_TELL,                   /* Report current position in a file. */
     SYS_CLOSE,                  /* Close a file. */

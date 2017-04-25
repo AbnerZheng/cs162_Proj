@@ -225,6 +225,150 @@ devices/CMakeFiles/devices.dir/pit.c.o.provides: devices/CMakeFiles/devices.dir/
 devices/CMakeFiles/devices.dir/pit.c.o.provides.build: devices/CMakeFiles/devices.dir/pit.c.o
 
 
+devices/CMakeFiles/devices.dir/timer.c.o: devices/CMakeFiles/devices.dir/flags.make
+devices/CMakeFiles/devices.dir/timer.c.o: ../devices/timer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object devices/CMakeFiles/devices.dir/timer.c.o"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/devices.dir/timer.c.o   -c /Volumes/vagrant/code/group/pintos/src/devices/timer.c
+
+devices/CMakeFiles/devices.dir/timer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/devices.dir/timer.c.i"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/vagrant/code/group/pintos/src/devices/timer.c > CMakeFiles/devices.dir/timer.c.i
+
+devices/CMakeFiles/devices.dir/timer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/devices.dir/timer.c.s"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/vagrant/code/group/pintos/src/devices/timer.c -o CMakeFiles/devices.dir/timer.c.s
+
+devices/CMakeFiles/devices.dir/timer.c.o.requires:
+
+.PHONY : devices/CMakeFiles/devices.dir/timer.c.o.requires
+
+devices/CMakeFiles/devices.dir/timer.c.o.provides: devices/CMakeFiles/devices.dir/timer.c.o.requires
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/timer.c.o.provides.build
+.PHONY : devices/CMakeFiles/devices.dir/timer.c.o.provides
+
+devices/CMakeFiles/devices.dir/timer.c.o.provides.build: devices/CMakeFiles/devices.dir/timer.c.o
+
+
+devices/CMakeFiles/devices.dir/rtc.c.o: devices/CMakeFiles/devices.dir/flags.make
+devices/CMakeFiles/devices.dir/rtc.c.o: ../devices/rtc.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object devices/CMakeFiles/devices.dir/rtc.c.o"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/devices.dir/rtc.c.o   -c /Volumes/vagrant/code/group/pintos/src/devices/rtc.c
+
+devices/CMakeFiles/devices.dir/rtc.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/devices.dir/rtc.c.i"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/vagrant/code/group/pintos/src/devices/rtc.c > CMakeFiles/devices.dir/rtc.c.i
+
+devices/CMakeFiles/devices.dir/rtc.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/devices.dir/rtc.c.s"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/vagrant/code/group/pintos/src/devices/rtc.c -o CMakeFiles/devices.dir/rtc.c.s
+
+devices/CMakeFiles/devices.dir/rtc.c.o.requires:
+
+.PHONY : devices/CMakeFiles/devices.dir/rtc.c.o.requires
+
+devices/CMakeFiles/devices.dir/rtc.c.o.provides: devices/CMakeFiles/devices.dir/rtc.c.o.requires
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/rtc.c.o.provides.build
+.PHONY : devices/CMakeFiles/devices.dir/rtc.c.o.provides
+
+devices/CMakeFiles/devices.dir/rtc.c.o.provides.build: devices/CMakeFiles/devices.dir/rtc.c.o
+
+
+devices/CMakeFiles/devices.dir/speaker.c.o: devices/CMakeFiles/devices.dir/flags.make
+devices/CMakeFiles/devices.dir/speaker.c.o: ../devices/speaker.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object devices/CMakeFiles/devices.dir/speaker.c.o"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/devices.dir/speaker.c.o   -c /Volumes/vagrant/code/group/pintos/src/devices/speaker.c
+
+devices/CMakeFiles/devices.dir/speaker.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/devices.dir/speaker.c.i"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/vagrant/code/group/pintos/src/devices/speaker.c > CMakeFiles/devices.dir/speaker.c.i
+
+devices/CMakeFiles/devices.dir/speaker.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/devices.dir/speaker.c.s"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/vagrant/code/group/pintos/src/devices/speaker.c -o CMakeFiles/devices.dir/speaker.c.s
+
+devices/CMakeFiles/devices.dir/speaker.c.o.requires:
+
+.PHONY : devices/CMakeFiles/devices.dir/speaker.c.o.requires
+
+devices/CMakeFiles/devices.dir/speaker.c.o.provides: devices/CMakeFiles/devices.dir/speaker.c.o.requires
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/speaker.c.o.provides.build
+.PHONY : devices/CMakeFiles/devices.dir/speaker.c.o.provides
+
+devices/CMakeFiles/devices.dir/speaker.c.o.provides.build: devices/CMakeFiles/devices.dir/speaker.c.o
+
+
+devices/CMakeFiles/devices.dir/serial.c.o: devices/CMakeFiles/devices.dir/flags.make
+devices/CMakeFiles/devices.dir/serial.c.o: ../devices/serial.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object devices/CMakeFiles/devices.dir/serial.c.o"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/devices.dir/serial.c.o   -c /Volumes/vagrant/code/group/pintos/src/devices/serial.c
+
+devices/CMakeFiles/devices.dir/serial.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/devices.dir/serial.c.i"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/vagrant/code/group/pintos/src/devices/serial.c > CMakeFiles/devices.dir/serial.c.i
+
+devices/CMakeFiles/devices.dir/serial.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/devices.dir/serial.c.s"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/vagrant/code/group/pintos/src/devices/serial.c -o CMakeFiles/devices.dir/serial.c.s
+
+devices/CMakeFiles/devices.dir/serial.c.o.requires:
+
+.PHONY : devices/CMakeFiles/devices.dir/serial.c.o.requires
+
+devices/CMakeFiles/devices.dir/serial.c.o.provides: devices/CMakeFiles/devices.dir/serial.c.o.requires
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/serial.c.o.provides.build
+.PHONY : devices/CMakeFiles/devices.dir/serial.c.o.provides
+
+devices/CMakeFiles/devices.dir/serial.c.o.provides.build: devices/CMakeFiles/devices.dir/serial.c.o
+
+
+devices/CMakeFiles/devices.dir/vga.c.o: devices/CMakeFiles/devices.dir/flags.make
+devices/CMakeFiles/devices.dir/vga.c.o: ../devices/vga.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object devices/CMakeFiles/devices.dir/vga.c.o"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/devices.dir/vga.c.o   -c /Volumes/vagrant/code/group/pintos/src/devices/vga.c
+
+devices/CMakeFiles/devices.dir/vga.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/devices.dir/vga.c.i"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/vagrant/code/group/pintos/src/devices/vga.c > CMakeFiles/devices.dir/vga.c.i
+
+devices/CMakeFiles/devices.dir/vga.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/devices.dir/vga.c.s"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/vagrant/code/group/pintos/src/devices/vga.c -o CMakeFiles/devices.dir/vga.c.s
+
+devices/CMakeFiles/devices.dir/vga.c.o.requires:
+
+.PHONY : devices/CMakeFiles/devices.dir/vga.c.o.requires
+
+devices/CMakeFiles/devices.dir/vga.c.o.provides: devices/CMakeFiles/devices.dir/vga.c.o.requires
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/vga.c.o.provides.build
+.PHONY : devices/CMakeFiles/devices.dir/vga.c.o.provides
+
+devices/CMakeFiles/devices.dir/vga.c.o.provides.build: devices/CMakeFiles/devices.dir/vga.c.o
+
+
+devices/CMakeFiles/devices.dir/shutdown.c.o: devices/CMakeFiles/devices.dir/flags.make
+devices/CMakeFiles/devices.dir/shutdown.c.o: ../devices/shutdown.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object devices/CMakeFiles/devices.dir/shutdown.c.o"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/devices.dir/shutdown.c.o   -c /Volumes/vagrant/code/group/pintos/src/devices/shutdown.c
+
+devices/CMakeFiles/devices.dir/shutdown.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/devices.dir/shutdown.c.i"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/vagrant/code/group/pintos/src/devices/shutdown.c > CMakeFiles/devices.dir/shutdown.c.i
+
+devices/CMakeFiles/devices.dir/shutdown.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/devices.dir/shutdown.c.s"
+	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/vagrant/code/group/pintos/src/devices/shutdown.c -o CMakeFiles/devices.dir/shutdown.c.s
+
+devices/CMakeFiles/devices.dir/shutdown.c.o.requires:
+
+.PHONY : devices/CMakeFiles/devices.dir/shutdown.c.o.requires
+
+devices/CMakeFiles/devices.dir/shutdown.c.o.provides: devices/CMakeFiles/devices.dir/shutdown.c.o.requires
+	$(MAKE) -f devices/CMakeFiles/devices.dir/build.make devices/CMakeFiles/devices.dir/shutdown.c.o.provides.build
+.PHONY : devices/CMakeFiles/devices.dir/shutdown.c.o.provides
+
+devices/CMakeFiles/devices.dir/shutdown.c.o.provides.build: devices/CMakeFiles/devices.dir/shutdown.c.o
+
+
 # Object files for target devices
 devices_OBJECTS = \
 "CMakeFiles/devices.dir/block.c.o" \
@@ -233,7 +377,13 @@ devices_OBJECTS = \
 "CMakeFiles/devices.dir/intq.c.o" \
 "CMakeFiles/devices.dir/kbd.c.o" \
 "CMakeFiles/devices.dir/partition.c.o" \
-"CMakeFiles/devices.dir/pit.c.o"
+"CMakeFiles/devices.dir/pit.c.o" \
+"CMakeFiles/devices.dir/timer.c.o" \
+"CMakeFiles/devices.dir/rtc.c.o" \
+"CMakeFiles/devices.dir/speaker.c.o" \
+"CMakeFiles/devices.dir/serial.c.o" \
+"CMakeFiles/devices.dir/vga.c.o" \
+"CMakeFiles/devices.dir/shutdown.c.o"
 
 # External object files for target devices
 devices_EXTERNAL_OBJECTS =
@@ -245,9 +395,15 @@ devices/libdevices.a: devices/CMakeFiles/devices.dir/intq.c.o
 devices/libdevices.a: devices/CMakeFiles/devices.dir/kbd.c.o
 devices/libdevices.a: devices/CMakeFiles/devices.dir/partition.c.o
 devices/libdevices.a: devices/CMakeFiles/devices.dir/pit.c.o
+devices/libdevices.a: devices/CMakeFiles/devices.dir/timer.c.o
+devices/libdevices.a: devices/CMakeFiles/devices.dir/rtc.c.o
+devices/libdevices.a: devices/CMakeFiles/devices.dir/speaker.c.o
+devices/libdevices.a: devices/CMakeFiles/devices.dir/serial.c.o
+devices/libdevices.a: devices/CMakeFiles/devices.dir/vga.c.o
+devices/libdevices.a: devices/CMakeFiles/devices.dir/shutdown.c.o
 devices/libdevices.a: devices/CMakeFiles/devices.dir/build.make
 devices/libdevices.a: devices/CMakeFiles/devices.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C static library libdevices.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking C static library libdevices.a"
 	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && $(CMAKE_COMMAND) -P CMakeFiles/devices.dir/cmake_clean_target.cmake
 	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/devices.dir/link.txt --verbose=$(VERBOSE)
 
@@ -263,6 +419,12 @@ devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/intq.c.o
 devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/kbd.c.o.requires
 devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/partition.c.o.requires
 devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/pit.c.o.requires
+devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/timer.c.o.requires
+devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/rtc.c.o.requires
+devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/speaker.c.o.requires
+devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/serial.c.o.requires
+devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/vga.c.o.requires
+devices/CMakeFiles/devices.dir/requires: devices/CMakeFiles/devices.dir/shutdown.c.o.requires
 
 .PHONY : devices/CMakeFiles/devices.dir/requires
 

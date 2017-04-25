@@ -125,33 +125,6 @@ lib/fast:
 	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/build
 .PHONY : lib/fast
 
-arithmetic.o: arithmetic.c.o
-
-.PHONY : arithmetic.o
-
-# target to build an object file
-arithmetic.c.o:
-	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/arithmetic.c.o
-.PHONY : arithmetic.c.o
-
-arithmetic.i: arithmetic.c.i
-
-.PHONY : arithmetic.i
-
-# target to preprocess a source file
-arithmetic.c.i:
-	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/arithmetic.c.i
-.PHONY : arithmetic.c.i
-
-arithmetic.s: arithmetic.c.s
-
-.PHONY : arithmetic.s
-
-# target to generate assembly for a file
-arithmetic.c.s:
-	cd /Volumes/vagrant/code/group/pintos/src/cmake-build-debug && $(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/arithmetic.c.s
-.PHONY : arithmetic.c.s
-
 debug.o: debug.c.o
 
 .PHONY : debug.o
@@ -323,9 +296,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lib"
-	@echo "... arithmetic.o"
-	@echo "... arithmetic.i"
-	@echo "... arithmetic.s"
 	@echo "... debug.o"
 	@echo "... debug.i"
 	@echo "... debug.s"

@@ -11,6 +11,12 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Volumes/vagrant/code/group/pintos/src/devices/kbd.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/kbd.c.o"
   "/Volumes/vagrant/code/group/pintos/src/devices/partition.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/partition.c.o"
   "/Volumes/vagrant/code/group/pintos/src/devices/pit.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/pit.c.o"
+  "/Volumes/vagrant/code/group/pintos/src/devices/rtc.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/rtc.c.o"
+  "/Volumes/vagrant/code/group/pintos/src/devices/serial.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/serial.c.o"
+  "/Volumes/vagrant/code/group/pintos/src/devices/shutdown.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/shutdown.c.o"
+  "/Volumes/vagrant/code/group/pintos/src/devices/speaker.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/speaker.c.o"
+  "/Volumes/vagrant/code/group/pintos/src/devices/timer.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/timer.c.o"
+  "/Volumes/vagrant/code/group/pintos/src/devices/vga.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/CMakeFiles/devices.dir/vga.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

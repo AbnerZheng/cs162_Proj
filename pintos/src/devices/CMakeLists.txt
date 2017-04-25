@@ -13,6 +13,18 @@ set(devices_SRCS
         partition.h
         pit.c
         pit.h
+        timer.c
+        timer.h
+        rtc.c
+        rtc.h
+        speaker.c
+        speaker.h
+        serial.c
+        serial.h
+        vga.c
+        vga.h
+        shutdown.c
+        shutdown.h
         )
 
 add_library(devices ${devices_SRCS})

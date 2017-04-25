@@ -6,6 +6,12 @@ file(REMOVE_RECURSE
   "CMakeFiles/devices.dir/kbd.c.o"
   "CMakeFiles/devices.dir/partition.c.o"
   "CMakeFiles/devices.dir/pit.c.o"
+  "CMakeFiles/devices.dir/timer.c.o"
+  "CMakeFiles/devices.dir/rtc.c.o"
+  "CMakeFiles/devices.dir/speaker.c.o"
+  "CMakeFiles/devices.dir/serial.c.o"
+  "CMakeFiles/devices.dir/vga.c.o"
+  "CMakeFiles/devices.dir/shutdown.c.o"
   "libdevices.pdb"
   "libdevices.a"
 )

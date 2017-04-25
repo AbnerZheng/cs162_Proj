@@ -9,6 +9,9 @@
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/rebuild_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/edit_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/CMakeFiles/rebuild_cache.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/CMakeFiles/edit_cache.dir
+/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/CMakeFiles/libKernel.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/CMakeFiles/rebuild_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/CMakeFiles/edit_cache.dir
 /Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/CMakeFiles/userprog.dir

@@ -5,7 +5,7 @@
 		<Option title="src"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\threads\;CMake Files\lib\;CMake Files\lib\user\;CMake Files\userprog\;CMake Files\filesys\;CMake Files\devices\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\threads\;CMake Files\lib\;CMake Files\lib\user\;CMake Files\lib\kernel\;CMake Files\userprog\;CMake Files\filesys\;CMake Files\devices\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug"/>
@@ -191,6 +191,58 @@
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libKernel">
+				<Option output="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/liblibKernel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/user"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/kernel"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 libKernel"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libKernel/fast">
+				<Option output="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/liblibKernel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/user"/>
+					<Add directory="/Volumes/vagrant/code/group/pintos/src/lib/kernel"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 libKernel/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/kernel/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="userprog">
@@ -392,6 +444,42 @@
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/pit.h">
 			<Option target="devices"/>
 		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/rtc.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/rtc.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/serial.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/serial.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/shutdown.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/shutdown.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/speaker.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/speaker.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/timer.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/timer.h">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/vga.c">
+			<Option target="devices"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/devices/vga.h">
+			<Option target="devices"/>
+		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/filesys/directory.c">
 			<Option target="filesys"/>
 		</Unit>
@@ -431,7 +519,7 @@
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/filesys/off_t.h">
 			<Option target="filesys"/>
 		</Unit>
-		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/arithmetic.c">
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/ctype.h">
 			<Option target="lib"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/debug.c">
@@ -440,10 +528,64 @@
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/debug.h">
 			<Option target="lib"/>
 		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/inttypes.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/bitmap.c">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/bitmap.h">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/console.c">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/console.h">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/debug.c">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/hash.c">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/hash.h">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/list.c">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/list.h">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/stdio.h">
+			<Option target="libKernel"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/limits.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/packed.h">
+			<Option target="lib"/>
+		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/random.c">
 			<Option target="lib"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/random.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/round.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/stdarg.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/stdbool.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/stddef.h">
+			<Option target="lib"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/stdint.h">
 			<Option target="lib"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/stdio.c">
@@ -464,6 +606,9 @@
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/string.h">
 			<Option target="lib"/>
 		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/syscall-nr.h">
+			<Option target="lib"/>
+		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/user/console.c">
 			<Option target="libUser"/>
 		</Unit>
@@ -471,6 +616,9 @@
 			<Option target="libUser"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/user/entry.c">
+			<Option target="libUser"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/user/stdio.h">
 			<Option target="libUser"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/user/syscall.c">
@@ -568,6 +716,9 @@
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/user/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\user\"/>
+		</Unit>
+		<Unit filename="/Volumes/vagrant/code/group/pintos/src/lib/kernel/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\kernel\"/>
 		</Unit>
 		<Unit filename="/Volumes/vagrant/code/group/pintos/src/userprog/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\userprog\"/>

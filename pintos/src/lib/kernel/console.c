@@ -10,24 +10,32 @@
 static void vprintf_helper (char, void *);
 static void putchar_have_lock (uint8_t c);
 
-/* The console lock.
-   Both the vga and serial layers do their own locking, so it's
-   safe to call them at any time.
-   But this lock is useful to prevent simultaneous printf() calls
-   from mixing their output, which looks confusing. */
+/**
+ * 控制台锁🔐
+ * VGA 和串行总线拥有自己的锁机制, 所以在任何时候调用他们都是安全的.
+ * 但是这个锁对于防止同时调用printf 所导致的混合输出很有用处
+ *
+ * The console lock.
+ * Both the vga and serial layers do their own locking, so it's
+ * safe to call them at any time.
+ * But this lock is useful to prevent simultaneous printf() calls
+ * from mixing their output, which looks confusing.
+ **/
 static struct lock console_lock;
 
-/* True in ordinary circumstances: we want to use the console
-   lock to avoid mixing output between threads, as explained
-   above.
+/**
+ * True in ordinary circumstances: we want to use the console
+ * lock to avoid mixing output between threads, as explained
+ * above.
 
-   False in early boot before the point that locks are functional
-   or the console lock has been initialized, or after a kernel
-   panics.  In the former case, taking the lock would cause an
-   assertion failure, which in turn would cause a panic, turning
-   it into the latter case.  In the latter case, if it is a buggy
-   lock_acquire() implementation that caused the panic, we'll
-   likely just recurse. */
+ * False in early boot before the point that locks are functional
+ * or the console lock has been initialized, or after a kernel
+ * panics.  In the former case, taking the lock would cause an
+ * assertion failure, which in turn would cause a panic, turning
+ * it into the latter case.  In the latter case, if it is a buggy
+ * lock_acquire() implementation that caused the panic, we'll
+ * likely just recurse.
+ **/
 static bool use_console_lock;
 
 /* It's possible, if you add enough debug output to Pintos, to
@@ -67,9 +75,12 @@ console_init (void)
   use_console_lock = true;
 }
 
-/* Notifies the console that a kernel panic is underway,
-   which warns it to avoid trying to take the console lock from
-   now on. */
+/**
+ * 提醒 console 目前正处于内核恐慌态, 从现在开始不再尝试获取 console 锁
+ * Notifies the console that a kernel panic is underway,
+ * which warns it to avoid trying to take the console lock from
+ * now on.
+ **/
 void
 console_panic (void)
 {
@@ -186,6 +197,6 @@ putchar_have_lock (uint8_t c)
 {
   ASSERT (console_locked_by_current_thread ());
   write_cnt++;
-  serial_putc (c);
+  serial_putc (c); // 这里同时对串口和 vga 进行写入
   vga_putc (c);
 }
