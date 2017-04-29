@@ -4,6 +4,8 @@
 #include <lib/kernel/stdio.h>
 #include <threads/vaddr.h>
 #include <string.h>
+#include <filesys/directory.h>
+#include <filesys/filesys.h>
 #include "threads/interrupt.h"
 #include "threads/thread.h"
 #include "pagedir.h"
@@ -16,9 +18,17 @@ static int syscreate (const char *file, unsigned initial_size);
 
 static int sysexit (int status);
 
+static int sysopen (const char *filename);
+
 typedef int (*handler) (uint32_t, uint32_t, uint32_t);
 
 static handler syscall_vec[128];
+
+struct fd_elem{
+    int fd;
+    struct file *file_elem;
+    struct list_elem elem;
+};
 
 void
 syscall_init (void)
@@ -27,6 +37,7 @@ syscall_init (void)
   syscall_vec[SYS_EXIT]   = (handler) sysexit;
   syscall_vec[SYS_CREATE] = (handler) syscreate;
   syscall_vec[SYS_WRITE]  = (handler) syswrite;
+  syscall_vec[SYS_OPEN]   = (handler) sysopen;
 }
 
 void validate_addr (uint32_t *addr, uint32_t cs)
@@ -54,6 +65,9 @@ syscall_handler (struct intr_frame *f UNUSED)
   validate_addr (args[3], 0);
 
   int ret = h (args[1], args[2], args[3]);
+  if( ret == -1 ){
+    sysexit (-1);
+  }
   f->eax = ret;
 }
 
@@ -67,11 +81,28 @@ sysexit (int status)
 static int
 syscreate (const char *file, unsigned initial_size)
 {
-  if (strlen (file) == 0) {
-    return 0;
+
+  if (!file) {
+    return -1;
   }
+//  size_t len = strlen (file);
+//  if (len  == 0 || len > NAME_MAX ) {
+//    return 0;
+//  }
+
+  return filesys_create (file, initial_size);
 }
 
+static int sysopen (const char *filename)
+{
+  if (!filename) {
+    return -1;
+  }
+  struct file* f = filesys_open (filename);
+
+
+//  return filesys_open (filename);
+}
 
 static int syswrite (int fd, const void *buffer, unsigned size)
 {

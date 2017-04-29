@@ -22,8 +22,11 @@ pagedir_create (void)
   return pd;
 }
 
-/* Destroys page directory PD, freeing all the pages it
-   references. */
+/**
+ * 销毁页目录 PD, 并且释放所有它引用的页
+ * Destroys page directory PD, freeing all the pages it
+ * references.
+ **/
 void
 pagedir_destroy (uint32_t *pd)
 {
@@ -230,7 +233,10 @@ pagedir_activate (uint32_t *pd)
   asm volatile ("movl %0, %%cr3" : : "r" (vtop (pd)) : "memory");
 }
 
-/* Returns the currently active page directory. */
+/**
+ * Returns the currently active page directory.
+ * 返回目前活动的页目录
+ **/
 static uint32_t *
 active_pd (void)
 {
@@ -243,8 +249,8 @@ active_pd (void)
   return ptov (pd);
 }
 
-/* Seom page table changes can cause the CPU's translation
-   lookaside buffer (TLB) to become out-of-sync with the page
+/* Some page table changes can cause the CPU's translation
+   look aside buffer (TLB) to become out-of-sync with the page
    table.  When this happens, we have to "invalidate" the TLB by
    re-activating it.
 

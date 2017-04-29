@@ -41,11 +41,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test.log" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/userprog/test.log">
+      <file leaf-file-name="pagedir.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/userprog/pagedir.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="574" column="3" lean-forward="true" selection-start-line="574" selection-start-column="3" selection-end-line="574" selection-end-column="3" />
+            <state relative-caret-position="127">
+              <caret line="252" column="7" lean-forward="false" selection-start-line="252" selection-start-column="7" selection-end-line="252" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/init.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="palloc.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/palloc.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2475">
+              <caret line="176" column="21" lean-forward="false" selection-start-line="176" selection-start-column="21" selection-end-line="176" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="palloc.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/threads/palloc.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -55,10 +87,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>load</find>
-      <find>buf_</find>
-      <find>buf</find>
-      <find>setup_stack</find>
       <find>file_name</find>
       <find>strtok</find>
       <find>strc</find>
@@ -84,6 +112,11 @@
       <find>not present error reading page in kernel context</find>
       <find>is_user_vaddr</find>
       <find>reate-empty</find>
+      <find>write</find>
+      <find>create-null</find>
+      <find>create-long</find>
+      <find>thread_init</find>
+      <find>init_thread</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -108,14 +141,17 @@
         <option value="$PROJECT_DIR$/lib/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/lib/user/syscall.c" />
         <option value="$PROJECT_DIR$/lib/syscall-nr.h" />
-        <option value="$PROJECT_DIR$/userprog/pagedir.c" />
         <option value="$PROJECT_DIR$/threads/interrupt.h" />
-        <option value="$PROJECT_DIR$/threads/thread.h" />
         <option value="$PROJECT_DIR$/userprog/build/tests/userprog/args-dbl-space.output" />
         <option value="$PROJECT_DIR$/userprog/build/tests/userprog/args-none.output" />
         <option value="$PROJECT_DIR$/userprog/process.c" />
+        <option value="$PROJECT_DIR$/filesys/directory.h" />
         <option value="$PROJECT_DIR$/userprog/test.log" />
+        <option value="$PROJECT_DIR$/threads/thread.h" />
         <option value="$PROJECT_DIR$/userprog/syscall.c" />
+        <option value="$PROJECT_DIR$/threads/palloc.c" />
+        <option value="$PROJECT_DIR$/threads/vaddr.h" />
+        <option value="$PROJECT_DIR$/userprog/pagedir.c" />
       </list>
     </option>
   </component>
@@ -177,11 +213,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
     <property name="FullScreen" value="true" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v7.3.0/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="create-bad-ptr&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-bad-ptr.c&#10;create-null&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-null.c&#10;test.&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/test.log&#10;sys&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;create-empty&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-empty.c&#10;syscal&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;create-no&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-normal.c&#10;test&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/test.log&#10;sc-bad-sp&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/sc-bad-sp.c&#10;page_fault&#9;null&#9;null&#10;sysc&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;page&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/pagedir.c&#10;test.lo&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/test.log&#10;write&#9;null&#9;null&#10;vaddr&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/vaddr.h&#10;syscall&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;SYS_WRITE&#9;null&#9;null&#10;BLOCK_SECTOR_SIZE&#9;null&#9;null&#10;args-none&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;msg&#9;null&#9;null&#10;syscall-&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/lib/syscall-nr.h&#10;strtok_&#9;null&#9;null&#10;str&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/lib/string.c&#10;strtok_r&#9;null&#9;null&#10;hex_dump&#9;null&#9;null&#10;string.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/lib/string.c" />
+    <property name="SearchEverywhereHistoryKey" value="malloc&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/malloc.c&#10;sema&#9;null&#9;null&#10;list_begin&#9;null&#9;null&#10;open-normal&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/open-normal.c&#10;open&#9;null&#9;null&#10;test.&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/test.log&#10;sys&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;create-exists&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-exists.c&#10;create-long.ck&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-long.ck&#10;create-long&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-long.c&#10;create-null&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-null.c&#10;process_exit&#9;null&#9;null&#10;page_fa&#9;null&#9;null&#10;isUser&#9;null&#9;null&#10;create-bad-ptr&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-bad-ptr.c&#10;create-empty&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-empty.c&#10;syscal&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;create-no&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/create-normal.c&#10;test&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/test.log&#10;sc-bad-sp&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/tests/userprog/sc-bad-sp.c&#10;page_fault&#9;null&#9;null&#10;sysc&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;page&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/pagedir.c&#10;test.lo&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/test.log&#10;write&#9;null&#9;null&#10;vaddr&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/threads/vaddr.h&#10;syscall&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/syscall.c&#10;SYS_WRITE&#9;null&#9;null&#10;BLOCK_SECTOR_SIZE&#9;null&#9;null&#10;args-none&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/userprog/build/tests/userprog/args-none.result&#10;msg&#9;null&#9;null&#10;syscall-&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/lib/syscall-nr.h&#10;strtok_&#9;null&#9;null&#10;str&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/lib/string.c&#10;strtok_r&#9;null&#9;null&#10;hex_dump&#9;null&#9;null&#10;string.c&#9;FILE&#9;file:///Volumes/vagrant/code/group/pintos/src/lib/string.c" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/userprog/build/tests/userprog/args-none.result" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -470,21 +505,23 @@
       <workItem from="1492614640914" duration="10951000" />
       <workItem from="1492840874781" duration="24000" />
       <workItem from="1492947548429" duration="31417000" />
-      <workItem from="1493305450972" duration="4183000" />
+      <workItem from="1493305450972" duration="9141000" />
+      <workItem from="1493371908458" duration="9071000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66824000" />
+    <option name="totallyTimeSpent" value="80853000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26954398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2752443" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.47815728" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33013698" sideWeight="0.5218427" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.4747557" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5252443" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -497,7 +534,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -508,16 +544,16 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33013698" sideWeight="0.5218427" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282123" sideWeight="0.49722" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26872963" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2752443" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -537,192 +573,22 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/userprog/syscall.h</url>
+          <line>4</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/filesys/file.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-543">
-          <caret line="92" column="55" lean-forward="false" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filesys/filesys.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-588">
-          <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stdio.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/tss.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/syscall.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/thread.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="257" column="11" lean-forward="false" selection-start-line="257" selection-start-column="11" selection-end-line="257" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/thread.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/process.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/user/syscall.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/kernel/console.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-many.output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-many.result">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-multiple.output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-multiple.result">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-dbl-space.result">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-dbl-space.output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-none.result">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/args-none.output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/string.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4439">
-          <caret line="370" column="36" lean-forward="false" selection-start-line="370" selection-start-column="36" selection-end-line="370" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/bad-jump.output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/sc-bad-arg.output">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/sc-bad-arg.result">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/sc-bad-arg.d">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/sc-bad-arg.errors">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/debug.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="32" column="64" lean-forward="false" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,14 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/exception.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="136" column="35" lean-forward="false" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userprog/build/tests/userprog/sc-bad-sp.output">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-118">
@@ -789,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,15 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/userprog/create-null.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="54" lean-forward="false" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,15 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/user/syscall.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="98" column="28" lean-forward="false" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,15 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/userprog/sc-bad-sp.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,23 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/userprog/create-bad-ptr.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/threads/vaddr.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="52" column="8" lean-forward="false" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,14 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1829">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/pagedir.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3509">
-          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -897,35 +701,281 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/process.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1166">
-          <caret line="351" column="8" lean-forward="false" selection-start-line="351" selection-start-column="8" selection-end-line="351" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/threads/interrupt.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+        <state relative-caret-position="225">
+          <caret line="51" column="27" lean-forward="true" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/sc-bad-sp.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="62" lean-forward="false" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/create-bad-ptr.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="59" lean-forward="false" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/exception.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1859">
+          <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/syscall-nr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/syscall.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/create-long.ck">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/create-null.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="44" lean-forward="false" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filesys/directory.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filesys/fsutil.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/create-long.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/create-exists.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filesys/file.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="167" column="1" lean-forward="false" selection-start-line="167" selection-start-column="1" selection-end-line="167" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filesys/directory.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1168">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/Xplugin.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="308" column="5" lean-forward="false" selection-start-line="308" selection-start-column="5" selection-end-line="308" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/userprog/test.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="574" column="3" lean-forward="true" selection-start-line="574" selection-start-column="3" selection-end-line="574" selection-end-column="3" />
+        <state relative-caret-position="216">
+          <caret line="74" column="31" lean-forward="false" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/userprog/open-normal.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/user/syscall.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filesys/filesys.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/kernel/list.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="103" column="36" lean-forward="true" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/thread.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="104" column="20" lean-forward="false" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/process.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/synch.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="12" lean-forward="false" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/kernel/list.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devices/ide.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="127" column="6" lean-forward="false" selection-start-line="127" selection-start-column="6" selection-end-line="127" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/synch.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="180" column="2" lean-forward="false" selection-start-line="180" selection-start-column="2" selection-end-line="180" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/thread.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2350">
+          <caret line="176" column="16" lean-forward="false" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/switch.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/malloc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/syscall.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/palloc.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/palloc.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2475">
+          <caret line="176" column="21" lean-forward="false" selection-start-line="176" selection-start-column="21" selection-end-line="176" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/init.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threads/vaddr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userprog/pagedir.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="252" column="7" lean-forward="false" selection-start-line="252" selection-start-column="7" selection-end-line="252" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
