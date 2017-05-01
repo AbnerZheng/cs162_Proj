@@ -50,12 +50,19 @@ pagedir_destroy (uint32_t *pd)
   palloc_free_page (pd);
 }
 
-/* Returns the address of the page table entry for virtual
-   address VADDR in page directory PD.
-   If PD does not have a page table for VADDR, behavior depends
-   on CREATE.  If CREATE is true, then a new page table is
-   created and a pointer into it is returned.  Otherwise, a null
-   pointer is returned. */
+/**
+ * 给定虚拟地址以及它的页目录 PD, 返回它的页表项的地址
+ *
+ * 如何PD 没有对应到 VADDR 的页表, 那么该行为依赖 CREATE
+ * 如果 CREATE 设为 true, 那么一个新的页表将会创建
+ *
+ * Returns the address of the page table entry for virtual
+ * address VADDR in page directory PD.
+ * If PD does not have a page table for VADDR, behavior depends
+ * on CREATE.  If CREATE is true, then a new page table is
+ * created and a pointer into it is returned.  Otherwise, a null
+ * pointer is returned.
+ **/
 static uint32_t *
 lookup_page (uint32_t *pd, const void *vaddr, bool create)
 {
@@ -199,8 +206,11 @@ pagedir_is_accessed (uint32_t *pd, const void *vpage)
   return pte != NULL && (*pte & PTE_A) != 0;
 }
 
-/* Sets the accessed bit to ACCESSED in the PTE for virtual page
-   VPAGE in PD. */
+/**
+ * 将特定页设置为已访问过
+ * Sets the accessed bit to ACCESSED in the PTE for virtual page
+ * VPAGE in PD.
+ **/
 void
 pagedir_set_accessed (uint32_t *pd, const void *vpage, bool accessed)
 {
@@ -217,8 +227,11 @@ pagedir_set_accessed (uint32_t *pd, const void *vpage, bool accessed)
     }
 }
 
-/* Loads page directory PD into the CPU's page directory base
-   register. */
+/**
+ * 将页目录载入到 cpu 的页目录基寄存器
+ * Loads page directory PD into the CPU's page directory base
+ * register.
+ **/
 void
 pagedir_activate (uint32_t *pd)
 {
@@ -249,14 +262,19 @@ active_pd (void)
   return ptov (pd);
 }
 
-/* Some page table changes can cause the CPU's translation
-   look aside buffer (TLB) to become out-of-sync with the page
-   table.  When this happens, we have to "invalidate" the TLB by
-   re-activating it.
-
-   This function invalidates the TLB if PD is the active page
-   directory.  (If PD is not active then its entries are not in
-   the TLB, so there is no need to invalidate anything.) */
+/**
+ * 一些页表的改变可以引起CPU的TLB失效, 当这个发生时,我们就应该
+ * invalidate这个 TLB, 通过重激活它
+ *
+ * Some page table changes can cause the CPU's translation
+ * lookaside buffer (TLB) to become out-of-sync with the page
+ * table.  When this happens, we have to "invalidate" the TLB by
+ * re-activating it.
+ *
+ * This function invalidates the TLB if PD is the active page
+ * directory.  (If PD is not active then its entries are not in
+ * the TLB, so there is no need to invalidate anything.)
+ **/
 static void
 invalidate_pagedir (uint32_t *pd)
 {
