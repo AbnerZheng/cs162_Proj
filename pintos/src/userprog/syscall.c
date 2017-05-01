@@ -24,10 +24,15 @@ static int sysopen (const char *filename);
 
 static int sysclose (int fd);
 
+static int sysfilesize (int fd);
+
+static int sysread (int fd, void *buffer, unsigned size);
+
 typedef int (*handler) (uint32_t, uint32_t, uint32_t);
 
 static handler syscall_vec[128];
-static struct fd_elem* get_fd_from_current_thread(int fd);
+
+static struct fd_elem *get_file_from_current_thread_by_fd (int fd);
 
 static int alloc_fid (void);
 
@@ -45,11 +50,13 @@ void
 syscall_init (void)
 {
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
-  syscall_vec[SYS_EXIT]   = (handler) sysexit;
-  syscall_vec[SYS_CREATE] = (handler) syscreate;
-  syscall_vec[SYS_WRITE]  = (handler) syswrite;
-  syscall_vec[SYS_OPEN]   = (handler) sysopen;
-  syscall_vec[SYS_CLOSE]  = (handler) sysclose;
+  syscall_vec[SYS_EXIT]     = (handler) sysexit;
+  syscall_vec[SYS_CREATE]   = (handler) syscreate;
+  syscall_vec[SYS_WRITE]    = (handler) syswrite;
+  syscall_vec[SYS_OPEN]     = (handler) sysopen;
+  syscall_vec[SYS_CLOSE]    = (handler) sysclose;
+  syscall_vec[SYS_READ]     = (handler) sysread;
+  syscall_vec[SYS_FILESIZE] = (handler) sysfilesize;
 
   list_init (&file_list);
 }
@@ -122,7 +129,7 @@ static int sysopen (const char *filename)
   fdElem->fd        = alloc_fid ();
 
   list_push_back (&file_list, &fdElem->elem);
-  struct thread * current =  thread_current ();
+  struct thread *current = thread_current ();
   list_push_back (&current->files, &fdElem->thread_elem);
 
 
@@ -147,9 +154,10 @@ alloc_fid (void)
 }
 
 static int
-sysclose (int fd){
-  struct fd_elem * elem = get_fd_from_current_thread (fd);
-  if(!elem)
+sysclose (int fd)
+{
+  struct fd_elem *elem = get_file_from_current_thread_by_fd (fd);
+  if (!elem)
     sysexit (-1);
   file_close (elem->file_elem);
   list_remove (&elem->thread_elem);
@@ -158,19 +166,38 @@ sysclose (int fd){
   return 0;
 }
 
-static struct fd_elem*
-get_fd_from_current_thread(int fd){
-  struct thread * current =  thread_current ();
+static struct fd_elem *
+get_file_from_current_thread_by_fd (int fd)
+{
+  struct thread    *current = thread_current ();
   struct list_elem *l;
   struct list_elem *end;
 
-  end = list_end (&current->files);
-  for (l = list_begin (&current->files) ; l != end ; list_next (l)) {
-    struct fd_elem* entry  =  list_entry (l, struct fd_elem, thread_elem);
-    if(entry->fd == fd){
+  end    = list_end (&current->files);
+  for (l = list_begin (&current->files); l != end; list_next (l)) {
+    struct fd_elem *entry = list_entry (l, struct fd_elem, thread_elem);
+    if (entry->fd == fd) {
       return entry;
     }
   }
 
   return NULL;
 };
+
+static int sysread (int fd, void *buffer, unsigned size)
+{
+  struct fd_elem *elem = get_file_from_current_thread_by_fd (fd);
+  if (!elem)
+    sysexit (-1);
+  return file_read (elem->file_elem, buffer, size);
+}
+
+static int sysfilesize (int fd)
+{
+  struct fd_elem *elem = get_file_from_current_thread_by_fd (fd);
+  if(!elem){
+    sysexit (-1);
+  }
+
+  return file_length(elem->file_elem);
+}
