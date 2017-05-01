@@ -142,7 +142,17 @@ static int sysopen (const char *filename)
 static int syswrite (int fd, const void *buffer, unsigned size)
 {
   char *phy_buffer = pagedir_get_page (thread_current ()->pagedir, buffer);
-  putbuf (phy_buffer, size);
+  if(fd == 1)
+    putbuf (phy_buffer, size);
+  else if(fd == 0)
+    sysexit (-1);
+  else{
+    struct fd_elem *elem =  get_file_from_current_thread_by_fd (fd);
+    if(!elem)
+      sysexit (-1);
+    return file_write (elem->file_elem, buffer, size);
+  }
+
 }
 
 

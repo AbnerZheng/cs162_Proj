@@ -19,11 +19,11 @@ pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/sc-bad-sp -a sc-ba
 perl -I../.. ../../tests/userprog/sc-bad-sp.ck tests/userprog/sc-bad-sp tests/userprog/sc-bad-sp.result
 FAIL tests/userprog/sc-bad-sp
 Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce 0xc002b5da 0x80480aa
+Call stack: 0xc00281ce 0xc002b627 0x80480aa
 Translation of call stack:
 In kernel.o:
 0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002b5da: syscall_handler (.../../userprog/syscall.c:76)
+0xc002b627: syscall_handler (.../../userprog/syscall.c:76)
 In tests/userprog/sc-bad-sp:
 0x080480aa: test_main (...s/userprog/sc-bad-sp.c:19)
 Translations of user virtual addresses above are based on a guess at
@@ -57,10 +57,10 @@ pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-bad-ptr -a 
 perl -I../.. ../../tests/userprog/create-bad-ptr.ck tests/userprog/create-bad-ptr tests/userprog/create-bad-ptr.result
 FAIL tests/userprog/create-bad-ptr
 Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce 0xc002c27c
+Call stack: 0xc00281ce 0xc002c2cc
 Translation of call stack:
 0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002c27c: dir_add (..../filesys/directory.c:152)
+0xc002c2cc: dir_add (..../filesys/directory.c:152)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/create-long -a create-long -- -q  -f run create-long < /dev/null 2> tests/userprog/create-long.errors > tests/userprog/create-long.output
 perl -I../.. ../../tests/userprog/create-long.ck tests/userprog/create-long tests/userprog/create-long.result
 pass tests/userprog/create-long
@@ -133,66 +133,23 @@ perl -I../.. ../../tests/userprog/read-bad-fd.ck tests/userprog/read-bad-fd test
 pass tests/userprog/read-bad-fd
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-normal -a write-normal -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-normal < /dev/null 2> tests/userprog/write-normal.errors > tests/userprog/write-normal.output
 perl -I../.. ../../tests/userprog/write-normal.ck tests/userprog/write-normal tests/userprog/write-normal.result
-FAIL tests/userprog/write-normal
-run: write() returned 0 instead of 239: FAILED
+pass tests/userprog/write-normal
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-bad-ptr -a write-bad-ptr -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-bad-ptr < /dev/null 2> tests/userprog/write-bad-ptr.errors > tests/userprog/write-bad-ptr.output
 perl -I../.. ../../tests/userprog/write-bad-ptr.ck tests/userprog/write-bad-ptr tests/userprog/write-bad-ptr.result
 FAIL tests/userprog/write-bad-ptr
 Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce 0xc0029fa3
+Call stack: 0xc00281ce
 Translation of call stack:
 0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-0xc0029fa3: putbuf (.../lib/kernel/console.c:168)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-boundary -a write-boundary -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-boundary < /dev/null 2> tests/userprog/write-boundary.errors > tests/userprog/write-boundary.output
 perl -I../.. ../../tests/userprog/write-boundary.ck tests/userprog/write-boundary tests/userprog/write-boundary.result
-FAIL tests/userprog/write-boundary
-run: write() returned 0 instead of 239: FAILED
+pass tests/userprog/write-boundary
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-zero -a write-zero -p ../../tests/userprog/sample.txt -a sample.txt -- -q  -f run write-zero < /dev/null 2> tests/userprog/write-zero.errors > tests/userprog/write-zero.output
 perl -I../.. ../../tests/userprog/write-zero.ck tests/userprog/write-zero tests/userprog/write-zero.result
 pass tests/userprog/write-zero
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-stdin -a write-stdin -- -q  -f run write-stdin < /dev/null 2> tests/userprog/write-stdin.errors > tests/userprog/write-stdin.output
-perl -I../.. ../../tests/userprog/write-stdin.ck tests/userprog/write-stdin tests/userprog/write-stdin.result
-FAIL tests/userprog/write-stdin
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (write-stdin) begin
-  (write-stdin) end
-  write-stdin: exit(0)
-Differences in `diff -u' format:
-  (write-stdin) begin
-- (write-stdin) end
-+ {(write-stdin) end
-  write-stdin: exit(0)
-Acceptable output:
-  (write-stdin) begin
-  write-stdin: exit(-1)
-Differences in `diff -u' format:
-  (write-stdin) begin
-- write-stdin: exit(-1)
-+ {(write-stdin) end
-+ write-stdin: exit(0)
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/write-bad-fd -a write-bad-fd -- -q  -f run write-bad-fd < /dev/null 2> tests/userprog/write-bad-fd.errors > tests/userprog/write-bad-fd.output
 perl -I../.. ../../tests/userprog/write-bad-fd.ck tests/userprog/write-bad-fd tests/userprog/write-bad-fd.result
-FAIL tests/userprog/write-bad-fd
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (write-bad-fd) begin
-  write-bad-fd: exit(-1)
-Differences in `diff -u' format:
-  (write-bad-fd) begin
-- write-bad-fd: exit(-1)
-+ {{{write-bad-fd: exit(-1)
-Acceptable output:
-  (write-bad-fd) begin
-  (write-bad-fd) end
-  write-bad-fd: exit(0)
-Differences in `diff -u' format:
-  (write-bad-fd) begin
-- (write-bad-fd) end
-- write-bad-fd: exit(0)
-+ {{{write-bad-fd: exit(-1)
+pass tests/userprog/write-bad-fd
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/exec-once -a exec-once -p tests/userprog/child-simple -a child-simple -- -q  -f run exec-once < /dev/null 2> tests/userprog/exec-once.errors > tests/userprog/exec-once.output
 perl -I../.. ../../tests/userprog/exec-once.ck tests/userprog/exec-once tests/userprog/exec-once.result
 FAIL tests/userprog/exec-once
@@ -273,273 +230,5 @@ Translation of call stack:
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/rox-simple -a rox-simple -- -q  -f run rox-simple < /dev/null 2> tests/userprog/rox-simple.errors > tests/userprog/rox-simple.output
 perl -I../.. ../../tests/userprog/rox-simple.ck tests/userprog/rox-simple tests/userprog/rox-simple.result
 FAIL tests/userprog/rox-simple
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (rox-simple) begin
-  (rox-simple) open "rox-simple"
-  (rox-simple) read "rox-simple"
-  (rox-simple) try to write "rox-simple"
-  (rox-simple) end
-  rox-simple: exit(0)
-Differences in `diff -u' format:
-  (rox-simple) begin
-  (rox-simple) open "rox-simple"
-  (rox-simple) read "rox-simple"
-  (rox-simple) try to write "rox-simple"
-- (rox-simple) end
-+ ELF         (rox-simple) end
-  rox-simple: exit(0)
+run: try to write "rox-simple": FAILED
 pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/rox-child -a rox-child -p tests/userprog/child-rox -a child-rox -- -q  -f run rox-child < /dev/null 2> tests/userprog/rox-child.errors > tests/userprog/rox-child.output
-perl -I../.. ../../tests/userprog/rox-child.ck tests/userprog/rox-child tests/userprog/rox-child.result
-FAIL tests/userprog/rox-child
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/rox-multichild -a rox-multichild -p tests/userprog/child-rox -a child-rox -- -q  -f run rox-multichild < /dev/null 2> tests/userprog/rox-multichild.errors > tests/userprog/rox-multichild.output
-perl -I../.. ../../tests/userprog/rox-multichild.ck tests/userprog/rox-multichild tests/userprog/rox-multichild.result
-FAIL tests/userprog/rox-multichild
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-read -a bad-read -- -q  -f run bad-read < /dev/null 2> tests/userprog/bad-read.errors > tests/userprog/bad-read.output
-perl -I../.. ../../tests/userprog/bad-read.ck tests/userprog/bad-read tests/userprog/bad-read.result
-FAIL tests/userprog/bad-read
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-read) begin
-  bad-read: exit(-1)
-Differences in `diff -u' format:
-  (bad-read) begin
-- bad-read: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-write -a bad-write -- -q  -f run bad-write < /dev/null 2> tests/userprog/bad-write.errors > tests/userprog/bad-write.output
-perl -I../.. ../../tests/userprog/bad-write.ck tests/userprog/bad-write tests/userprog/bad-write.result
-FAIL tests/userprog/bad-write
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-write) begin
-  bad-write: exit(-1)
-Differences in `diff -u' format:
-  (bad-write) begin
-- bad-write: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-read2 -a bad-read2 -- -q  -f run bad-read2 < /dev/null 2> tests/userprog/bad-read2.errors > tests/userprog/bad-read2.output
-perl -I../.. ../../tests/userprog/bad-read2.ck tests/userprog/bad-read2 tests/userprog/bad-read2.result
-FAIL tests/userprog/bad-read2
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-read2) begin
-  bad-read2: exit(-1)
-Differences in `diff -u' format:
-  (bad-read2) begin
-- bad-read2: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-write2 -a bad-write2 -- -q  -f run bad-write2 < /dev/null 2> tests/userprog/bad-write2.errors > tests/userprog/bad-write2.output
-perl -I../.. ../../tests/userprog/bad-write2.ck tests/userprog/bad-write2 tests/userprog/bad-write2.result
-FAIL tests/userprog/bad-write2
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-write2) begin
-  bad-write2: exit(-1)
-Differences in `diff -u' format:
-  (bad-write2) begin
-- bad-write2: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-jump -a bad-jump -- -q  -f run bad-jump < /dev/null 2> tests/userprog/bad-jump.errors > tests/userprog/bad-jump.output
-perl -I../.. ../../tests/userprog/bad-jump.ck tests/userprog/bad-jump tests/userprog/bad-jump.result
-FAIL tests/userprog/bad-jump
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-jump) begin
-  bad-jump: exit(-1)
-Differences in `diff -u' format:
-  (bad-jump) begin
-- bad-jump: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/bad-jump2 -a bad-jump2 -- -q  -f run bad-jump2 < /dev/null 2> tests/userprog/bad-jump2.errors > tests/userprog/bad-jump2.output
-perl -I../.. ../../tests/userprog/bad-jump2.ck tests/userprog/bad-jump2 tests/userprog/bad-jump2.result
-FAIL tests/userprog/bad-jump2
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (bad-jump2) begin
-  bad-jump2: exit(-1)
-Differences in `diff -u' format:
-  (bad-jump2) begin
-- bad-jump2: exit(-1)
-
-(User fault messages are excluded for matching purposes.)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/iloveos -a iloveos -- -q  -f run iloveos < /dev/null 2> tests/userprog/iloveos.errors > tests/userprog/iloveos.output
-perl -I../.. ../../tests/userprog/iloveos.ck tests/userprog/iloveos tests/userprog/iloveos.result
-pass tests/userprog/iloveos
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/userprog/practice -a practice -- -q  -f run practice < /dev/null 2> tests/userprog/practice.errors > tests/userprog/practice.output
-perl -I../.. ../../tests/userprog/practice.ck tests/userprog/practice tests/userprog/practice.result
-FAIL tests/userprog/practice
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 360 --qemu  --filesys-size=2 -p tests/userprog/no-vm/multi-oom -a multi-oom -- -q  -f run multi-oom < /dev/null 2> tests/userprog/no-vm/multi-oom.errors > tests/userprog/no-vm/multi-oom.output
-perl -I../.. ../../tests/userprog/no-vm/multi-oom.ck tests/userprog/no-vm/multi-oom tests/userprog/no-vm/multi-oom.result
-FAIL tests/userprog/no-vm/multi-oom
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/lg-create -a lg-create -- -q  -f run lg-create < /dev/null 2> tests/filesys/base/lg-create.errors > tests/filesys/base/lg-create.output
-perl -I../.. ../../tests/filesys/base/lg-create.ck tests/filesys/base/lg-create tests/filesys/base/lg-create.result
-pass tests/filesys/base/lg-create
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/lg-full -a lg-full -- -q  -f run lg-full < /dev/null 2> tests/filesys/base/lg-full.errors > tests/filesys/base/lg-full.output
-perl -I../.. ../../tests/filesys/base/lg-full.ck tests/filesys/base/lg-full tests/filesys/base/lg-full.result
-FAIL tests/filesys/base/lg-full
-run: TIMEOUT after 61 seconds of wall-clock time - load average: 1.16, 0.48, 0.24
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/lg-random -a lg-random -- -q  -f run lg-random < /dev/null 2> tests/filesys/base/lg-random.errors > tests/filesys/base/lg-random.output
-perl -I../.. ../../tests/filesys/base/lg-random.ck tests/filesys/base/lg-random tests/filesys/base/lg-random.result
-FAIL tests/filesys/base/lg-random
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/lg-seq-block -a lg-seq-block -- -q  -f run lg-seq-block < /dev/null 2> tests/filesys/base/lg-seq-block.errors > tests/filesys/base/lg-seq-block.output
-perl -I../.. ../../tests/filesys/base/lg-seq-block.ck tests/filesys/base/lg-seq-block tests/filesys/base/lg-seq-block.result
-FAIL tests/filesys/base/lg-seq-block
-run: æFªêwíí÷áºËr\ó‹6³DæVéGÃ6}8*,¯Öá(lg-seq-block) write 513 bytes at offset 0 in "noodle" failed: FAILED
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/lg-seq-random -a lg-seq-random -- -q  -f run lg-seq-random < /dev/null 2> tests/filesys/base/lg-seq-random.errors > tests/filesys/base/lg-seq-random.output
-perl -I../.. ../../tests/filesys/base/lg-seq-random.ck tests/filesys/base/lg-seq-random tests/filesys/base/lg-seq-random.result
-FAIL tests/filesys/base/lg-seq-random
-run: |à9Ëò÷‡'Û¬Å6œŒ’ùŠîVÁñ ¡“Od5Õ¥÷Åê1ÁùÑ¥µƒRcD„’TÒŠy	tŠ™Ã}ÊpM/|¹3êà4f ^TgÔ;À ÕõJû–w§H´âhõ.vOÉ;y Pâ¶ÊYãKûUu8bDB¦x™åZKÇŞ¾e/·x· :I*ëf½ºXjQ”|3>Â}Ò+Õ™*†!]>òœ–st7ÇÊ"'ß‘b…a<–xwt”Øü6*Hqœ¬ïşç…ğµ4¬XÉ¿Œ%g•x¥¥ÿÈ¯uOsij¾:»3qƒ_[ËOäR†¨™Ye8óK€G‹ÒŞGú4DyB<r¹Id—|êSÇ·ãíöuáÕ‰"h½°v’%şúr¸£+jÏLÖşH)Èg°=5­9óe}<íH¡I‘"û{œŠÂ…úÛd,§9pŠŒàÜú‹Qb‚.†uC˜©!%ß/ÂÀ?7W'²¶G(&¯¯Û  v<Í€Y¯IBIµşœıyAn³šcÕÓCÂ’Ñ)Gú{CO{IÇ³JÈl+¡Â¸£©ì;&ùàgGÕìÓpBÔE¬I,Ş«ˆí‹”›ˆF_r7ŞF$\ÌôúßôIèÌ6¥WêÍNşc‚ı§H~¼¯i~àtfÉî…AÕÇå«L®\ƒ‡~I%éhÏyEšëPs»7×aW#Qfİmn‰»üÖ&¦!_‡İçğœw¯Ğ>õ+]åpL(lg-seq-random) write 717 bytes at offset 0 in "nibble" failed: FAILED
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-create -a sm-create -- -q  -f run sm-create < /dev/null 2> tests/filesys/base/sm-create.errors > tests/filesys/base/sm-create.output
-perl -I../.. ../../tests/filesys/base/sm-create.ck tests/filesys/base/sm-create tests/filesys/base/sm-create.result
-pass tests/filesys/base/sm-create
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-full -a sm-full -- -q  -f run sm-full < /dev/null 2> tests/filesys/base/sm-full.errors > tests/filesys/base/sm-full.output
-perl -I../.. ../../tests/filesys/base/sm-full.ck tests/filesys/base/sm-full tests/filesys/base/sm-full.result
-FAIL tests/filesys/base/sm-full
-run: œ@9ºúÙñÀ?uÎ:{îş§V›-y±Pãİ},İÆdç+"mû[È°AØwˆ¦]t÷±³Ö0ÏvJŞ·õ0Vx4y%Êï™P)bRlîˆyV]uæY¶êÓ]¿P}lú¶ï–-åÒñõx±jP¼Á#eÿõ5¨M	¸›‡ÎV9¯“h?p¯â%Q²ÁnÒ  euÊ¦Ïïö9/ Ønnoä<©2Ù78¬I2>¿¥ä4°›:úC"0ŞšíË’–2™¤û£7ca¥œ‚¢ eœÏ¶ÉşÈpMùò"yhe%ZcO]ÁŞ‘½EL¬"ÍÓ“íO	¼æÔ>?ÇjÇ*¹á8¾bÇ¼’U²# u¤@{ÕÅ—äÄ->8¶J¦{cL¹r„)‹V¼*€¹Ù+/UÄn¹¯ÿ.t.ˆáÏ%¶@u¿íş[%·ã İV	¸XtÉuŞ¤RMÒ^(EšKXlrm²‹zzq7q	ˆnÑäÆª™€êWp¨~>‚Í:ŒÄªrH‚Å5Z]ªÑIï~şl·½êˆ%	bÊëi†³”u¡±^PN½Ä1Î0/Ä«¸‹sD|8â÷„PxGcm‚>tw÷È3pd:·-o2Ş$#:AwÿDLØ%l&bM¤Dÿş™BMÍ {Å‹ÿıãŞ%xÌK²u¥Gx{?M®¨ á	˜wE#Òi²?âg@{C?ñ¥‰ ˆzMX6ùªMßÙ¬Ê6«ïH©ÂÔ¿‘Ql/şª0Ş–e BK?2¬å ¼Àç7GDø!òñŠğ‘5Ö"<ëÖÈoÛd¾è1W^Éj»JhèÄ±[iP@qãp:*;b9ïò^ëx~!@õ…É„§ÑâPë ZÚ¾³¬•¢®œs6ç+ª6ØÅW„\Wƒfıí/L‰Ôè;ˆ£è˜(İÄ|Ï8cVä;ù}—?Á(| ‰AjL“ºœZ;€ŒÆ¸×åP·NŠê5ÜÔÁü+››6é	ÜéëÊ\HÿUt”¼»ÕqhDšL74°ÅIÜz>ùs5ÄÒÜÅÉ¡jÃ¶ıKÌ@zş!ÑÁ¢(Ş£_DQ„Ù hú•”ÿ['ƒ€¨•ıŸpe.’Ck+ÏÁ­\åUë«V›Û!ĞêfäËm1·Œ×¢…?•÷¥Ø8×	pœƒ9³šG*ëˆ!Í{Œ°!+‰Ş­\0®ƒ–Ø#·‡3äÊKÓSè	Ş×^tÊSÊfõÖZş0zé¹àtá—u[¡ºT­³ø!;hÏT„İ…O«F¶ä•-gåÔN¡3•ü¤•,T÷H¤ˆî¯I=:@t+·, ÆI¼šoÓÁwñK &É;åoDÆ„5†H`=…Û.Æã——Ì!øNUæ¶ašLˆí]\²uÖoM¸rƒş&ƒå_[Të÷Ç|Ø²YK`¡}D^ÒMË÷Àô´…Ï#Eš«bùš\²Y«Ø¨:=8t¯øÔPkıûµäÄØsıD«!ArB¨ËğÂ;vÖiï´øŞ¢ß8ÑìúgCœõvéé™+÷‡…Kƒú`k·nHïİº¢æ^®Ï`-;ç_Íæ…’7šÍRbMFUù%GÛıìÒ=ttÌß›R&`:ˆı³÷«@Ë _/*Ê÷İëJáAèŒµù"ŒĞÒË ˜L?øã´Yu¿‚Ÿ3oã±…^›»æ“ÉdhÓ  S¡î“‡(PByb +Ô°—G-Ñ)úìˆŞW™âoj†Åk‡ÿ)×B+ØÌu§Ú F–°Óæ"Ÿ½m›BĞöi¢/Ä—Ú‹ß:„|3ÉdkGÌ3¤Ô„ÿë°Ú–&‘b„yg‚îü‚Uµ¸Í!ş¼ìR²÷-´Ş[	¹Q2(sm-full) write 5678 bytes at offset 0 in "quux" failed: FAILED
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-random -a sm-random -- -q  -f run sm-random < /dev/null 2> tests/filesys/base/sm-random.errors > tests/filesys/base/sm-random.output
-perl -I../.. ../../tests/filesys/base/sm-random.ck tests/filesys/base/sm-random tests/filesys/base/sm-random.result
-FAIL tests/filesys/base/sm-random
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-seq-block -a sm-seq-block -- -q  -f run sm-seq-block < /dev/null 2> tests/filesys/base/sm-seq-block.errors > tests/filesys/base/sm-seq-block.output
-perl -I../.. ../../tests/filesys/base/sm-seq-block.ck tests/filesys/base/sm-seq-block tests/filesys/base/sm-seq-block.result
-FAIL tests/filesys/base/sm-seq-block
-run: æFªêwíí÷áºËr\ó‹6³DæVéGÃ6}8*,¯Öá(sm-seq-block) write 513 bytes at offset 0 in "noodle" failed: FAILED
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/sm-seq-random -a sm-seq-random -- -q  -f run sm-seq-random < /dev/null 2> tests/filesys/base/sm-seq-random.errors > tests/filesys/base/sm-seq-random.output
-perl -I../.. ../../tests/filesys/base/sm-seq-random.ck tests/filesys/base/sm-seq-random tests/filesys/base/sm-seq-random.result
-FAIL tests/filesys/base/sm-seq-random
-run: |à9Ëò÷‡'Û¬Å6œŒ’ùŠîVÁñ ¡“Od5Õ¥÷Åê1ÁùÑ¥µƒRcD„’TÒŠy	tŠ™Ã}ÊpM/|¹3êà4f ^TgÔ;À ÕõJû–w§H´âhõ.vOÉ;y Pâ¶ÊYãKûUu8bDB¦x™åZKÇŞ¾e/·x· :I*ëf½ºXjQ”|3>Â}Ò+Õ™*†!]>òœ–st7ÇÊ"'ß‘b…a<–xwt”Øü6*Hqœ¬ïşç…ğµ4¬XÉ¿Œ%g•x¥¥ÿÈ¯uOsij¾:»3qƒ_[ËOäR†¨™Ye8óK€G‹ÒŞGú4DyB<r¹Id—|êSÇ·ãíöuáÕ‰"h½°v’%şúr¸£+jÏLÖşH)Èg°=5­9óe}<íH¡I‘"û{œŠÂ…úÛd,§9pŠŒàÜú‹Qb‚.†uC˜©!%ß/ÂÀ?7W'²¶G(&¯¯Û  v<Í€Y¯IBIµşœıyAn³šcÕÓCÂ’Ñ)Gú{CO{IÇ³JÈl+¡Â¸£©ì;&ùàgGÕìÓpBÔE¬I,Ş«ˆí‹”›ˆF_r7ŞF$\ÌôúßôIèÌ6¥WêÍNşc‚ı§H~¼¯i~àtfÉî…AÕÇå«L®\ƒ‡~I%(sm-seq-random) write 667 bytes at offset 0 in "nibble" failed: FAILED
-pintos -v -k -T 300 --qemu  --filesys-size=2 -p tests/filesys/base/syn-read -a syn-read -p tests/filesys/base/child-syn-read -a child-syn-read -- -q  -f run syn-read < /dev/null 2> tests/filesys/base/syn-read.errors > tests/filesys/base/syn-read.output
-perl -I../.. ../../tests/filesys/base/syn-read.ck tests/filesys/base/syn-read tests/filesys/base/syn-read.result
-FAIL tests/filesys/base/syn-read
-run: ^¼á©¹`Ä{€Ù_ğ&òo.[D¬°—Ş‰ó½½ü (syn-read) write "data": FAILED
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/syn-remove -a syn-remove -- -q  -f run syn-remove < /dev/null 2> tests/filesys/base/syn-remove.errors > tests/filesys/base/syn-remove.output
-perl -I../.. ../../tests/filesys/base/syn-remove.ck tests/filesys/base/syn-remove tests/filesys/base/syn-remove.result
-FAIL tests/filesys/base/syn-remove
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pintos -v -k -T 60 --qemu  --filesys-size=2 -p tests/filesys/base/syn-write -a syn-write -p tests/filesys/base/child-syn-wrt -a child-syn-wrt -- -q  -f run syn-write < /dev/null 2> tests/filesys/base/syn-write.errors > tests/filesys/base/syn-write.output
-perl -I../.. ../../tests/filesys/base/syn-write.ck tests/filesys/base/syn-write tests/filesys/base/syn-write.result
-FAIL tests/filesys/base/syn-write
-Kernel panic in run: PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00281ce
-Translation of call stack:
-0xc00281ce: debug_panic (.../../lib/kernel/debug.c:38)
-pass tests/userprog/args-none
-pass tests/userprog/args-single
-pass tests/userprog/args-multiple
-pass tests/userprog/args-many
-pass tests/userprog/args-dbl-space
-FAIL tests/userprog/sc-bad-sp
-pass tests/userprog/sc-bad-arg
-pass tests/userprog/sc-boundary
-pass tests/userprog/sc-boundary-2
-pass tests/userprog/halt
-pass tests/userprog/exit
-pass tests/userprog/create-normal
-pass tests/userprog/create-empty
-pass tests/userprog/create-null
-FAIL tests/userprog/create-bad-ptr
-pass tests/userprog/create-long
-pass tests/userprog/create-exists
-pass tests/userprog/create-bound
-pass tests/userprog/open-normal
-pass tests/userprog/open-missing
-pass tests/userprog/open-boundary
-pass tests/userprog/open-empty
-pass tests/userprog/open-null
-FAIL tests/userprog/open-bad-ptr
-pass tests/userprog/open-twice
-pass tests/userprog/close-normal
-pass tests/userprog/close-twice
-pass tests/userprog/close-stdin
-pass tests/userprog/close-stdout
-pass tests/userprog/close-bad-fd
-pass tests/userprog/read-normal
-pass tests/userprog/read-bad-ptr
-pass tests/userprog/read-boundary
-pass tests/userprog/read-zero
-pass tests/userprog/read-stdout
-pass tests/userprog/read-bad-fd
-FAIL tests/userprog/write-normal
-FAIL tests/userprog/write-bad-ptr
-FAIL tests/userprog/write-boundary
-pass tests/userprog/write-zero
-FAIL tests/userprog/write-stdin
-FAIL tests/userprog/write-bad-fd
-FAIL tests/userprog/exec-once
-FAIL tests/userprog/exec-arg
-FAIL tests/userprog/exec-multiple
-FAIL tests/userprog/exec-missing
-FAIL tests/userprog/exec-bad-ptr
-FAIL tests/userprog/wait-simple
-FAIL tests/userprog/wait-twice
-FAIL tests/userprog/wait-killed
-FAIL tests/userprog/wait-bad-pid
-FAIL tests/userprog/multi-recurse
-FAIL tests/userprog/multi-child-fd
-FAIL tests/userprog/rox-simple
-FAIL tests/userprog/rox-child
-FAIL tests/userprog/rox-multichild
-FAIL tests/userprog/bad-read
-FAIL tests/userprog/bad-write
-FAIL tests/userprog/bad-read2
-FAIL tests/userprog/bad-write2
-FAIL tests/userprog/bad-jump
-FAIL tests/userprog/bad-jump2
-pass tests/userprog/iloveos
-FAIL tests/userprog/practice
-FAIL tests/userprog/no-vm/multi-oom
-pass tests/filesys/base/lg-create
-FAIL tests/filesys/base/lg-full
-FAIL tests/filesys/base/lg-random
-FAIL tests/filesys/base/lg-seq-block
-FAIL tests/filesys/base/lg-seq-random
-pass tests/filesys/base/sm-create
-FAIL tests/filesys/base/sm-full
-FAIL tests/filesys/base/sm-random
-FAIL tests/filesys/base/sm-seq-block
-FAIL tests/filesys/base/sm-seq-random
-FAIL tests/filesys/base/syn-read
-FAIL tests/filesys/base/syn-remove
-FAIL tests/filesys/base/syn-write
-41 of 78 tests failed.
-make[1]: *** [check] Error 1
-make[1]: Leaving directory `/home/vagrant/code/group/pintos/src/userprog/build'
-make: *** [check] Error 2
