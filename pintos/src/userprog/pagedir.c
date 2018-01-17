@@ -11,8 +11,6 @@ static void invalidate_pagedir (uint32_t *);
 
 /* Creates a new page directory that has mappings for kernel
    virtual addresses, but none for user virtual addresses.
-   创建一个新的页目录，该目录有内核地址映射，但没有用户虚拟地址
-
    Returns the new page directory, or a null pointer if memory
    allocation fails. */
 uint32_t *
@@ -49,19 +47,12 @@ pagedir_destroy (uint32_t *pd)
   palloc_free_page (pd);
 }
 
-/**
- * 根据虚拟地址VADDR在页目录PD中查找相应的PTE(page table entry)
- * Returns the address of the page table entry for virtual
- * address VADDR in page directory PD.
- *
- * 如果PD没有对应于VADDR的页表。对应的行为取决于CREATE。 如果CREATE设为
- * TRUE， 那么一个新的页表将会被创建，并返回该指针。否则，返回null
- *
- * If PD does not have a page table for VADDR, behavior depends
- * on CREATE.  If CREATE is true, then a new page table is
- * created and a pointer into it is returned.  Otherwise, a null
- * pointer is returned.
- **/
+/* Returns the address of the page table entry for virtual
+   address VADDR in page directory PD.
+   If PD does not have a page table for VADDR, behavior depends
+   on CREATE.  If CREATE is true, then a new page table is
+   created and a pointer into it is returned.  Otherwise, a null
+   pointer is returned. */
 static uint32_t *
 lookup_page (uint32_t *pd, const void *vaddr, bool create)
 {
@@ -70,13 +61,10 @@ lookup_page (uint32_t *pd, const void *vaddr, bool create)
   ASSERT (pd != NULL);
 
   /* Shouldn't create new kernel virtual mappings. */
-  // create和is_kernel_vaddr(vaddr)不能同时为真, 不能创建新的内核虚拟映射
   ASSERT (!create || is_user_vaddr (vaddr));
 
-  /**
-   * Check for a page table for VADDR.
-   * If one is missing, create one if requested.
-   **/
+  /* Check for a page table for VADDR.
+     If one is missing, create one if requested. */
   pde = pd + pd_no (vaddr);
   if (*pde == 0)
     {
@@ -97,32 +85,25 @@ lookup_page (uint32_t *pd, const void *vaddr, bool create)
   return &pt[pt_no (vaddr)];
 }
 
-/**
- * 在页目录PD中添加一条映射， 从用户虚拟页UPAGE到由内核虚拟地址KPAGE标识
- * 的物理帧.UPAGE必须没有被映射过。
- * KPAGE应该可能是一个通过palloc_get_page从用户池中获取的页，如果WRITABLE
- * 设true，那么该页是可读可写的，否则是只读的。
- *
- * Adds a mapping in page directory PD from user virtual page
- * UPAGE to the physical frame identified by kernel virtual
- * address KPAGE.
- * UPAGE must not already be mapped.
- * KPAGE should probably be a page obtained from the user pool
- * with palloc_get_page().
- * If WRITABLE is true, the new page is read/write;
- * otherwise it is read-only.
- * Returns true if successful, false if memory allocation
- * failed.
- **/
+/* Adds a mapping in page directory PD from user virtual page
+   UPAGE to the physical frame identified by kernel virtual
+   address KPAGE.
+   UPAGE must not already be mapped.
+   KPAGE should probably be a page obtained from the user pool
+   with palloc_get_page().
+   If WRITABLE is true, the new page is read/write;
+   otherwise it is read-only.
+   Returns true if successful, false if memory allocation
+   failed. */
 bool
 pagedir_set_page (uint32_t *pd, void *upage, void *kpage, bool writable)
 {
   uint32_t *pte;
 
-  ASSERT (pg_ofs (upage) == 0); //页内的偏移量必须为0
+  ASSERT (pg_ofs (upage) == 0);
   ASSERT (pg_ofs (kpage) == 0);
-  ASSERT (is_user_vaddr (upage)); // upage必须是用户地址
-  ASSERT (vtop (kpage) >> PTSHIFT < init_ram_pages); // 物理地址所处的页必须比ram_pages小
+  ASSERT (is_user_vaddr (upage));
+  ASSERT (vtop (kpage) >> PTSHIFT < init_ram_pages);
   ASSERT (pd != init_page_dir);
 
   pte = lookup_page (pd, upage, true);
@@ -140,16 +121,13 @@ pagedir_set_page (uint32_t *pd, void *upage, void *kpage, bool writable)
 /* Looks up the physical address that corresponds to user virtual
    address UADDR in PD.  Returns the kernel virtual address
    corresponding to that physical address, or a null pointer if
-   UADDR is unmapped.
-
-   根据uaddr和pd来查找物理地址
-   */
+   UADDR is unmapped. */
 void *
 pagedir_get_page (uint32_t *pd, const void *uaddr)
 {
   uint32_t *pte;
 
-  ASSERT (is_user_vaddr (uaddr)); //保证是用户地址空间
+  ASSERT (is_user_vaddr (uaddr));
 
   pte = lookup_page (pd, uaddr, false);
   if (pte != NULL && (*pte & PTE_P) != 0)
@@ -236,14 +214,8 @@ pagedir_set_accessed (uint32_t *pd, const void *vpage, bool accessed)
     }
 }
 
-/**
- * 将pd载入到CR3寄存器
- * 也就是一条汇编指令
- * movl pd, $cr3
- *
- * Loads page directory PD into the CPU's page directory base
- * register.
- */
+/* Loads page directory PD into the CPU's page directory base
+   register. */
 void
 pagedir_activate (uint32_t *pd)
 {
@@ -258,11 +230,7 @@ pagedir_activate (uint32_t *pd)
   asm volatile ("movl %0, %%cr3" : : "r" (vtop (pd)) : "memory");
 }
 
-/**
- * Returns the currently active page directory.
- * 返回目前活跃的页目录, 这个目录页存放在CR3寄存器中, 所以也只是一条汇编指令：
- * movl $CR3, pd
- **/
+/* Returns the currently active page directory. */
 static uint32_t *
 active_pd (void)
 {
@@ -275,7 +243,7 @@ active_pd (void)
   return ptov (pd);
 }
 
-/* Some page table changes can cause the CPU's translation
+/* Seom page table changes can cause the CPU's translation
    lookaside buffer (TLB) to become out-of-sync with the page
    table.  When this happens, we have to "invalidate" the TLB by
    re-activating it.

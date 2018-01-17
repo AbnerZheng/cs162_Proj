@@ -39,7 +39,7 @@ test_priority_donate_nest (void)
   lock_init (&a);
   lock_init (&b);
 
-  lock_acquire (&a); // 请求一个a锁
+  lock_acquire (&a);
 
   locks.a = &a;
   locks.b = &b;

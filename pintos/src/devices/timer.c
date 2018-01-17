@@ -25,13 +25,9 @@ static int64_t ticks;
 static unsigned loops_per_tick;
 
 static intr_handler_func timer_interrupt;
-
 static bool too_many_loops (unsigned loops);
-
 static void busy_wait (int64_t loops);
-
 static void real_time_sleep (int64_t num, int32_t denom);
-
 static void real_time_delay (int64_t num, int32_t denom);
 
 /* Sets up the timer to interrupt TIMER_FREQ times per second,
@@ -55,10 +51,11 @@ timer_calibrate (void)
   /* Approximate loops_per_tick as the largest power-of-two
      still less than one timer tick. */
   loops_per_tick = 1u << 10;
-  while (!too_many_loops (loops_per_tick << 1)) {
-    loops_per_tick <<= 1;
-    ASSERT (loops_per_tick != 0);
-  }
+  while (!too_many_loops (loops_per_tick << 1))
+    {
+      loops_per_tick <<= 1;
+      ASSERT (loops_per_tick != 0);
+    }
 
   /* Refine the next 8 bits of loops_per_tick. */
   high_bit = loops_per_tick;
@@ -90,18 +87,13 @@ timer_elapsed (int64_t then)
 /* Sleeps for approximately TICKS timer ticks.  Interrupts must
    be turned on. */
 void
-timer_sleep (int64_t t)
+timer_sleep (int64_t ticks)
 {
-  if(t<= 0)
-    return;
-  ASSERT (intr_get_level () == INTR_ON);
+  int64_t start = timer_ticks ();
 
-  struct thread *cur =  thread_current();
-//  思路，将它放入一个timer_sleep等待队列
-//  而且其排序按照最后唤醒的tick，从小到到排列
-  enum intr_level old_level =  intr_disable();
-  thread_sleep_until(cur, ticks + t);
-  intr_set_level(old_level);
+  ASSERT (intr_get_level () == INTR_ON);
+  while (timer_elapsed (start) < ticks)
+    thread_yield ();
 }
 
 /* Sleeps for approximately MS milliseconds.  Interrupts must be
@@ -179,17 +171,7 @@ static void
 timer_interrupt (struct intr_frame *args UNUSED)
 {
   ticks++;
-  thread_tick (ticks);
-  if(thread_mlfqs)
-  {
-    thread_update_recent_cpu();
-    if(ticks % TIMER_FREQ == 0){ //every seconds
-      thread_update_load_avg_and_recent_cpu ();
-    } else if(ticks % 4 == 0){
-      updatePriority (thread_current (), NULL);
-      intr_yield_on_return();
-    }
-  }
+  thread_tick ();
 }
 
 /* Returns true if LOOPS iterations waits for more than one timer
@@ -200,7 +182,7 @@ too_many_loops (unsigned loops)
   /* Wait for a timer tick. */
   int64_t start = ticks;
   while (ticks == start)
-      barrier ();
+    barrier ();
 
   /* Run LOOPS loops. */
   start = ticks;
@@ -222,7 +204,7 @@ static void NO_INLINE
 busy_wait (int64_t loops)
 {
   while (loops-- > 0)
-      barrier ();
+    barrier ();
 }
 
 /* Sleep for approximately NUM/DENOM seconds. */
@@ -238,16 +220,19 @@ real_time_sleep (int64_t num, int32_t denom)
   int64_t ticks = num * TIMER_FREQ / denom;
 
   ASSERT (intr_get_level () == INTR_ON);
-  if (ticks > 0) {
-    /* We're waiting for at least one full timer tick.  Use
-       timer_sleep() because it will yield the CPU to other
-       processes. */
-    timer_sleep (ticks);
-  } else {
-    /* Otherwise, use a busy-wait loop for more accurate
-       sub-tick timing. */
-    real_time_delay (num, denom);
-  }
+  if (ticks > 0)
+    {
+      /* We're waiting for at least one full timer tick.  Use
+         timer_sleep() because it will yield the CPU to other
+         processes. */
+      timer_sleep (ticks);
+    }
+  else
+    {
+      /* Otherwise, use a busy-wait loop for more accurate
+         sub-tick timing. */
+      real_time_delay (num, denom);
+    }
 }
 
 /* Busy-wait for approximately NUM/DENOM seconds. */

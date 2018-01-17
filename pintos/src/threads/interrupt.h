@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-/* 中断是否开启 Interrupts on or off? */
+/* Interrupts on or off? */
 enum intr_level
   {
     INTR_OFF,             /* Interrupts disabled. */
@@ -16,10 +16,7 @@ enum intr_level intr_set_level (enum intr_level);
 enum intr_level intr_enable (void);
 enum intr_level intr_disable (void);
 
-/**
- * Interrupt stack frame.
- * 中断栈帧
- **/
+/* Interrupt stack frame. */
 struct intr_frame
   {
     /* Pushed by intr_entry in intr-stubs.S.

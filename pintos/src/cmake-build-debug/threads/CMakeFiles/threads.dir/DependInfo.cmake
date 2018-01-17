@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Volumes/vagrant/code/group/pintos/src/threads/init.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/init.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/threads/interrupt.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/interrupt.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/threads/malloc.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/malloc.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/threads/palloc.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/palloc.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/threads/synch.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/synch.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/threads/thread.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/thread.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/threads/init.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/init.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/threads/interrupt.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/interrupt.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/threads/malloc.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/malloc.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/threads/palloc.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/palloc.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/threads/synch.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/synch.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/threads/thread.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/CMakeFiles/threads.dir/thread.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

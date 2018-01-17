@@ -11,28 +11,21 @@ static long long page_fault_cnt;
 static void kill (struct intr_frame *);
 static void page_fault (struct intr_frame *);
 
-/**
- * 注册用户程序引起的中断处理函数
- * Registers handlers for interrupts that can be caused by user
- * programs.
+/* Registers handlers for interrupts that can be caused by user
+   programs.
 
- * In a real Unix-like OS, most of these interrupts would be
- * passed along to the user process in the form of signals, as
- * described in [SV-386] 3-24 and 3-25, but we don't implement
- * signals.  Instead, we'll make them simply kill the user
- * process.
+   In a real Unix-like OS, most of these interrupts would be
+   passed along to the user process in the form of signals, as
+   described in [SV-386] 3-24 and 3-25, but we don't implement
+   signals.  Instead, we'll make them simply kill the user
+   process.
 
- * todo 页错误是一个例外。 在这里，他们与其他例外的对待方式一样， 但是为了实现
- * 虚拟内存，这里需要做些改变。
- *
- *
- * Page faults are an exception.  Here they are treated the same
- * way as other exceptions, but this will need to change to
- * implement virtual memory.
+   Page faults are an exception.  Here they are treated the same
+   way as other exceptions, but this will need to change to
+   implement virtual memory.
 
- * Refer to [IA32-v3a] section 5.15 "Exception and Interrupt
- * Reference" for a description of each of these exceptions.
- **/
+   Refer to [IA32-v3a] section 5.15 "Exception and Interrupt
+   Reference" for a description of each of these exceptions. */
 void
 exception_init (void)
 {
@@ -115,20 +108,17 @@ kill (struct intr_frame *f)
     }
 }
 
-/**
- * 页错误处理函数.
- * Page fault handler.  This is a skeleton that must be filled in
- * to implement virtual memory.  Some solutions to project 2 may
- * also require modifying this code.
+/* Page fault handler.  This is a skeleton that must be filled in
+   to implement virtual memory.  Some solutions to project 2 may
+   also require modifying this code.
 
- * At entry, the address that faulted is in CR2 (Control Register
- * 2) and information about the fault, formatted as described in
- * the PF_* macros in exception.h, is in F's error_code member.  The
- * example code here shows how to parse that information.  You
- * can find more information about both of these in the
- * description of "Interrupt 14--Page Fault Exception (#PF)" in
- * [IA32-v3a] section 5.15 "Exception and Interrupt Reference".
- **/
+   At entry, the address that faulted is in CR2 (Control Register
+   2) and information about the fault, formatted as described in
+   the PF_* macros in exception.h, is in F's error_code member.  The
+   example code here shows how to parse that information.  You
+   can find more information about both of these in the
+   description of "Interrupt 14--Page Fault Exception (#PF)" in
+   [IA32-v3a] section 5.15 "Exception and Interrupt Reference". */
 static void
 page_fault (struct intr_frame *f)
 {

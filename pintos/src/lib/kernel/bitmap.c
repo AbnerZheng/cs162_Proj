@@ -286,23 +286,12 @@ bitmap_all (const struct bitmap *b, size_t start, size_t cnt)
   return !bitmap_contains (b, start, cnt, false);
 }
 
-/**
- * 查找设置或未设的bits
- * Finding set or unset bits.
- **/
+/* Finding set or unset bits. */
 
-/**
- * 查找第一个在B中从START开始(包括)的连续CNT个bit全为value的索引,如果这里
- * 没有该组，则返回BITMAP_ERROR
- * Finds and returns the starting index of the first group of CNT
- * consecutive bits in B at or after START that are all set to
- * VALUE.
- * If there is no such group, returns BITMAP_ERROR.
- * @param b       - bitmap
- * @param start   - 从这里开始
- * @param cnt     - 连续cnt个
- * @param value   - 都设为value
- **/
+/* Finds and returns the starting index of the first group of CNT
+   consecutive bits in B at or after START that are all set to
+   VALUE.
+   If there is no such group, returns BITMAP_ERROR. */
 size_t
 bitmap_scan (const struct bitmap *b, size_t start, size_t cnt, bool value)
 {
@@ -314,26 +303,23 @@ bitmap_scan (const struct bitmap *b, size_t start, size_t cnt, bool value)
       size_t last = b->bit_cnt - cnt;
       size_t i;
       for (i = start; i <= last; i++)
-        if (!bitmap_contains (b, i, cnt, !value)) // 如果在B中从i开始的CNT个bit中不包含!value, 即都是value
+        if (!bitmap_contains (b, i, cnt, !value))
           return i;
     }
   return BITMAP_ERROR;
 }
 
-/**
- * 查找第一个连续CNT位的组
- * Finds the first group of CNT consecutive bits in B at or after
- * START that are all set to VALUE, flips them all to !VALUE,
- * and returns the index of the first bit in the group.
- * If there is no such group, returns BITMAP_ERROR.
- * If CNT is zero, returns 0.
- * Bits are set atomically, but testing bits is not atomic with
- * setting them.
- **/
+/* Finds the first group of CNT consecutive bits in B at or after
+   START that are all set to VALUE, flips them all to !VALUE,
+   and returns the index of the first bit in the group.
+   If there is no such group, returns BITMAP_ERROR.
+   If CNT is zero, returns 0.
+   Bits are set atomically, but testing bits is not atomic with
+   setting them. */
 size_t
 bitmap_scan_and_flip (struct bitmap *b, size_t start, size_t cnt, bool value)
 {
-  size_t idx = bitmap_scan (b, start, cnt, value); //先找到这个组
+  size_t idx = bitmap_scan (b, start, cnt, value);
   if (idx != BITMAP_ERROR)
     bitmap_set_multiple (b, idx, cnt, !value);
   return idx;

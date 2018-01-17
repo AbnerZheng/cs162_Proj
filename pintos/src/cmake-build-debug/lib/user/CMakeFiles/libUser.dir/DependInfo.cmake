@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Volumes/vagrant/code/group/pintos/src/lib/user/console.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/console.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/lib/user/debug.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/debug.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/lib/user/entry.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/entry.c.o"
-  "/Volumes/vagrant/code/group/pintos/src/lib/user/syscall.c" "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/syscall.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/lib/user/console.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/console.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/lib/user/debug.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/debug.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/lib/user/entry.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/entry.c.o"
+  "/Volumes/vagrant/code/cs162_Proj/pintos/src/lib/user/syscall.c" "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/lib/user/CMakeFiles/libUser.dir/syscall.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

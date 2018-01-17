@@ -1,4 +1,4 @@
-# Install script for directory: /Volumes/vagrant/code/group/pintos/src
+# Install script for directory: /Volumes/vagrant/code/cs162_Proj/pintos/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,11 +29,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/threads/cmake_install.cmake")
-  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/userprog/cmake_install.cmake")
-  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/devices/cmake_install.cmake")
-  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/cmake_install.cmake")
-  include("/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/lib/user/cmake_install.cmake")
+  include("/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/threads/cmake_install.cmake")
+  include("/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/userprog/cmake_install.cmake")
+  include("/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/devices/cmake_install.cmake")
+  include("/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/lib/cmake_install.cmake")
+  include("/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/lib/user/cmake_install.cmake")
 
 endif()
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Volumes/vagrant/code/group/pintos/src/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

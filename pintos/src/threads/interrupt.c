@@ -60,7 +60,7 @@ static inline uint64_t make_idtr_operand (uint16_t limit, void *base);
 void intr_handler (struct intr_frame *args);
 static void unexpected_interrupt (const struct intr_frame *);
 
-/* 返回当前中断状态 Returns the current interrupt status. */
+/* Returns the current interrupt status. */
 enum intr_level
 intr_get_level (void)
 {
@@ -88,7 +88,7 @@ enum intr_level
 intr_enable (void)
 {
   enum intr_level old_level = intr_get_level ();
-  ASSERT (!intr_context ()); // 断言不是在执行外部中断
+  ASSERT (!intr_context ());
 
   /* Enable interrupts by setting the interrupt flag.
 

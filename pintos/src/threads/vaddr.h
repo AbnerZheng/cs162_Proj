@@ -8,33 +8,30 @@
 #include "threads/loader.h"
 
 /* Functions and macros for working with virtual addresses.
-   虚拟地址的一些函数
+
    See pte.h for functions and macros specifically for x86
    hardware page tables. */
 
-#define BITMASK(SHIFT, CNT) (((1ul << (CNT)) - 1) << (SHIFT)) // Mask掉CNT位，从SHIFT开始
+#define BITMASK(SHIFT, CNT) (((1ul << (CNT)) - 1) << (SHIFT))
 
-/* Page offset (bits 0:12, 即4K bits). */
+/* Page offset (bits 0:12). */
 #define PGSHIFT 0                          /* Index of first offset bit. */
 #define PGBITS  12                         /* Number of offset bits. */
 #define PGSIZE  (1 << PGBITS)              /* Bytes in a page. */
 #define PGMASK  BITMASK(PGSHIFT, PGBITS)   /* Page offset bits (0:12). */
 
-/**
- * 页中的偏移量
- * Offset within a page.
- **/
+/* Offset within a page. */
 static inline unsigned pg_ofs (const void *va) {
-  return (uintptr_t) va & PGMASK; // unitprt_t == uint32
+  return (uintptr_t) va & PGMASK;
 }
 
 /* Virtual page number. */
 static inline uintptr_t pg_no (const void *va) {
-  return (uintptr_t) va >> PGBITS; // 虚拟页码,右移12位
+  return (uintptr_t) va >> PGBITS;
 }
 
 /* Round up to nearest page boundary. */
-static inline void *pg_round_up (const void *va) { // 向上获取最近的页边界
+static inline void *pg_round_up (const void *va) {
   return (void *) (((uintptr_t) va + PGSIZE - 1) & ~PGMASK);
 }
 
@@ -49,21 +46,13 @@ static inline void *pg_round_down (const void *va) {
    address address 0x1234 at (uint8_t *) PHYS_BASE + 0x1234, and
    so on.
 
-   物理内存从base address这个虚拟地址开始映射。物理地址0x1234被映射到虚拟地址PHYS_BASE+0x1234
-
-   这个地址也标注了用户程序地址空间的结尾。 在这个地址之上，属于内核地址空间
-   也就是说，用户地址空间是0-3GB， 3GB之上就是内核地址空间. 内核地址空间中，虚拟地址和物理地址一对一的映射。
-
    This address also marks the end of user programs' address
    space.  Up to this point in memory, user programs are allowed
    to map whatever they like.  At this point and above, the
    virtual address space belongs to the kernel. */
 #define	PHYS_BASE ((void *) LOADER_PHYS_BASE)
 
-/**
- * Returns true if VADDR is a user virtual address.
- * 最末端的地址是属于内核的地址空间
- * */
+/* Returns true if VADDR is a user virtual address. */
 static inline bool
 is_user_vaddr (const void *vaddr)
 {
@@ -77,9 +66,7 @@ is_kernel_vaddr (const void *vaddr)
   return vaddr >= PHYS_BASE;
 }
 
-/**
- * 返回内核虚拟地址
- * Returns kernel virtual address at which physical address PADDR
+/* Returns kernel virtual address at which physical address PADDR
    is mapped. */
 static inline void *
 ptov (uintptr_t paddr)
@@ -89,11 +76,8 @@ ptov (uintptr_t paddr)
   return (void *) (paddr + PHYS_BASE);
 }
 
-/**
- * 返回内核虚拟地址VADDR映射到的物理地址
- * Returns physical address at which kernel virtual address VADDR
- * is mapped.
- **/
+/* Returns physical address at which kernel virtual address VADDR
+   is mapped. */
 static inline uintptr_t
 vtop (const void *vaddr)
 {

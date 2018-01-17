@@ -1,4 +1,4 @@
-# Install script for directory: /Volumes/vagrant/code/group/pintos/src/lib
+# Install script for directory: /Volumes/vagrant/code/cs162_Proj/pintos/src/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

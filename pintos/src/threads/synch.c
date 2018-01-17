@@ -113,19 +113,14 @@ sema_up (struct semaphore *sema)
   ASSERT (sema != NULL);
 
   old_level = intr_disable ();
+  if (!list_empty (&sema->waiters))
+    thread_unblock (list_entry (list_pop_front (&sema->waiters),
+                                struct thread, elem));
   sema->value++;
-  if (!list_empty (&sema->waiters)){
-    struct list_elem * m =  list_max (&sema->waiters, thread_less,NULL);
-    list_remove (m);
-    thread_unblock (list_entry (m, struct thread, elem));
-    thread_yield ();
-  }
   intr_set_level (old_level);
 }
 
 static void sema_test_helper (void *sema_);
-
-void update_up (struct thread *pThread);
 
 /* Self-test for semaphores that makes control "ping-pong"
    between a pair of threads.  Insert calls to printf() to see
@@ -201,42 +196,8 @@ lock_acquire (struct lock *lock)
   ASSERT (!intr_context ());
   ASSERT (!lock_held_by_current_thread (lock));
 
-  struct thread * current = thread_current ();
-  enum intr_level old_level = intr_disable ();
-  current->block_lock = lock;
-  if(current->priority > lock->max_priority && !thread_mlfqs){
-    lock->max_priority = current->priority; // 更新该锁的最大优先级
-    if(lock->holder != NULL){ //此时如果，lock已经被其他线程持有,则需要更新他的优先级
-      struct thread * t =  lock->holder;
-      if(current->priority >= t->priority){
-        t->priority = current->priority;
-        t->donated = 1;
-        update_up(t);
-      }
-
-    }
-  }
-  intr_set_level (old_level);
-
-  sema_down (&lock->semaphore); //阻塞住，直到拥有该lock
-  current->block_lock = NULL;
-  lock->holder = current;
-  list_push_back (&current->locks, &lock->elem); // 此时拥有该lock
-  //todo t2此时拥有该lock，如果是随机一个线程拥有一个线程的话，就得
-}
-
-void update_up (struct thread *t)
-{
-  if(NULL == t->block_lock || t->block_lock->holder == NULL)return;
-  ASSERT (t->block_lock->holder!=t); // 线程不能又拥有一个锁又阻塞在一个锁上
-  if(t->block_lock->max_priority < t->priority){
-    t->block_lock->max_priority = t->priority;
-    if(t->block_lock->holder->priority <= t->priority){
-      t->block_lock->holder->priority = t->priority;
-      t->block_lock->holder->donated = 1;
-      update_up (t->block_lock->holder);
-    }
-  }
+  sema_down (&lock->semaphore);
+  lock->holder = thread_current ();
 }
 
 /* Tries to acquires LOCK and returns true if successful or false
@@ -270,10 +231,6 @@ lock_release (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
 
-  enum intr_level old_level = intr_disable ();
-  thread_reset_priority (lock);
-  intr_set_level (old_level);
-  // 释放锁的时候，要注意的是要更新目前线程的优先级
   lock->holder = NULL;
   sema_up (&lock->semaphore);
 }
@@ -344,22 +301,6 @@ cond_wait (struct condition *cond, struct lock *lock)
   lock_acquire (lock);
 }
 
-bool
-condvar_less(const struct list_elem *a,
-             const struct list_elem *b,
-             void *aux UNUSED)
-{
-  struct semaphore_elem * pre = list_entry(a, struct semaphore_elem, elem);
-  struct semaphore_elem* next = list_entry(b, struct semaphore_elem, elem);
-
-
-  struct thread *t1 =  list_entry (list_front (&pre->semaphore.waiters),struct thread, elem);
-
-  struct thread *t2 = list_entry (list_front (&next->semaphore.waiters),struct thread, elem);
-
-  return t1->priority < t2->priority;
-}
-
 /* If any threads are waiting on COND (protected by LOCK), then
    this function signals one of them to wake up from its wait.
    LOCK must be held before calling this function.
@@ -375,14 +316,9 @@ cond_signal (struct condition *cond, struct lock *lock UNUSED)
   ASSERT (!intr_context ());
   ASSERT (lock_held_by_current_thread (lock));
 
-  if (!list_empty (&cond->waiters)){
-//    list_pop_front (&cond->waiters);
-    struct list_elem *m =  list_max (&cond->waiters, condvar_less, NULL);
-    list_remove (m);
-    sema_up (&list_entry (m,
+  if (!list_empty (&cond->waiters))
+    sema_up (&list_entry (list_pop_front (&cond->waiters),
                           struct semaphore_elem, elem)->semaphore);
-  }
-
 }
 
 /* Wakes up all threads, if any, waiting on COND (protected by

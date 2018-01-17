@@ -1,4 +1,4 @@
-# Install script for directory: /Volumes/vagrant/code/group/pintos/src/userprog
+# Install script for directory: /Volumes/vagrant/code/cs162_Proj/pintos/src/userprog
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
