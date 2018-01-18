@@ -1,4 +1,11 @@
 /Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Volumes/vagrant/code/cs162_Proj/pintos/src
--- Configuring done
--- Generating done
--- Build files have been written to: /Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug
+CMake Error at CMakeLists.txt:18 (add_subdirectory):
+  The source directory
+
+    /Volumes/vagrant/code/cs162_Proj/pintos/src/filesys
+
+  does not contain a CMakeLists.txt file.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Volumes/vagrant/code/cs162_Proj/pintos/src/cmake-build-debug/CMakeFiles/CMakeOutput.log".

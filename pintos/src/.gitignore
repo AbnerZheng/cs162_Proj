@@ -2,3 +2,6 @@ cscope.files
 cscope.out
 TAGS
 tags
+/cmake-build-debug/
+.idea
+.idea/workspace.xml
