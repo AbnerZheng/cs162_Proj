@@ -3,13 +3,16 @@
 
 #include "threads/vaddr.h"
 
-/* Functions and macros for working with x86 hardware page
-   tables.
+/**
+ * 一些用于 x86硬件页表的函数和宏
+ * Functions and macros for working with x86 hardware page
+ * tables.
 
-   See vaddr.h for more generic functions and macros for virtual
-   addresses.
-
-   Virtual addresses are structured as follows:
+ * See vaddr.h for more generic functions and macros for virtual
+ * addresses.
+ *
+ * 虚拟地址的结构如下所示, 两级页表, 每一页有12bit, 即4KB
+ * Virtual addresses are structured as follows:
 
     31                  22 21                  12 11                   0
    +----------------------+----------------------+----------------------+
@@ -21,14 +24,17 @@
 #define	PTSHIFT PGBITS		           /* First page table bit. */
 #define PTBITS  10                         /* Number of page table bits. */
 #define PTSPAN  (1 << PTBITS << PGBITS)    /* Bytes covered by a page table. */
-#define PTMASK  BITMASK(PTSHIFT, PTBITS)   /* Page table bits (12:21). */
+#define PTMASK  BITMASK(PTSHIFT, PTBITS)   /* Page table bits (12:21). page table mask */
 
 /* Page directory index (bits 22:31). */
 #define PDSHIFT (PTSHIFT + PTBITS)         /* First page directory bit. */
 #define PDBITS  10                         /* Number of page dir bits. */
-#define PDMASK  BITMASK(PDSHIFT, PDBITS)   /* Page directory bits (22:31). */
+#define PDMASK  BITMASK(PDSHIFT, PDBITS)   /* Page directory bits (22:31). page directory mask */
 
-/* Obtains page table index from a virtual address. */
+/**
+ * 从虚拟地址获取页表索引
+ * Obtains page table index from a virtual address.
+ **/
 static inline unsigned pt_no (const void *va) {
   return ((uintptr_t) va & PTMASK) >> PTSHIFT;
 }
@@ -38,13 +44,15 @@ static inline uintptr_t pd_no (const void *va) {
   return (uintptr_t) va >> PDSHIFT;
 }
 
-/* Page directory and page table entries.
+/**
+ * 页目录和页表项
+ * Page directory and page table entries.
 
-   For more information see the section on page tables in the
-   Pintos reference guide chapter, or [IA32-v3a] 3.7.6
-   "Page-Directory and Page-Table Entries".
+ * For more information see the section on page tables in the
+ * Pintos reference guide chapter, or [IA32-v3a] 3.7.6
+ * "Page-Directory and Page-Table Entries".
 
-   PDEs and PTEs share a common format:
+ * PDEs and PTEs share a common format:
 
    31                                 12 11                     0
    +------------------------------------+------------------------+
@@ -57,7 +65,8 @@ static inline uintptr_t pd_no (const void *va) {
    When a PDE or PTE is not "present", the other flags are
    ignored.
    A PDE or PTE that is initialized to 0 will be interpreted as
-   "not present", which is just fine. */
+   "not present", which is just fine.
+  **/
 #define PTE_FLAGS 0x00000fff    /* Flag bits. */
 #define PTE_ADDR  0xfffff000    /* Address bits. */
 #define PTE_AVL   0x00000e00    /* Bits available for OS use. */
@@ -80,10 +89,12 @@ static inline uint32_t *pde_get_pt (uint32_t pde) {
   return ptov (pde & PTE_ADDR);
 }
 
-/* Returns a PTE that points to PAGE.
-   The PTE's page is readable.
-   If WRITABLE is true then it will be writable as well.
-   The page will be usable only by ring 0 code (the kernel). */
+/**
+ * Returns a PTE that points to PAGE.
+ * The PTE's page is readable.
+ * If WRITABLE is true then it will be writable as well.
+ * The page will be usable only by ring 0 code (the kernel).
+ **/
 static inline uint32_t pte_create_kernel (void *page, bool writable) {
   ASSERT (pg_ofs (page) == 0);
   return vtop (page) | PTE_P | (writable ? PTE_W : 0);

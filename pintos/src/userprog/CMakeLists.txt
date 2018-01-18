@@ -1,16 +1,16 @@
 set(userprog_SRCS
-        gdt.h
         gdt.c
-        pagedir.h
-        pagedir.c
-        process.h
+        gdt.h
         process.c
-        tss.c
-        tss.h
+        process.h
+        exception.c
+        exception.h
         syscall.c
         syscall.h
-        exception.h
-        exception.c
+        pagedir.c
+        pagedir.h
+        tss.c
+        tss.h
         )
 
 add_library(userprog ${userprog_SRCS})

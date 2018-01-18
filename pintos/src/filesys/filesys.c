@@ -38,10 +38,12 @@ filesys_done (void)
   free_map_close ();
 }
 
-/* Creates a file named NAME with the given INITIAL_SIZE.
-   Returns true if successful, false otherwise.
-   Fails if a file named NAME already exists,
-   or if internal memory allocation fails. */
+/**
+ * Creates a file named NAME with the given INITIAL_SIZE.
+ * Returns true if successful, false otherwise.
+ * Fails if a file named NAME already exists,
+ * or if internal memory allocation fails.
+ **/
 bool
 filesys_create (const char *name, off_t initial_size)
 {

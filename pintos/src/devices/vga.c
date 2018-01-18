@@ -51,11 +51,14 @@ init (void)
 void
 vga_putc (int c)
 {
-  /* Disable interrupts to lock out interrupt handlers
-     that might write to the console. */
+  /**
+   * Disable interrupts to lock out interrupt handlers
+   * that might write to the console.
+   * 这里直接禁止了中断
+   **/
   enum intr_level old_level = intr_disable ();
 
-  init ();
+  init (); // 初始化vga 设备
 
   switch (c)
     {
@@ -128,19 +131,21 @@ clear_row (size_t y)
     }
 }
 
-/* Advances the cursor to the first column in the next line on
-   the screen.  If the cursor is already on the last line on the
-   screen, scrolls the screen upward one line. */
+/**
+ * Advances the cursor to the first column in the next line on
+ * the screen.  If the cursor is already on the last line on the
+ * screen, scrolls the screen upward one line.
+ **/
 static void
 newline (void)
 {
-  cx = 0;
+  cx = 0; // 新的一行, 直接设置x=0, y 为下一行
   cy++;
   if (cy >= ROW_CNT)
     {
       cy = ROW_CNT - 1;
-      memmove (&fb[0], &fb[1], sizeof fb[0] * (ROW_CNT - 1));
-      clear_row (ROW_CNT - 1);
+      memmove (&fb[0], &fb[1], sizeof fb[0] * (ROW_CNT - 1)); //将从fb[1]后面所有的元素都依次向前复制一行
+      clear_row (ROW_CNT - 1); //把最后一行清了, 注意是从0开始的
     }
 }
 

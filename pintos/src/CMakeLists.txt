@@ -11,11 +11,12 @@ include_directories("${PROJECT_SOURCE_DIR}/lib/kernel")
 
 
 add_subdirectory(threads)
-add_subdirectory(userprog)
-add_subdirectory(devices)
 add_subdirectory(lib)
 add_subdirectory(lib/user)
-
+add_subdirectory(lib/kernel)
+add_subdirectory(userprog)
+add_subdirectory(filesys)
+add_subdirectory(devices)
 
 #add_executable(src ${libs_SRCS})
 #target_link_libraries (src lib)

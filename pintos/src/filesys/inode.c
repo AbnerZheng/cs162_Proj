@@ -10,14 +10,19 @@
 /* Identifies an inode. */
 #define INODE_MAGIC 0x494e4f44
 
-/* On-disk inode.
-   Must be exactly BLOCK_SECTOR_SIZE bytes long. */
+/**
+ * On-disk inode.
+ * Must be exactly BLOCK_SECTOR_SIZE bytes long.
+ * 磁盘上的 inode
+ * 必须恰好是512字节长
+ *
+ **/
 struct inode_disk
   {
-    block_sector_t start;               /* First data sector. */
-    off_t length;                       /* File size in bytes. */
-    unsigned magic;                     /* Magic number. */
-    uint32_t unused[125];               /* Not used. */
+    block_sector_t start;               /* First data sector. 4字节  */
+    off_t length;                       /* File size in bytes. 4字节  */
+    unsigned magic;                     /* Magic number. 4字节  */
+    uint32_t unused[125];               /* Not used. 125*4 = 500 */
   };
 
 /* Returns the number of sectors to allocate for an inode SIZE

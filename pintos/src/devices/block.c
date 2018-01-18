@@ -12,7 +12,7 @@ struct block
 
     char name[16];                      /* Block device name. */
     enum block_type type;                /* Type of block device. */
-    block_sector_t size;                 /* Size in sectors. */
+    block_sector_t size;                 /* Size in sectors. 即有多少个sector */
 
     const struct block_operations *ops;  /* Driver operations. */
     void *aux;                          /* Extra data owned by driver. */
